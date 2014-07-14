@@ -19,7 +19,7 @@
           
             <asp:TextBox ID="txtUsername" Class="loginField form-control" runat="server" Height="30px" Width="300px" placeholder="username"></asp:TextBox>
             <br />
-            <asp:TextBox ID="txtPassword" Class="form-control" runat="server" Height="30px" Width="300px" placeholder="password"></asp:TextBox>
+            <asp:TextBox ID="txtPassword" Class="form-control" runat="server" Height="30px" Width="300px" placeholder="password" TextMode="Password"></asp:TextBox>
             <br />
           
             <asp:Button ID="btnLogin" Class="btn btn-default" runat="server" Text="Login" Height="40px" Width="300px" OnClick="btnLogin_Click" />
