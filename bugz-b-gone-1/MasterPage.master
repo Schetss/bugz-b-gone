@@ -7,7 +7,7 @@
     <link href="bootstrap/css/screen.css" rel="stylesheet" type="text/css" />
     <link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <title>bugz-b-gone</title>
+    <title>Bugz-B-Gone</title>
     <asp:ContentPlaceHolder id="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -16,9 +16,12 @@
          
       <form id="form1" runat="server">
         <div class="content">
-        <div class="page-header">
+            <div class="page-header">
                 <img src="images/logo.jpg" />
-            </div>
+                <asp:Button ID="btnLogout" Class="btn btn-default" runat="server" Text="Log out" />
+        </div>
+
+
         <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
         
         </asp:ContentPlaceHolder>

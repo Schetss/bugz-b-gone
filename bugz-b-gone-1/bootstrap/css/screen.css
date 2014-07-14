@@ -5,5 +5,31 @@
     width: 800px;
     margin-left: auto;
     margin-right: auto;
+}
 
+/* MENU */
+
+#btnLogout {
+    float: right;
+}
+
+#rightMenu {
+    margin-left: 420px;
+}
+
+
+
+
+/* LOGIN */
+
+.loginBox {
+    width: 300px;
+    height: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+}
+
+.loginField {
+    margin-top: 35px;
 }
