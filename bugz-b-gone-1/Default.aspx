@@ -17,12 +17,12 @@
           
             <img src="images/logo.jpg" height="60" width="300" />
           
-            <asp:TextBox ID="TextBox1" Class="loginField form-control" runat="server" Height="30px" Width="300px" placeholder="username"></asp:TextBox>
+            <asp:TextBox ID="txtUsername" Class="loginField form-control" runat="server" Height="30px" Width="300px" placeholder="username"></asp:TextBox>
             <br />
-            <asp:TextBox ID="TextBox2" Class="form-control" runat="server" Height="30px" Width="300px" placeholder="password"></asp:TextBox>
+            <asp:TextBox ID="txtPassword" Class="form-control" runat="server" Height="30px" Width="300px" placeholder="password"></asp:TextBox>
             <br />
           
-            <asp:Button ID="btnLogin" Class="btn btn-default" runat="server" Text="Login" Height="40px" Width="300px" />
+            <asp:Button ID="btnLogin" Class="btn btn-default" runat="server" Text="Login" Height="40px" Width="300px" OnClick="btnLogin_Click" />
 
         </div>
     </div>

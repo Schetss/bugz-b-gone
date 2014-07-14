@@ -29,9 +29,6 @@ public partial class BugzDataContext : System.Data.Linq.DataContext
 	
   #region Extensibility Method Definitions
   partial void OnCreated();
-  partial void InsertAssignee(Assignee instance);
-  partial void UpdateAssignee(Assignee instance);
-  partial void DeleteAssignee(Assignee instance);
   partial void InsertUsertype(Usertype instance);
   partial void UpdateUsertype(Usertype instance);
   partial void DeleteUsertype(Usertype instance);
@@ -44,15 +41,18 @@ public partial class BugzDataContext : System.Data.Linq.DataContext
   partial void InsertPriority(Priority instance);
   partial void UpdatePriority(Priority instance);
   partial void DeletePriority(Priority instance);
+  partial void InsertProductUser(ProductUser instance);
+  partial void UpdateProductUser(ProductUser instance);
+  partial void DeleteProductUser(ProductUser instance);
   partial void InsertProject(Project instance);
   partial void UpdateProject(Project instance);
   partial void DeleteProject(Project instance);
   partial void InsertReaction(Reaction instance);
   partial void UpdateReaction(Reaction instance);
   partial void DeleteReaction(Reaction instance);
-  partial void InsertUser(User instance);
-  partial void UpdateUser(User instance);
-  partial void DeleteUser(User instance);
+  partial void InsertAssign1(Assign1 instance);
+  partial void UpdateAssign1(Assign1 instance);
+  partial void DeleteAssign1(Assign1 instance);
   partial void InsertUsersOnProject(UsersOnProject instance);
   partial void UpdateUsersOnProject(UsersOnProject instance);
   partial void DeleteUsersOnProject(UsersOnProject instance);
@@ -88,14 +88,6 @@ public partial class BugzDataContext : System.Data.Linq.DataContext
 		OnCreated();
 	}
 	
-	public System.Data.Linq.Table<Assignee> Assignees
-	{
-		get
-		{
-			return this.GetTable<Assignee>();
-		}
-	}
-	
 	public System.Data.Linq.Table<Usertype> Usertypes
 	{
 		get
@@ -128,6 +120,14 @@ public partial class BugzDataContext : System.Data.Linq.DataContext
 		}
 	}
 	
+	public System.Data.Linq.Table<ProductUser> ProductUsers
+	{
+		get
+		{
+			return this.GetTable<ProductUser>();
+		}
+	}
+	
 	public System.Data.Linq.Table<Project> Projects
 	{
 		get
@@ -144,11 +144,11 @@ public partial class BugzDataContext : System.Data.Linq.DataContext
 		}
 	}
 	
-	public System.Data.Linq.Table<User> Users
+	public System.Data.Linq.Table<Assign1> Assign1s
 	{
 		get
 		{
-			return this.GetTable<User>();
+			return this.GetTable<Assign1>();
 		}
 	}
 	
@@ -157,198 +157,6 @@ public partial class BugzDataContext : System.Data.Linq.DataContext
 		get
 		{
 			return this.GetTable<UsersOnProject>();
-		}
-	}
-}
-
-[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Assignees")]
-public partial class Assignee : INotifyPropertyChanging, INotifyPropertyChanged
-{
-	
-	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-	
-	private int _pk_assignees_id;
-	
-	private System.Nullable<int> _fk_user;
-	
-	private System.Nullable<int> _fk_bug;
-	
-	private EntityRef<Bug> _Bug;
-	
-	private EntityRef<User> _User;
-	
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void Onpk_assignees_idChanging(int value);
-    partial void Onpk_assignees_idChanged();
-    partial void Onfk_userChanging(System.Nullable<int> value);
-    partial void Onfk_userChanged();
-    partial void Onfk_bugChanging(System.Nullable<int> value);
-    partial void Onfk_bugChanged();
-    #endregion
-	
-	public Assignee()
-	{
-		this._Bug = default(EntityRef<Bug>);
-		this._User = default(EntityRef<User>);
-		OnCreated();
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pk_assignees_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-	public int pk_assignees_id
-	{
-		get
-		{
-			return this._pk_assignees_id;
-		}
-		set
-		{
-			if ((this._pk_assignees_id != value))
-			{
-				this.Onpk_assignees_idChanging(value);
-				this.SendPropertyChanging();
-				this._pk_assignees_id = value;
-				this.SendPropertyChanged("pk_assignees_id");
-				this.Onpk_assignees_idChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fk_user", DbType="Int")]
-	public System.Nullable<int> fk_user
-	{
-		get
-		{
-			return this._fk_user;
-		}
-		set
-		{
-			if ((this._fk_user != value))
-			{
-				if (this._User.HasLoadedOrAssignedValue)
-				{
-					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-				}
-				this.Onfk_userChanging(value);
-				this.SendPropertyChanging();
-				this._fk_user = value;
-				this.SendPropertyChanged("fk_user");
-				this.Onfk_userChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fk_bug", DbType="Int")]
-	public System.Nullable<int> fk_bug
-	{
-		get
-		{
-			return this._fk_bug;
-		}
-		set
-		{
-			if ((this._fk_bug != value))
-			{
-				if (this._Bug.HasLoadedOrAssignedValue)
-				{
-					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-				}
-				this.Onfk_bugChanging(value);
-				this.SendPropertyChanging();
-				this._fk_bug = value;
-				this.SendPropertyChanged("fk_bug");
-				this.Onfk_bugChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Bug_Assignee", Storage="_Bug", ThisKey="fk_bug", OtherKey="pk_bugs_id", IsForeignKey=true)]
-	public Bug Bug
-	{
-		get
-		{
-			return this._Bug.Entity;
-		}
-		set
-		{
-			Bug previousValue = this._Bug.Entity;
-			if (((previousValue != value) 
-						|| (this._Bug.HasLoadedOrAssignedValue == false)))
-			{
-				this.SendPropertyChanging();
-				if ((previousValue != null))
-				{
-					this._Bug.Entity = null;
-					previousValue.Assignees.Remove(this);
-				}
-				this._Bug.Entity = value;
-				if ((value != null))
-				{
-					value.Assignees.Add(this);
-					this._fk_bug = value.pk_bugs_id;
-				}
-				else
-				{
-					this._fk_bug = default(Nullable<int>);
-				}
-				this.SendPropertyChanged("Bug");
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Assignee", Storage="_User", ThisKey="fk_user", OtherKey="pk_users_id", IsForeignKey=true)]
-	public User User
-	{
-		get
-		{
-			return this._User.Entity;
-		}
-		set
-		{
-			User previousValue = this._User.Entity;
-			if (((previousValue != value) 
-						|| (this._User.HasLoadedOrAssignedValue == false)))
-			{
-				this.SendPropertyChanging();
-				if ((previousValue != null))
-				{
-					this._User.Entity = null;
-					previousValue.Assignees.Remove(this);
-				}
-				this._User.Entity = value;
-				if ((value != null))
-				{
-					value.Assignees.Add(this);
-					this._fk_user = value.pk_users_id;
-				}
-				else
-				{
-					this._fk_user = default(Nullable<int>);
-				}
-				this.SendPropertyChanged("User");
-			}
-		}
-	}
-	
-	public event PropertyChangingEventHandler PropertyChanging;
-	
-	public event PropertyChangedEventHandler PropertyChanged;
-	
-	protected virtual void SendPropertyChanging()
-	{
-		if ((this.PropertyChanging != null))
-		{
-			this.PropertyChanging(this, emptyChangingEventArgs);
-		}
-	}
-	
-	protected virtual void SendPropertyChanged(String propertyName)
-	{
-		if ((this.PropertyChanged != null))
-		{
-			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 		}
 	}
 }
@@ -363,7 +171,7 @@ public partial class Usertype : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	private string _usertype_name;
 	
-	private EntitySet<User> _Users;
+	private EntitySet<ProductUser> _ProductUsers;
 	
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -377,7 +185,7 @@ public partial class Usertype : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	public Usertype()
 	{
-		this._Users = new EntitySet<User>(new Action<User>(this.attach_Users), new Action<User>(this.detach_Users));
+		this._ProductUsers = new EntitySet<ProductUser>(new Action<ProductUser>(this.attach_ProductUsers), new Action<ProductUser>(this.detach_ProductUsers));
 		OnCreated();
 	}
 	
@@ -421,16 +229,16 @@ public partial class Usertype : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Usertype_User", Storage="_Users", ThisKey="pk_usertype_id", OtherKey="fk_usertype")]
-	public EntitySet<User> Users
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Usertype_ProductUser", Storage="_ProductUsers", ThisKey="pk_usertype_id", OtherKey="fk_usertype")]
+	public EntitySet<ProductUser> ProductUsers
 	{
 		get
 		{
-			return this._Users;
+			return this._ProductUsers;
 		}
 		set
 		{
-			this._Users.Assign(value);
+			this._ProductUsers.Assign(value);
 		}
 	}
 	
@@ -454,26 +262,26 @@ public partial class Usertype : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	private void attach_Users(User entity)
+	private void attach_ProductUsers(ProductUser entity)
 	{
 		this.SendPropertyChanging();
 		entity.Usertype = this;
 	}
 	
-	private void detach_Users(User entity)
+	private void detach_ProductUsers(ProductUser entity)
 	{
 		this.SendPropertyChanging();
 		entity.Usertype = null;
 	}
 }
 
-[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Bugs")]
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Bug")]
 public partial class Bug : INotifyPropertyChanging, INotifyPropertyChanged
 {
 	
 	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 	
-	private int _pk_bugs_id;
+	private int _pk_bug_id;
 	
 	private string _title;
 	
@@ -493,26 +301,26 @@ public partial class Bug : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	private System.Nullable<int> _openclosed;
 	
-	private EntitySet<Assignee> _Assignees;
-	
 	private EntitySet<Reaction> _Reactions;
+	
+	private EntitySet<Assign1> _Assign1s;
 	
 	private EntityRef<Bugstatus> _Bugstatus;
 	
 	private EntityRef<Priority> _Priority;
 	
+	private EntityRef<ProductUser> _ProductUser;
+	
+	private EntityRef<ProductUser> _ProductUser1;
+	
 	private EntityRef<Project> _Project;
-	
-	private EntityRef<User> _User;
-	
-	private EntityRef<User> _User1;
 	
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void Onpk_bugs_idChanging(int value);
-    partial void Onpk_bugs_idChanged();
+    partial void Onpk_bug_idChanging(int value);
+    partial void Onpk_bug_idChanged();
     partial void OntitleChanging(string value);
     partial void OntitleChanged();
     partial void OndescriptionChanging(string value);
@@ -535,32 +343,32 @@ public partial class Bug : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	public Bug()
 	{
-		this._Assignees = new EntitySet<Assignee>(new Action<Assignee>(this.attach_Assignees), new Action<Assignee>(this.detach_Assignees));
 		this._Reactions = new EntitySet<Reaction>(new Action<Reaction>(this.attach_Reactions), new Action<Reaction>(this.detach_Reactions));
+		this._Assign1s = new EntitySet<Assign1>(new Action<Assign1>(this.attach_Assign1s), new Action<Assign1>(this.detach_Assign1s));
 		this._Bugstatus = default(EntityRef<Bugstatus>);
 		this._Priority = default(EntityRef<Priority>);
+		this._ProductUser = default(EntityRef<ProductUser>);
+		this._ProductUser1 = default(EntityRef<ProductUser>);
 		this._Project = default(EntityRef<Project>);
-		this._User = default(EntityRef<User>);
-		this._User1 = default(EntityRef<User>);
 		OnCreated();
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pk_bugs_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-	public int pk_bugs_id
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pk_bug_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int pk_bug_id
 	{
 		get
 		{
-			return this._pk_bugs_id;
+			return this._pk_bug_id;
 		}
 		set
 		{
-			if ((this._pk_bugs_id != value))
+			if ((this._pk_bug_id != value))
 			{
-				this.Onpk_bugs_idChanging(value);
+				this.Onpk_bug_idChanging(value);
 				this.SendPropertyChanging();
-				this._pk_bugs_id = value;
-				this.SendPropertyChanged("pk_bugs_id");
-				this.Onpk_bugs_idChanged();
+				this._pk_bug_id = value;
+				this.SendPropertyChanged("pk_bug_id");
+				this.Onpk_bug_idChanged();
 			}
 		}
 	}
@@ -660,7 +468,7 @@ public partial class Bug : INotifyPropertyChanging, INotifyPropertyChanged
 		{
 			if ((this._fk_creator != value))
 			{
-				if (this._User.HasLoadedOrAssignedValue)
+				if (this._ProductUser.HasLoadedOrAssignedValue)
 				{
 					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 				}
@@ -684,7 +492,7 @@ public partial class Bug : INotifyPropertyChanging, INotifyPropertyChanged
 		{
 			if ((this._fk_responsible != value))
 			{
-				if (this._User1.HasLoadedOrAssignedValue)
+				if (this._ProductUser1.HasLoadedOrAssignedValue)
 				{
 					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 				}
@@ -765,20 +573,7 @@ public partial class Bug : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Bug_Assignee", Storage="_Assignees", ThisKey="pk_bugs_id", OtherKey="fk_bug")]
-	public EntitySet<Assignee> Assignees
-	{
-		get
-		{
-			return this._Assignees;
-		}
-		set
-		{
-			this._Assignees.Assign(value);
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Bug_Reaction", Storage="_Reactions", ThisKey="pk_bugs_id", OtherKey="fk_bug")]
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Bug_Reaction", Storage="_Reactions", ThisKey="pk_bug_id", OtherKey="fk_bug")]
 	public EntitySet<Reaction> Reactions
 	{
 		get
@@ -788,6 +583,19 @@ public partial class Bug : INotifyPropertyChanging, INotifyPropertyChanged
 		set
 		{
 			this._Reactions.Assign(value);
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Bug_Assign1", Storage="_Assign1s", ThisKey="pk_bug_id", OtherKey="fk_bug")]
+	public EntitySet<Assign1> Assign1s
+	{
+		get
+		{
+			return this._Assign1s;
+		}
+		set
+		{
+			this._Assign1s.Assign(value);
 		}
 	}
 	
@@ -859,7 +667,75 @@ public partial class Bug : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Project_Bug", Storage="_Project", ThisKey="fk_project", OtherKey="pk_projects_id", IsForeignKey=true)]
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ProductUser_Bug", Storage="_ProductUser", ThisKey="fk_creator", OtherKey="pk_productuser_id", IsForeignKey=true)]
+	public ProductUser ProductUser
+	{
+		get
+		{
+			return this._ProductUser.Entity;
+		}
+		set
+		{
+			ProductUser previousValue = this._ProductUser.Entity;
+			if (((previousValue != value) 
+						|| (this._ProductUser.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._ProductUser.Entity = null;
+					previousValue.Bugs.Remove(this);
+				}
+				this._ProductUser.Entity = value;
+				if ((value != null))
+				{
+					value.Bugs.Add(this);
+					this._fk_creator = value.pk_productuser_id;
+				}
+				else
+				{
+					this._fk_creator = default(Nullable<int>);
+				}
+				this.SendPropertyChanged("ProductUser");
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ProductUser_Bug1", Storage="_ProductUser1", ThisKey="fk_responsible", OtherKey="pk_productuser_id", IsForeignKey=true)]
+	public ProductUser ProductUser1
+	{
+		get
+		{
+			return this._ProductUser1.Entity;
+		}
+		set
+		{
+			ProductUser previousValue = this._ProductUser1.Entity;
+			if (((previousValue != value) 
+						|| (this._ProductUser1.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._ProductUser1.Entity = null;
+					previousValue.Bugs1.Remove(this);
+				}
+				this._ProductUser1.Entity = value;
+				if ((value != null))
+				{
+					value.Bugs1.Add(this);
+					this._fk_responsible = value.pk_productuser_id;
+				}
+				else
+				{
+					this._fk_responsible = default(Nullable<int>);
+				}
+				this.SendPropertyChanged("ProductUser1");
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Project_Bug", Storage="_Project", ThisKey="fk_project", OtherKey="pk_project_id", IsForeignKey=true)]
 	public Project Project
 	{
 		get
@@ -882,81 +758,13 @@ public partial class Bug : INotifyPropertyChanging, INotifyPropertyChanged
 				if ((value != null))
 				{
 					value.Bugs.Add(this);
-					this._fk_project = value.pk_projects_id;
+					this._fk_project = value.pk_project_id;
 				}
 				else
 				{
 					this._fk_project = default(Nullable<int>);
 				}
 				this.SendPropertyChanged("Project");
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Bug", Storage="_User", ThisKey="fk_creator", OtherKey="pk_users_id", IsForeignKey=true)]
-	public User User
-	{
-		get
-		{
-			return this._User.Entity;
-		}
-		set
-		{
-			User previousValue = this._User.Entity;
-			if (((previousValue != value) 
-						|| (this._User.HasLoadedOrAssignedValue == false)))
-			{
-				this.SendPropertyChanging();
-				if ((previousValue != null))
-				{
-					this._User.Entity = null;
-					previousValue.Bugs.Remove(this);
-				}
-				this._User.Entity = value;
-				if ((value != null))
-				{
-					value.Bugs.Add(this);
-					this._fk_creator = value.pk_users_id;
-				}
-				else
-				{
-					this._fk_creator = default(Nullable<int>);
-				}
-				this.SendPropertyChanged("User");
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Bug1", Storage="_User1", ThisKey="fk_responsible", OtherKey="pk_users_id", IsForeignKey=true)]
-	public User User1
-	{
-		get
-		{
-			return this._User1.Entity;
-		}
-		set
-		{
-			User previousValue = this._User1.Entity;
-			if (((previousValue != value) 
-						|| (this._User1.HasLoadedOrAssignedValue == false)))
-			{
-				this.SendPropertyChanging();
-				if ((previousValue != null))
-				{
-					this._User1.Entity = null;
-					previousValue.Bugs1.Remove(this);
-				}
-				this._User1.Entity = value;
-				if ((value != null))
-				{
-					value.Bugs1.Add(this);
-					this._fk_responsible = value.pk_users_id;
-				}
-				else
-				{
-					this._fk_responsible = default(Nullable<int>);
-				}
-				this.SendPropertyChanged("User1");
 			}
 		}
 	}
@@ -981,18 +789,6 @@ public partial class Bug : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	private void attach_Assignees(Assignee entity)
-	{
-		this.SendPropertyChanging();
-		entity.Bug = this;
-	}
-	
-	private void detach_Assignees(Assignee entity)
-	{
-		this.SendPropertyChanging();
-		entity.Bug = null;
-	}
-	
 	private void attach_Reactions(Reaction entity)
 	{
 		this.SendPropertyChanging();
@@ -1000,6 +796,18 @@ public partial class Bug : INotifyPropertyChanging, INotifyPropertyChanged
 	}
 	
 	private void detach_Reactions(Reaction entity)
+	{
+		this.SendPropertyChanging();
+		entity.Bug = null;
+	}
+	
+	private void attach_Assign1s(Assign1 entity)
+	{
+		this.SendPropertyChanging();
+		entity.Bug = this;
+	}
+	
+	private void detach_Assign1s(Assign1 entity)
 	{
 		this.SendPropertyChanging();
 		entity.Bug = null;
@@ -1234,13 +1042,328 @@ public partial class Priority : INotifyPropertyChanging, INotifyPropertyChanged
 	}
 }
 
-[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Projects")]
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ProductUser")]
+public partial class ProductUser : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _pk_productuser_id;
+	
+	private string _username;
+	
+	private string _password;
+	
+	private System.Nullable<int> _fk_usertype;
+	
+	private EntitySet<Bug> _Bugs;
+	
+	private EntitySet<Bug> _Bugs1;
+	
+	private EntitySet<Reaction> _Reactions;
+	
+	private EntitySet<Assign1> _Assign1s;
+	
+	private EntitySet<UsersOnProject> _UsersOnProjects;
+	
+	private EntityRef<Usertype> _Usertype;
+	
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onpk_productuser_idChanging(int value);
+    partial void Onpk_productuser_idChanged();
+    partial void OnusernameChanging(string value);
+    partial void OnusernameChanged();
+    partial void OnpasswordChanging(string value);
+    partial void OnpasswordChanged();
+    partial void Onfk_usertypeChanging(System.Nullable<int> value);
+    partial void Onfk_usertypeChanged();
+    #endregion
+	
+	public ProductUser()
+	{
+		this._Bugs = new EntitySet<Bug>(new Action<Bug>(this.attach_Bugs), new Action<Bug>(this.detach_Bugs));
+		this._Bugs1 = new EntitySet<Bug>(new Action<Bug>(this.attach_Bugs1), new Action<Bug>(this.detach_Bugs1));
+		this._Reactions = new EntitySet<Reaction>(new Action<Reaction>(this.attach_Reactions), new Action<Reaction>(this.detach_Reactions));
+		this._Assign1s = new EntitySet<Assign1>(new Action<Assign1>(this.attach_Assign1s), new Action<Assign1>(this.detach_Assign1s));
+		this._UsersOnProjects = new EntitySet<UsersOnProject>(new Action<UsersOnProject>(this.attach_UsersOnProjects), new Action<UsersOnProject>(this.detach_UsersOnProjects));
+		this._Usertype = default(EntityRef<Usertype>);
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pk_productuser_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int pk_productuser_id
+	{
+		get
+		{
+			return this._pk_productuser_id;
+		}
+		set
+		{
+			if ((this._pk_productuser_id != value))
+			{
+				this.Onpk_productuser_idChanging(value);
+				this.SendPropertyChanging();
+				this._pk_productuser_id = value;
+				this.SendPropertyChanged("pk_productuser_id");
+				this.Onpk_productuser_idChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_username", DbType="NVarChar(50)")]
+	public string username
+	{
+		get
+		{
+			return this._username;
+		}
+		set
+		{
+			if ((this._username != value))
+			{
+				this.OnusernameChanging(value);
+				this.SendPropertyChanging();
+				this._username = value;
+				this.SendPropertyChanged("username");
+				this.OnusernameChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_password", DbType="NVarChar(50)")]
+	public string password
+	{
+		get
+		{
+			return this._password;
+		}
+		set
+		{
+			if ((this._password != value))
+			{
+				this.OnpasswordChanging(value);
+				this.SendPropertyChanging();
+				this._password = value;
+				this.SendPropertyChanged("password");
+				this.OnpasswordChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fk_usertype", DbType="Int")]
+	public System.Nullable<int> fk_usertype
+	{
+		get
+		{
+			return this._fk_usertype;
+		}
+		set
+		{
+			if ((this._fk_usertype != value))
+			{
+				if (this._Usertype.HasLoadedOrAssignedValue)
+				{
+					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+				}
+				this.Onfk_usertypeChanging(value);
+				this.SendPropertyChanging();
+				this._fk_usertype = value;
+				this.SendPropertyChanged("fk_usertype");
+				this.Onfk_usertypeChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ProductUser_Bug", Storage="_Bugs", ThisKey="pk_productuser_id", OtherKey="fk_creator")]
+	public EntitySet<Bug> Bugs
+	{
+		get
+		{
+			return this._Bugs;
+		}
+		set
+		{
+			this._Bugs.Assign(value);
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ProductUser_Bug1", Storage="_Bugs1", ThisKey="pk_productuser_id", OtherKey="fk_responsible")]
+	public EntitySet<Bug> Bugs1
+	{
+		get
+		{
+			return this._Bugs1;
+		}
+		set
+		{
+			this._Bugs1.Assign(value);
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ProductUser_Reaction", Storage="_Reactions", ThisKey="pk_productuser_id", OtherKey="fk_user")]
+	public EntitySet<Reaction> Reactions
+	{
+		get
+		{
+			return this._Reactions;
+		}
+		set
+		{
+			this._Reactions.Assign(value);
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ProductUser_Assign1", Storage="_Assign1s", ThisKey="pk_productuser_id", OtherKey="fk_user")]
+	public EntitySet<Assign1> Assign1s
+	{
+		get
+		{
+			return this._Assign1s;
+		}
+		set
+		{
+			this._Assign1s.Assign(value);
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ProductUser_UsersOnProject", Storage="_UsersOnProjects", ThisKey="pk_productuser_id", OtherKey="fk_user")]
+	public EntitySet<UsersOnProject> UsersOnProjects
+	{
+		get
+		{
+			return this._UsersOnProjects;
+		}
+		set
+		{
+			this._UsersOnProjects.Assign(value);
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Usertype_ProductUser", Storage="_Usertype", ThisKey="fk_usertype", OtherKey="pk_usertype_id", IsForeignKey=true)]
+	public Usertype Usertype
+	{
+		get
+		{
+			return this._Usertype.Entity;
+		}
+		set
+		{
+			Usertype previousValue = this._Usertype.Entity;
+			if (((previousValue != value) 
+						|| (this._Usertype.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._Usertype.Entity = null;
+					previousValue.ProductUsers.Remove(this);
+				}
+				this._Usertype.Entity = value;
+				if ((value != null))
+				{
+					value.ProductUsers.Add(this);
+					this._fk_usertype = value.pk_usertype_id;
+				}
+				else
+				{
+					this._fk_usertype = default(Nullable<int>);
+				}
+				this.SendPropertyChanged("Usertype");
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+	
+	private void attach_Bugs(Bug entity)
+	{
+		this.SendPropertyChanging();
+		entity.ProductUser = this;
+	}
+	
+	private void detach_Bugs(Bug entity)
+	{
+		this.SendPropertyChanging();
+		entity.ProductUser = null;
+	}
+	
+	private void attach_Bugs1(Bug entity)
+	{
+		this.SendPropertyChanging();
+		entity.ProductUser1 = this;
+	}
+	
+	private void detach_Bugs1(Bug entity)
+	{
+		this.SendPropertyChanging();
+		entity.ProductUser1 = null;
+	}
+	
+	private void attach_Reactions(Reaction entity)
+	{
+		this.SendPropertyChanging();
+		entity.ProductUser = this;
+	}
+	
+	private void detach_Reactions(Reaction entity)
+	{
+		this.SendPropertyChanging();
+		entity.ProductUser = null;
+	}
+	
+	private void attach_Assign1s(Assign1 entity)
+	{
+		this.SendPropertyChanging();
+		entity.ProductUser = this;
+	}
+	
+	private void detach_Assign1s(Assign1 entity)
+	{
+		this.SendPropertyChanging();
+		entity.ProductUser = null;
+	}
+	
+	private void attach_UsersOnProjects(UsersOnProject entity)
+	{
+		this.SendPropertyChanging();
+		entity.ProductUser = this;
+	}
+	
+	private void detach_UsersOnProjects(UsersOnProject entity)
+	{
+		this.SendPropertyChanging();
+		entity.ProductUser = null;
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Project")]
 public partial class Project : INotifyPropertyChanging, INotifyPropertyChanged
 {
 	
 	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 	
-	private int _pk_projects_id;
+	private int _pk_project_id;
 	
 	private string _title;
 	
@@ -1254,8 +1377,8 @@ public partial class Project : INotifyPropertyChanging, INotifyPropertyChanged
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void Onpk_projects_idChanging(int value);
-    partial void Onpk_projects_idChanged();
+    partial void Onpk_project_idChanging(int value);
+    partial void Onpk_project_idChanged();
     partial void OntitleChanging(string value);
     partial void OntitleChanged();
     partial void OndescriptionChanging(string value);
@@ -1269,22 +1392,22 @@ public partial class Project : INotifyPropertyChanging, INotifyPropertyChanged
 		OnCreated();
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pk_projects_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-	public int pk_projects_id
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pk_project_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int pk_project_id
 	{
 		get
 		{
-			return this._pk_projects_id;
+			return this._pk_project_id;
 		}
 		set
 		{
-			if ((this._pk_projects_id != value))
+			if ((this._pk_project_id != value))
 			{
-				this.Onpk_projects_idChanging(value);
+				this.Onpk_project_idChanging(value);
 				this.SendPropertyChanging();
-				this._pk_projects_id = value;
-				this.SendPropertyChanged("pk_projects_id");
-				this.Onpk_projects_idChanged();
+				this._pk_project_id = value;
+				this.SendPropertyChanged("pk_project_id");
+				this.Onpk_project_idChanged();
 			}
 		}
 	}
@@ -1329,7 +1452,7 @@ public partial class Project : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Project_Bug", Storage="_Bugs", ThisKey="pk_projects_id", OtherKey="fk_project")]
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Project_Bug", Storage="_Bugs", ThisKey="pk_project_id", OtherKey="fk_project")]
 	public EntitySet<Bug> Bugs
 	{
 		get
@@ -1342,7 +1465,7 @@ public partial class Project : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Project_UsersOnProject", Storage="_UsersOnProjects", ThisKey="pk_projects_id", OtherKey="fk_project")]
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Project_UsersOnProject", Storage="_UsersOnProjects", ThisKey="pk_project_id", OtherKey="fk_project")]
 	public EntitySet<UsersOnProject> UsersOnProjects
 	{
 		get
@@ -1400,13 +1523,13 @@ public partial class Project : INotifyPropertyChanging, INotifyPropertyChanged
 	}
 }
 
-[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Reactions")]
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Reaction")]
 public partial class Reaction : INotifyPropertyChanging, INotifyPropertyChanged
 {
 	
 	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 	
-	private int _pk_reactions_id;
+	private int _pk_reaction_id;
 	
 	private System.Nullable<System.DateTime> _date;
 	
@@ -1416,14 +1539,14 @@ public partial class Reaction : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	private EntityRef<Bug> _Bug;
 	
-	private EntityRef<User> _User;
+	private EntityRef<ProductUser> _ProductUser;
 	
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void Onpk_reactions_idChanging(int value);
-    partial void Onpk_reactions_idChanged();
+    partial void Onpk_reaction_idChanging(int value);
+    partial void Onpk_reaction_idChanged();
     partial void OndateChanging(System.Nullable<System.DateTime> value);
     partial void OndateChanged();
     partial void Onfk_userChanging(System.Nullable<int> value);
@@ -1435,26 +1558,26 @@ public partial class Reaction : INotifyPropertyChanging, INotifyPropertyChanged
 	public Reaction()
 	{
 		this._Bug = default(EntityRef<Bug>);
-		this._User = default(EntityRef<User>);
+		this._ProductUser = default(EntityRef<ProductUser>);
 		OnCreated();
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pk_reactions_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-	public int pk_reactions_id
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pk_reaction_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int pk_reaction_id
 	{
 		get
 		{
-			return this._pk_reactions_id;
+			return this._pk_reaction_id;
 		}
 		set
 		{
-			if ((this._pk_reactions_id != value))
+			if ((this._pk_reaction_id != value))
 			{
-				this.Onpk_reactions_idChanging(value);
+				this.Onpk_reaction_idChanging(value);
 				this.SendPropertyChanging();
-				this._pk_reactions_id = value;
-				this.SendPropertyChanged("pk_reactions_id");
-				this.Onpk_reactions_idChanged();
+				this._pk_reaction_id = value;
+				this.SendPropertyChanged("pk_reaction_id");
+				this.Onpk_reaction_idChanged();
 			}
 		}
 	}
@@ -1490,7 +1613,7 @@ public partial class Reaction : INotifyPropertyChanging, INotifyPropertyChanged
 		{
 			if ((this._fk_user != value))
 			{
-				if (this._User.HasLoadedOrAssignedValue)
+				if (this._ProductUser.HasLoadedOrAssignedValue)
 				{
 					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 				}
@@ -1527,7 +1650,7 @@ public partial class Reaction : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Bug_Reaction", Storage="_Bug", ThisKey="fk_bug", OtherKey="pk_bugs_id", IsForeignKey=true)]
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Bug_Reaction", Storage="_Bug", ThisKey="fk_bug", OtherKey="pk_bug_id", IsForeignKey=true)]
 	public Bug Bug
 	{
 		get
@@ -1550,7 +1673,7 @@ public partial class Reaction : INotifyPropertyChanging, INotifyPropertyChanged
 				if ((value != null))
 				{
 					value.Reactions.Add(this);
-					this._fk_bug = value.pk_bugs_id;
+					this._fk_bug = value.pk_bug_id;
 				}
 				else
 				{
@@ -1561,36 +1684,36 @@ public partial class Reaction : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Reaction", Storage="_User", ThisKey="fk_user", OtherKey="pk_users_id", IsForeignKey=true)]
-	public User User
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ProductUser_Reaction", Storage="_ProductUser", ThisKey="fk_user", OtherKey="pk_productuser_id", IsForeignKey=true)]
+	public ProductUser ProductUser
 	{
 		get
 		{
-			return this._User.Entity;
+			return this._ProductUser.Entity;
 		}
 		set
 		{
-			User previousValue = this._User.Entity;
+			ProductUser previousValue = this._ProductUser.Entity;
 			if (((previousValue != value) 
-						|| (this._User.HasLoadedOrAssignedValue == false)))
+						|| (this._ProductUser.HasLoadedOrAssignedValue == false)))
 			{
 				this.SendPropertyChanging();
 				if ((previousValue != null))
 				{
-					this._User.Entity = null;
+					this._ProductUser.Entity = null;
 					previousValue.Reactions.Remove(this);
 				}
-				this._User.Entity = value;
+				this._ProductUser.Entity = value;
 				if ((value != null))
 				{
 					value.Reactions.Add(this);
-					this._fk_user = value.pk_users_id;
+					this._fk_user = value.pk_productuser_id;
 				}
 				else
 				{
 					this._fk_user = default(Nullable<int>);
 				}
-				this.SendPropertyChanged("User");
+				this.SendPropertyChanged("ProductUser");
 			}
 		}
 	}
@@ -1616,372 +1739,57 @@ public partial class Reaction : INotifyPropertyChanging, INotifyPropertyChanged
 	}
 }
 
-[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Users")]
-public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Assign")]
+public partial class Assign1 : INotifyPropertyChanging, INotifyPropertyChanged
 {
 	
 	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 	
-	private int _pk_users_id;
-	
-	private string _firstname;
-	
-	private string _lastname;
-	
-	private System.Nullable<int> _fk_usertype;
-	
-	private EntitySet<Assignee> _Assignees;
-	
-	private EntitySet<Bug> _Bugs;
-	
-	private EntitySet<Bug> _Bugs1;
-	
-	private EntitySet<Reaction> _Reactions;
-	
-	private EntitySet<UsersOnProject> _UsersOnProjects;
-	
-	private EntityRef<Usertype> _Usertype;
-	
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void Onpk_users_idChanging(int value);
-    partial void Onpk_users_idChanged();
-    partial void OnfirstnameChanging(string value);
-    partial void OnfirstnameChanged();
-    partial void OnlastnameChanging(string value);
-    partial void OnlastnameChanged();
-    partial void Onfk_usertypeChanging(System.Nullable<int> value);
-    partial void Onfk_usertypeChanged();
-    #endregion
-	
-	public User()
-	{
-		this._Assignees = new EntitySet<Assignee>(new Action<Assignee>(this.attach_Assignees), new Action<Assignee>(this.detach_Assignees));
-		this._Bugs = new EntitySet<Bug>(new Action<Bug>(this.attach_Bugs), new Action<Bug>(this.detach_Bugs));
-		this._Bugs1 = new EntitySet<Bug>(new Action<Bug>(this.attach_Bugs1), new Action<Bug>(this.detach_Bugs1));
-		this._Reactions = new EntitySet<Reaction>(new Action<Reaction>(this.attach_Reactions), new Action<Reaction>(this.detach_Reactions));
-		this._UsersOnProjects = new EntitySet<UsersOnProject>(new Action<UsersOnProject>(this.attach_UsersOnProjects), new Action<UsersOnProject>(this.detach_UsersOnProjects));
-		this._Usertype = default(EntityRef<Usertype>);
-		OnCreated();
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pk_users_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-	public int pk_users_id
-	{
-		get
-		{
-			return this._pk_users_id;
-		}
-		set
-		{
-			if ((this._pk_users_id != value))
-			{
-				this.Onpk_users_idChanging(value);
-				this.SendPropertyChanging();
-				this._pk_users_id = value;
-				this.SendPropertyChanged("pk_users_id");
-				this.Onpk_users_idChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_firstname", DbType="NVarChar(50)")]
-	public string firstname
-	{
-		get
-		{
-			return this._firstname;
-		}
-		set
-		{
-			if ((this._firstname != value))
-			{
-				this.OnfirstnameChanging(value);
-				this.SendPropertyChanging();
-				this._firstname = value;
-				this.SendPropertyChanged("firstname");
-				this.OnfirstnameChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lastname", DbType="NVarChar(50)")]
-	public string lastname
-	{
-		get
-		{
-			return this._lastname;
-		}
-		set
-		{
-			if ((this._lastname != value))
-			{
-				this.OnlastnameChanging(value);
-				this.SendPropertyChanging();
-				this._lastname = value;
-				this.SendPropertyChanged("lastname");
-				this.OnlastnameChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fk_usertype", DbType="Int")]
-	public System.Nullable<int> fk_usertype
-	{
-		get
-		{
-			return this._fk_usertype;
-		}
-		set
-		{
-			if ((this._fk_usertype != value))
-			{
-				if (this._Usertype.HasLoadedOrAssignedValue)
-				{
-					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-				}
-				this.Onfk_usertypeChanging(value);
-				this.SendPropertyChanging();
-				this._fk_usertype = value;
-				this.SendPropertyChanged("fk_usertype");
-				this.Onfk_usertypeChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Assignee", Storage="_Assignees", ThisKey="pk_users_id", OtherKey="fk_user")]
-	public EntitySet<Assignee> Assignees
-	{
-		get
-		{
-			return this._Assignees;
-		}
-		set
-		{
-			this._Assignees.Assign(value);
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Bug", Storage="_Bugs", ThisKey="pk_users_id", OtherKey="fk_creator")]
-	public EntitySet<Bug> Bugs
-	{
-		get
-		{
-			return this._Bugs;
-		}
-		set
-		{
-			this._Bugs.Assign(value);
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Bug1", Storage="_Bugs1", ThisKey="pk_users_id", OtherKey="fk_responsible")]
-	public EntitySet<Bug> Bugs1
-	{
-		get
-		{
-			return this._Bugs1;
-		}
-		set
-		{
-			this._Bugs1.Assign(value);
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Reaction", Storage="_Reactions", ThisKey="pk_users_id", OtherKey="fk_user")]
-	public EntitySet<Reaction> Reactions
-	{
-		get
-		{
-			return this._Reactions;
-		}
-		set
-		{
-			this._Reactions.Assign(value);
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_UsersOnProject", Storage="_UsersOnProjects", ThisKey="pk_users_id", OtherKey="fk_user")]
-	public EntitySet<UsersOnProject> UsersOnProjects
-	{
-		get
-		{
-			return this._UsersOnProjects;
-		}
-		set
-		{
-			this._UsersOnProjects.Assign(value);
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Usertype_User", Storage="_Usertype", ThisKey="fk_usertype", OtherKey="pk_usertype_id", IsForeignKey=true)]
-	public Usertype Usertype
-	{
-		get
-		{
-			return this._Usertype.Entity;
-		}
-		set
-		{
-			Usertype previousValue = this._Usertype.Entity;
-			if (((previousValue != value) 
-						|| (this._Usertype.HasLoadedOrAssignedValue == false)))
-			{
-				this.SendPropertyChanging();
-				if ((previousValue != null))
-				{
-					this._Usertype.Entity = null;
-					previousValue.Users.Remove(this);
-				}
-				this._Usertype.Entity = value;
-				if ((value != null))
-				{
-					value.Users.Add(this);
-					this._fk_usertype = value.pk_usertype_id;
-				}
-				else
-				{
-					this._fk_usertype = default(Nullable<int>);
-				}
-				this.SendPropertyChanged("Usertype");
-			}
-		}
-	}
-	
-	public event PropertyChangingEventHandler PropertyChanging;
-	
-	public event PropertyChangedEventHandler PropertyChanged;
-	
-	protected virtual void SendPropertyChanging()
-	{
-		if ((this.PropertyChanging != null))
-		{
-			this.PropertyChanging(this, emptyChangingEventArgs);
-		}
-	}
-	
-	protected virtual void SendPropertyChanged(String propertyName)
-	{
-		if ((this.PropertyChanged != null))
-		{
-			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-		}
-	}
-	
-	private void attach_Assignees(Assignee entity)
-	{
-		this.SendPropertyChanging();
-		entity.User = this;
-	}
-	
-	private void detach_Assignees(Assignee entity)
-	{
-		this.SendPropertyChanging();
-		entity.User = null;
-	}
-	
-	private void attach_Bugs(Bug entity)
-	{
-		this.SendPropertyChanging();
-		entity.User = this;
-	}
-	
-	private void detach_Bugs(Bug entity)
-	{
-		this.SendPropertyChanging();
-		entity.User = null;
-	}
-	
-	private void attach_Bugs1(Bug entity)
-	{
-		this.SendPropertyChanging();
-		entity.User1 = this;
-	}
-	
-	private void detach_Bugs1(Bug entity)
-	{
-		this.SendPropertyChanging();
-		entity.User1 = null;
-	}
-	
-	private void attach_Reactions(Reaction entity)
-	{
-		this.SendPropertyChanging();
-		entity.User = this;
-	}
-	
-	private void detach_Reactions(Reaction entity)
-	{
-		this.SendPropertyChanging();
-		entity.User = null;
-	}
-	
-	private void attach_UsersOnProjects(UsersOnProject entity)
-	{
-		this.SendPropertyChanging();
-		entity.User = this;
-	}
-	
-	private void detach_UsersOnProjects(UsersOnProject entity)
-	{
-		this.SendPropertyChanging();
-		entity.User = null;
-	}
-}
-
-[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.UsersOnProjects")]
-public partial class UsersOnProject : INotifyPropertyChanging, INotifyPropertyChanged
-{
-	
-	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-	
-	private int _pk_UsersOnProjects;
+	private int _pk_assign_id;
 	
 	private System.Nullable<int> _fk_user;
 	
-	private System.Nullable<int> _fk_project;
+	private System.Nullable<int> _fk_bug;
 	
-	private EntityRef<Project> _Project;
+	private EntityRef<Bug> _Bug;
 	
-	private EntityRef<User> _User;
+	private EntityRef<ProductUser> _ProductUser;
 	
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void Onpk_UsersOnProjectsChanging(int value);
-    partial void Onpk_UsersOnProjectsChanged();
+    partial void Onpk_assign_idChanging(int value);
+    partial void Onpk_assign_idChanged();
     partial void Onfk_userChanging(System.Nullable<int> value);
     partial void Onfk_userChanged();
-    partial void Onfk_projectChanging(System.Nullable<int> value);
-    partial void Onfk_projectChanged();
+    partial void Onfk_bugChanging(System.Nullable<int> value);
+    partial void Onfk_bugChanged();
     #endregion
 	
-	public UsersOnProject()
+	public Assign1()
 	{
-		this._Project = default(EntityRef<Project>);
-		this._User = default(EntityRef<User>);
+		this._Bug = default(EntityRef<Bug>);
+		this._ProductUser = default(EntityRef<ProductUser>);
 		OnCreated();
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pk_UsersOnProjects", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-	public int pk_UsersOnProjects
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pk_assign_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int pk_assign_id
 	{
 		get
 		{
-			return this._pk_UsersOnProjects;
+			return this._pk_assign_id;
 		}
 		set
 		{
-			if ((this._pk_UsersOnProjects != value))
+			if ((this._pk_assign_id != value))
 			{
-				this.Onpk_UsersOnProjectsChanging(value);
+				this.Onpk_assign_idChanging(value);
 				this.SendPropertyChanging();
-				this._pk_UsersOnProjects = value;
-				this.SendPropertyChanged("pk_UsersOnProjects");
-				this.Onpk_UsersOnProjectsChanged();
+				this._pk_assign_id = value;
+				this.SendPropertyChanged("pk_assign_id");
+				this.Onpk_assign_idChanged();
 			}
 		}
 	}
@@ -1997,7 +1805,199 @@ public partial class UsersOnProject : INotifyPropertyChanging, INotifyPropertyCh
 		{
 			if ((this._fk_user != value))
 			{
-				if (this._User.HasLoadedOrAssignedValue)
+				if (this._ProductUser.HasLoadedOrAssignedValue)
+				{
+					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+				}
+				this.Onfk_userChanging(value);
+				this.SendPropertyChanging();
+				this._fk_user = value;
+				this.SendPropertyChanged("fk_user");
+				this.Onfk_userChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fk_bug", DbType="Int")]
+	public System.Nullable<int> fk_bug
+	{
+		get
+		{
+			return this._fk_bug;
+		}
+		set
+		{
+			if ((this._fk_bug != value))
+			{
+				if (this._Bug.HasLoadedOrAssignedValue)
+				{
+					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+				}
+				this.Onfk_bugChanging(value);
+				this.SendPropertyChanging();
+				this._fk_bug = value;
+				this.SendPropertyChanged("fk_bug");
+				this.Onfk_bugChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Bug_Assign1", Storage="_Bug", ThisKey="fk_bug", OtherKey="pk_bug_id", IsForeignKey=true)]
+	public Bug Bug
+	{
+		get
+		{
+			return this._Bug.Entity;
+		}
+		set
+		{
+			Bug previousValue = this._Bug.Entity;
+			if (((previousValue != value) 
+						|| (this._Bug.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._Bug.Entity = null;
+					previousValue.Assign1s.Remove(this);
+				}
+				this._Bug.Entity = value;
+				if ((value != null))
+				{
+					value.Assign1s.Add(this);
+					this._fk_bug = value.pk_bug_id;
+				}
+				else
+				{
+					this._fk_bug = default(Nullable<int>);
+				}
+				this.SendPropertyChanged("Bug");
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ProductUser_Assign1", Storage="_ProductUser", ThisKey="fk_user", OtherKey="pk_productuser_id", IsForeignKey=true)]
+	public ProductUser ProductUser
+	{
+		get
+		{
+			return this._ProductUser.Entity;
+		}
+		set
+		{
+			ProductUser previousValue = this._ProductUser.Entity;
+			if (((previousValue != value) 
+						|| (this._ProductUser.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._ProductUser.Entity = null;
+					previousValue.Assign1s.Remove(this);
+				}
+				this._ProductUser.Entity = value;
+				if ((value != null))
+				{
+					value.Assign1s.Add(this);
+					this._fk_user = value.pk_productuser_id;
+				}
+				else
+				{
+					this._fk_user = default(Nullable<int>);
+				}
+				this.SendPropertyChanged("ProductUser");
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.UsersOnProject")]
+public partial class UsersOnProject : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _pk_UsersOnProject;
+	
+	private System.Nullable<int> _fk_user;
+	
+	private System.Nullable<int> _fk_project;
+	
+	private EntityRef<ProductUser> _ProductUser;
+	
+	private EntityRef<Project> _Project;
+	
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onpk_UsersOnProjectChanging(int value);
+    partial void Onpk_UsersOnProjectChanged();
+    partial void Onfk_userChanging(System.Nullable<int> value);
+    partial void Onfk_userChanged();
+    partial void Onfk_projectChanging(System.Nullable<int> value);
+    partial void Onfk_projectChanged();
+    #endregion
+	
+	public UsersOnProject()
+	{
+		this._ProductUser = default(EntityRef<ProductUser>);
+		this._Project = default(EntityRef<Project>);
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pk_UsersOnProject", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int pk_UsersOnProject
+	{
+		get
+		{
+			return this._pk_UsersOnProject;
+		}
+		set
+		{
+			if ((this._pk_UsersOnProject != value))
+			{
+				this.Onpk_UsersOnProjectChanging(value);
+				this.SendPropertyChanging();
+				this._pk_UsersOnProject = value;
+				this.SendPropertyChanged("pk_UsersOnProject");
+				this.Onpk_UsersOnProjectChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fk_user", DbType="Int")]
+	public System.Nullable<int> fk_user
+	{
+		get
+		{
+			return this._fk_user;
+		}
+		set
+		{
+			if ((this._fk_user != value))
+			{
+				if (this._ProductUser.HasLoadedOrAssignedValue)
 				{
 					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 				}
@@ -2034,7 +2034,41 @@ public partial class UsersOnProject : INotifyPropertyChanging, INotifyPropertyCh
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Project_UsersOnProject", Storage="_Project", ThisKey="fk_project", OtherKey="pk_projects_id", IsForeignKey=true)]
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ProductUser_UsersOnProject", Storage="_ProductUser", ThisKey="fk_user", OtherKey="pk_productuser_id", IsForeignKey=true)]
+	public ProductUser ProductUser
+	{
+		get
+		{
+			return this._ProductUser.Entity;
+		}
+		set
+		{
+			ProductUser previousValue = this._ProductUser.Entity;
+			if (((previousValue != value) 
+						|| (this._ProductUser.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._ProductUser.Entity = null;
+					previousValue.UsersOnProjects.Remove(this);
+				}
+				this._ProductUser.Entity = value;
+				if ((value != null))
+				{
+					value.UsersOnProjects.Add(this);
+					this._fk_user = value.pk_productuser_id;
+				}
+				else
+				{
+					this._fk_user = default(Nullable<int>);
+				}
+				this.SendPropertyChanged("ProductUser");
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Project_UsersOnProject", Storage="_Project", ThisKey="fk_project", OtherKey="pk_project_id", IsForeignKey=true)]
 	public Project Project
 	{
 		get
@@ -2057,47 +2091,13 @@ public partial class UsersOnProject : INotifyPropertyChanging, INotifyPropertyCh
 				if ((value != null))
 				{
 					value.UsersOnProjects.Add(this);
-					this._fk_project = value.pk_projects_id;
+					this._fk_project = value.pk_project_id;
 				}
 				else
 				{
 					this._fk_project = default(Nullable<int>);
 				}
 				this.SendPropertyChanged("Project");
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_UsersOnProject", Storage="_User", ThisKey="fk_user", OtherKey="pk_users_id", IsForeignKey=true)]
-	public User User
-	{
-		get
-		{
-			return this._User.Entity;
-		}
-		set
-		{
-			User previousValue = this._User.Entity;
-			if (((previousValue != value) 
-						|| (this._User.HasLoadedOrAssignedValue == false)))
-			{
-				this.SendPropertyChanging();
-				if ((previousValue != null))
-				{
-					this._User.Entity = null;
-					previousValue.UsersOnProjects.Remove(this);
-				}
-				this._User.Entity = value;
-				if ((value != null))
-				{
-					value.UsersOnProjects.Add(this);
-					this._fk_user = value.pk_users_id;
-				}
-				else
-				{
-					this._fk_user = default(Nullable<int>);
-				}
-				this.SendPropertyChanged("User");
 			}
 		}
 	}
