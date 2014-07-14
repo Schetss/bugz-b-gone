@@ -9,7 +9,20 @@ public partial class Login : System.Web.UI.Page
 {
      protected void btnLogin_Click(object sender, EventArgs e)
     {
- 
+        ProductUser productuser = new ProductUser();
 
+        productuser.username = txtUsername.Text;
+        productuser.password = txtPassword.Text;
+
+        try
+        {
+        
+        }
+        
+        catch
+        {
+
+        }
     }
+   
 }
