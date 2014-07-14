@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Database" Class="BugzDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\Database.mdf;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="DatabaseConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Assignees" Member="Assignees">
+    <Type Name="Assignee">
+      <Column Name="pk_assignees_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="fk_user" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="fk_bug" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Bug_Assignee" Member="Bug" ThisKey="fk_bug" OtherKey="pk_bugs_id" Type="Bug" IsForeignKey="true" />
+      <Association Name="User_Assignee" Member="User" ThisKey="fk_user" OtherKey="pk_users_id" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Usertype" Member="Usertypes">
+    <Type Name="Usertype">
+      <Column Name="pk_usertype_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="usertype_name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Usertype_User" Member="Users" ThisKey="pk_usertype_id" OtherKey="fk_usertype" Type="User" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Bugs" Member="Bugs">
+    <Type Name="Bug">
+      <Column Name="pk_bugs_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="title" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="description" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="fk_project" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="fk_creator" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="fk_responsible" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="fk_priority" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="fk_bugstatus" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="openclosed" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Bug_Assignee" Member="Assignees" ThisKey="pk_bugs_id" OtherKey="fk_bug" Type="Assignee" />
+      <Association Name="Bug_Reaction" Member="Reactions" ThisKey="pk_bugs_id" OtherKey="fk_bug" Type="Reaction" />
+      <Association Name="Bugstatus_Bug" Member="Bugstatus" ThisKey="fk_bugstatus" OtherKey="pk_bugstatus_id" Type="Bugstatus" IsForeignKey="true" />
+      <Association Name="Priority_Bug" Member="Priority" ThisKey="fk_priority" OtherKey="pk_priority_id" Type="Priority" IsForeignKey="true" />
+      <Association Name="Project_Bug" Member="Project" ThisKey="fk_project" OtherKey="pk_projects_id" Type="Project" IsForeignKey="true" />
+      <Association Name="User_Bug" Member="User" ThisKey="fk_creator" OtherKey="pk_users_id" Type="User" IsForeignKey="true" />
+      <Association Name="User_Bug1" Member="User1" ThisKey="fk_responsible" OtherKey="pk_users_id" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Bugstatus" Member="Bugstatus">
+    <Type Name="Bugstatus">
+      <Column Name="pk_bugstatus_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="bugstatus_name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Bugstatus_Bug" Member="Bugs" ThisKey="pk_bugstatus_id" OtherKey="fk_bugstatus" Type="Bug" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Priority" Member="Priorities">
+    <Type Name="Priority">
+      <Column Name="pk_priority_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="priority_name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Priority_Bug" Member="Bugs" ThisKey="pk_priority_id" OtherKey="fk_priority" Type="Bug" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Projects" Member="Projects">
+    <Type Name="Project">
+      <Column Name="pk_projects_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="title" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="description" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="Project_Bug" Member="Bugs" ThisKey="pk_projects_id" OtherKey="fk_project" Type="Bug" />
+      <Association Name="Project_UsersOnProject" Member="UsersOnProjects" ThisKey="pk_projects_id" OtherKey="fk_project" Type="UsersOnProject" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Reactions" Member="Reactions">
+    <Type Name="Reaction">
+      <Column Name="pk_reactions_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="fk_user" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="fk_bug" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Bug_Reaction" Member="Bug" ThisKey="fk_bug" OtherKey="pk_bugs_id" Type="Bug" IsForeignKey="true" />
+      <Association Name="User_Reaction" Member="User" ThisKey="fk_user" OtherKey="pk_users_id" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Users" Member="Users">
+    <Type Name="User">
+      <Column Name="pk_users_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="firstname" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="lastname" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="fk_usertype" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="User_Assignee" Member="Assignees" ThisKey="pk_users_id" OtherKey="fk_user" Type="Assignee" />
+      <Association Name="User_Bug" Member="Bugs" ThisKey="pk_users_id" OtherKey="fk_creator" Type="Bug" />
+      <Association Name="User_Bug1" Member="Bugs1" ThisKey="pk_users_id" OtherKey="fk_responsible" Type="Bug" />
+      <Association Name="User_Reaction" Member="Reactions" ThisKey="pk_users_id" OtherKey="fk_user" Type="Reaction" />
+      <Association Name="User_UsersOnProject" Member="UsersOnProjects" ThisKey="pk_users_id" OtherKey="fk_user" Type="UsersOnProject" />
+      <Association Name="Usertype_User" Member="Usertype" ThisKey="fk_usertype" OtherKey="pk_usertype_id" Type="Usertype" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UsersOnProjects" Member="UsersOnProjects">
+    <Type Name="UsersOnProject">
+      <Column Name="pk_UsersOnProjects" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="fk_user" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="fk_project" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Project_UsersOnProject" Member="Project" ThisKey="fk_project" OtherKey="pk_projects_id" Type="Project" IsForeignKey="true" />
+      <Association Name="User_UsersOnProject" Member="User" ThisKey="fk_user" OtherKey="pk_users_id" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

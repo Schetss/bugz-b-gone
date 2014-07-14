@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 22.375, 16.25" name="Bugz">
+  <DataContextMoniker Name="/BugzDataContext" />
+  <nestedChildShapes>
+    <classShape Id="f9dcd927-e9ae-4abf-84e6-4dee14754c30" absoluteBounds="18.625, 3.625, 3.5, 1.3862939453125005">
+      <DataClassMoniker Name="/BugzDataContext/Assignee" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7bcf8ec1-56d3-42d8-bd5e-58a994ab68ad" absoluteBounds="18.64, 4.085, 3.4699999999999998, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="59d7a715-13f7-4c85-bf51-0f79150325c0" absoluteBounds="12, 14.75, 3.5, 1.1939925130208344">
+      <DataClassMoniker Name="/BugzDataContext/Usertype" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f4725361-f790-4830-82fb-7ecc3d8af4e4" absoluteBounds="12.015, 15.21, 3.4699999999999998, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="1618e40f-c6ac-4002-9ecc-3737f500ef6c" absoluteBounds="14.25, 2.625, 3.5, 2.7324039713541666">
+      <DataClassMoniker Name="/BugzDataContext/Bug" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1d2d5bfc-0994-4c42-9273-581137798f38" absoluteBounds="14.265, 3.085, 3.4699999999999998, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="97add003-2103-4637-bccf-d8c01b8009c7" absoluteBounds="3.75, 4.125, 2.875, 1.1939925130208335">
+      <DataClassMoniker Name="/BugzDataContext/Bugstatus" />
+      <nestedChildShapes>
+        <elementListCompartment Id="acc341b0-0528-430b-ad8e-711e1d085390" absoluteBounds="3.765, 4.585, 2.8449999999999998, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="f07da762-a801-46f9-abc8-6ecce8f47476" absoluteBounds="10.625, 11.75, 3.5, 1.1939925130208344">
+      <DataClassMoniker Name="/BugzDataContext/Priority" />
+      <nestedChildShapes>
+        <elementListCompartment Id="10773514-a5c2-4ac0-b891-c885ccd4d983" absoluteBounds="10.64, 12.21, 3.4699999999999998, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ec225ef3-b636-4d76-8b8b-5b7ff2a66f01" absoluteBounds="14.875, 9.375, 3.5, 1.3862939453125014">
+      <DataClassMoniker Name="/BugzDataContext/Project" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ccdf26ba-1283-4e9b-bbad-b3a4d8e5791e" absoluteBounds="14.89, 9.835, 3.4699999999999998, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a530f279-8dfc-4e32-85c0-7e7563f5fccd" absoluteBounds="9.25, 0.75, 3.5, 1.5785953776041666">
+      <DataClassMoniker Name="/BugzDataContext/Reaction" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d366eac5-821a-4564-94fd-04f8db31ba9f" absoluteBounds="9.265, 1.21, 3.4699999999999998, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="8a77cbec-cc42-478b-92cd-ae4a9ed81068" absoluteBounds="6.875, 13.625, 3.5, 1.5785953776041666">
+      <DataClassMoniker Name="/BugzDataContext/User" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ad7d748b-018b-44d5-aa15-bb9f08261657" absoluteBounds="6.8900000000000006, 14.085, 3.4699999999999998, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="f2d61252-73f9-44ae-8208-8e36c6e00eb5" absoluteBounds="12.875, 7.25, 3.5, 1.3862939453125014">
+      <DataClassMoniker Name="/BugzDataContext/UsersOnProject" />
+      <nestedChildShapes>
+        <elementListCompartment Id="83fd15b3-f92e-4eb1-abfc-0d044db00996" absoluteBounds="12.89, 7.71, 3.4699999999999998, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(17.75 : 4.31814697265625); (18.625 : 4.31814697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/BugzDataContext/Bug/Bug_Assignee" />
+      <nodes>
+        <classShapeMoniker Id="1618e40f-c6ac-4002-9ecc-3737f500ef6c" />
+        <classShapeMoniker Id="f9dcd927-e9ae-4abf-84e6-4dee14754c30" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(6.625 : 4.84369637613932); (7.49224947247079 : 4.84369637613932 : JumpStart); (7.65891613913746 : 4.84369637613932 : JumpEnd); (7.87379337537285 : 4.84369637613932 : JumpStart); (8.04046004203952 : 4.84369637613932 : JumpEnd); (9.72916666666667 : 4.84369637613932 : JumpStart); (9.89583333333333 : 4.84369637613932 : JumpEnd); (14.25 : 4.84369637613932)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/BugzDataContext/Bugstatus/Bugstatus_Bug" />
+      <nodes>
+        <classShapeMoniker Id="97add003-2103-4637-bccf-d8c01b8009c7" />
+        <classShapeMoniker Id="1618e40f-c6ac-4002-9ecc-3737f500ef6c" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(10.625 : 12.3469962565104); (9.89583333333333 : 12.3469962565104 : JumpStart); (9.72916666666667 : 12.3469962565104 : JumpEnd); (9.19461987963363 : 12.3469962565104 : JumpStart); (9.02795321296697 : 12.3469962565104 : JumpEnd); (8.27616561160825 : 12.3469962565104); (8.27616561160825 : 6.23240397135417); (9.72916666666667 : 6.23240397135417 : JumpStart); (9.89583333333333 : 6.23240397135417 : JumpEnd); (15.6471368333333 : 6.23240397135417); (15.6471368333333 : 5.35740397135417)]" manuallyRouted="true" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/BugzDataContext/Priority/Priority_Bug" />
+      <nodes>
+        <classShapeMoniker Id="f07da762-a801-46f9-abc8-6ecce8f47476" />
+        <classShapeMoniker Id="1618e40f-c6ac-4002-9ecc-3737f500ef6c" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(17.09375 : 9.375); (17.09375 : 5.35740397135417)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/BugzDataContext/Project/Project_Bug" />
+      <nodes>
+        <classShapeMoniker Id="ec225ef3-b636-4d76-8b8b-5b7ff2a66f01" />
+        <classShapeMoniker Id="1618e40f-c6ac-4002-9ecc-3737f500ef6c" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(14.25 : 3.68309849283854); (11.3125025 : 3.68309849283854); (11.3125025 : 2.32859537760417)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/BugzDataContext/Bug/Bug_Reaction" />
+      <nodes>
+        <classShapeMoniker Id="1618e40f-c6ac-4002-9ecc-3737f500ef6c" />
+        <classShapeMoniker Id="a530f279-8dfc-4e32-85c0-7e7563f5fccd" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(10.375 : 14.15625); (20.375 : 14.15625); (20.375 : 5.0112939453125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/BugzDataContext/User/User_Assignee" />
+      <nodes>
+        <classShapeMoniker Id="8a77cbec-cc42-478b-92cd-ae4a9ed81068" />
+        <classShapeMoniker Id="f9dcd927-e9ae-4abf-84e6-4dee14754c30" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(7.57558280580412 : 13.625); (7.57558280580412 : 4.24340023925781); (7.87379337537285 : 4.24340023925781 : JumpStart); (8.04046004203952 : 4.24340023925781 : JumpEnd); (9.72916666666667 : 4.24340023925781 : JumpStart); (9.89583333333333 : 4.24340023925781 : JumpEnd); (14.25 : 4.24340023925781)]" manuallyRouted="true" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/BugzDataContext/User/User_Bug" />
+      <nodes>
+        <classShapeMoniker Id="8a77cbec-cc42-478b-92cd-ae4a9ed81068" />
+        <classShapeMoniker Id="1618e40f-c6ac-4002-9ecc-3737f500ef6c" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(7.95712670870619 : 13.625); (7.95712670870619 : 3.12279674641927); (9.72916666666667 : 3.12279674641927 : JumpStart); (9.89583333333333 : 3.12279674641927 : JumpEnd); (11.2291691666667 : 3.12279674641927 : JumpStart); (11.3958358333333 : 3.12279674641927 : JumpEnd); (14.25 : 3.12279674641927)]" manuallyRouted="true" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/BugzDataContext/User/User_Bug1" />
+      <nodes>
+        <classShapeMoniker Id="8a77cbec-cc42-478b-92cd-ae4a9ed81068" />
+        <classShapeMoniker Id="1618e40f-c6ac-4002-9ecc-3737f500ef6c" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(9.8125 : 13.625); (9.8125 : 2.32859537760417)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/BugzDataContext/User/User_Reaction" />
+      <nodes>
+        <classShapeMoniker Id="8a77cbec-cc42-478b-92cd-ae4a9ed81068" />
+        <classShapeMoniker Id="a530f279-8dfc-4e32-85c0-7e7563f5fccd" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(12 : 14.9767976888021); (10.375 : 14.9767976888021)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/BugzDataContext/Usertype/Usertype_User" />
+      <nodes>
+        <classShapeMoniker Id="59d7a715-13f7-4c85-bf51-0f79150325c0" />
+        <classShapeMoniker Id="8a77cbec-cc42-478b-92cd-ae4a9ed81068" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(14.875 : 10.0681469726563); (9.89583333333333 : 10.0681469726563 : JumpStart); (9.72916666666667 : 10.0681469726563 : JumpEnd); (9.19461987963363 : 10.0681469726563 : JumpStart); (9.02795321296697 : 10.0681469726563 : JumpEnd); (8.54056247408048 : 10.0681469726563); (8.54056247408048 : 8.16823852344927); (9.02795321296697 : 8.16823852344927 : JumpStart); (9.19461987963363 : 8.16823852344927 : JumpEnd); (9.72916666666667 : 8.16823852344927 : JumpStart); (9.89583333333333 : 8.16823852344927 : JumpEnd); (10.76 : 8.16823852344927); (10.76 : 7.94314697265625); (12.875 : 7.94314697265625)]" manuallyRouted="true" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/BugzDataContext/Project/Project_UsersOnProject" />
+      <nodes>
+        <classShapeMoniker Id="ec225ef3-b636-4d76-8b8b-5b7ff2a66f01" />
+        <classShapeMoniker Id="f2d61252-73f9-44ae-8208-8e36c6e00eb5" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(9.1112865463003 : 13.625); (9.1112865463003 : 7.56532098632813); (9.72916666666667 : 7.56532098632812 : JumpStart); (9.89583333333333 : 7.56532098632813 : JumpEnd); (12.875 : 7.56532098632813)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/BugzDataContext/User/User_UsersOnProject" />
+      <nodes>
+        <classShapeMoniker Id="8a77cbec-cc42-478b-92cd-ae4a9ed81068" />
+        <classShapeMoniker Id="f2d61252-73f9-44ae-8208-8e36c6e00eb5" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
