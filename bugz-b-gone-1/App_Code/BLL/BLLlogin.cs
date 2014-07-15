@@ -8,10 +8,10 @@ using System.Web;
 /// </summary>
 public class BLLlogin
 {
-	public BLLlogin()
-	{
-		//
-		// TODO: Add constructor logic here
-		//
-	}
+    DALlogin DALlogin = new DALlogin();
+
+    public List<ProductUser> checkLogin(ProductUser p_productuser)
+    {
+        return DALlogin.checkLogin(p_productuser);
+    }
 }
