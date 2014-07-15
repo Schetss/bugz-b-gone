@@ -29,15 +29,13 @@ public partial class Login : System.Web.UI.Page
         try
         {
             BLLlogin.checkLogin(productuser);
-            
-          // String Status = BLLlogin.getStatus(productuser);
 
+           int status = BLLlogin.getStatus(productuser);
          
             Session["Username"] = productuser.username;
-          //  Session["Status"] = fsdfsd;
+            Session["Status"] = status.ToString();
 
-           // lbl_feedbackLogin.Text = Status;
-           // Response.Redirect("Home.aspx");
+            Response.Redirect("Home.aspx");
         }
         
         catch

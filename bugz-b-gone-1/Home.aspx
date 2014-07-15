@@ -17,7 +17,7 @@
     <script runat="server">
         protected String GetSession()
         {
-            string pass = (string)(Session["Username"]);
+            string pass = (string)(Session["Status"]);
             return pass;
         }
     </script>

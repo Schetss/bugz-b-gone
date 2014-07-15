@@ -32,19 +32,26 @@ public class DALlogin
         }
     }
 
-    public string getStatus(ProductUser p_status)
-    { 
+    public int getStatus(ProductUser p_status)
+    {
         var query =
-           from t in dc.ProductUsers
-           where t.username == p_status.username
-           where t.password == p_status.password
-           select t.fk_usertype;
+            from t in dc.ProductUsers
+            where t.username == p_status.username
+            where t.password == p_status.password
+            where t.fk_usertype == 1
+            select t;
 
- 
+        List<ProductUser> x = query.ToList();
 
-        string s = query.ToString();
+        if (x.Count > 0)
+        {
+            return 1;
+        }
 
-        return s;
+        else
+        {
+            return 2;
+        }
     }
 
 }
