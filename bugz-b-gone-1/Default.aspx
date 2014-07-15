@@ -15,9 +15,10 @@
     <div>
         <div class="loginBox">
           
-            <img src="images/logo.jpg" height="60" width="300" />
+            <img src="images/logo.jpg" class="loginLogo" height="60" width="300" />
+          
             <br />
-            <asp:Label ID="lbl_feedbackLogin" runat="server"></asp:Label>
+            <asp:Label ID="lbl_feedbackLogin" Class="lblFeedback" runat="server"></asp:Label>
           
             <asp:TextBox ID="txtUsername" Class="loginField form-control" runat="server" Height="30px" Width="300px" placeholder="username"></asp:TextBox>
             <br />

@@ -14,6 +14,14 @@
         </ul>
         </div>
     </nav>
+    <script runat="server">
+        protected String GetSession()
+        {
+            string pass = (string)(Session["Username"]);
+            return pass;
+        }
+    </script>
+    <%    =GetSession()    %>
 
 </asp:Content>
 

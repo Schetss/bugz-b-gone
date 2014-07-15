@@ -14,4 +14,10 @@ public class BLLlogin
     {
         return DALlogin.checkLogin(p_productuser);
     }
+
+    public string getStatus(ProductUser p_status)
+    {
+        return DALlogin.getStatus(p_status);
+    }
+
 }

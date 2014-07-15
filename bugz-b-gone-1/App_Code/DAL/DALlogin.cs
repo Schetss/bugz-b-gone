@@ -22,6 +22,7 @@ public class DALlogin
 
         if (x.Count > 0)
         {
+           
             return x;
         }
 
@@ -30,4 +31,20 @@ public class DALlogin
             throw new Exception("Username or passwordis not correct!");
         }
     }
+
+    public string getStatus(ProductUser p_status)
+    { 
+        var query =
+           from t in dc.ProductUsers
+           where t.username == p_status.username
+           where t.password == p_status.password
+           select t.fk_usertype;
+
+ 
+
+        string s = query.ToString();
+
+        return s;
+    }
+
 }

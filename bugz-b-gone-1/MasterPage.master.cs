@@ -9,6 +9,16 @@ public partial class MasterPage : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+       // string username = (string)(Session["Username"]);
+       // string status = (string)(Session["Status"]);
 
     }
+
+    protected void btnLogout_Click(object sender, EventArgs e)
+    {
+        Session.Abandon();
+        Response.Redirect("Default.aspx");
+        
+    }
+
 }
