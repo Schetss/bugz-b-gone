@@ -12,7 +12,7 @@ public partial class Login : System.Web.UI.Page
     {
         if (Session["Username"] != null) 
         {
-           // Response.Redirect("Home.aspx");
+            Response.Redirect("Bugs.aspx");
         }
 
     }
@@ -35,7 +35,7 @@ public partial class Login : System.Web.UI.Page
             Session["Username"] = productuser.username;
             Session["Status"] = status.ToString();
 
-            Response.Redirect("Home.aspx");
+            Response.Redirect("Default.aspx");
         }
         
         catch
