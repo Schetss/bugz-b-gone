@@ -44,9 +44,6 @@ public partial class BugzDataContext : System.Data.Linq.DataContext
   partial void InsertProductUser(ProductUser instance);
   partial void UpdateProductUser(ProductUser instance);
   partial void DeleteProductUser(ProductUser instance);
-  partial void InsertProject(Project instance);
-  partial void UpdateProject(Project instance);
-  partial void DeleteProject(Project instance);
   partial void InsertReaction(Reaction instance);
   partial void UpdateReaction(Reaction instance);
   partial void DeleteReaction(Reaction instance);
@@ -56,6 +53,12 @@ public partial class BugzDataContext : System.Data.Linq.DataContext
   partial void InsertUsersOnProject(UsersOnProject instance);
   partial void UpdateUsersOnProject(UsersOnProject instance);
   partial void DeleteUsersOnProject(UsersOnProject instance);
+  partial void InsertProject(Project instance);
+  partial void UpdateProject(Project instance);
+  partial void DeleteProject(Project instance);
+  partial void InsertProjectstatus(Projectstatus instance);
+  partial void UpdateProjectstatus(Projectstatus instance);
+  partial void DeleteProjectstatus(Projectstatus instance);
   #endregion
 	
 	public BugzDataContext() : 
@@ -128,14 +131,6 @@ public partial class BugzDataContext : System.Data.Linq.DataContext
 		}
 	}
 	
-	public System.Data.Linq.Table<Project> Projects
-	{
-		get
-		{
-			return this.GetTable<Project>();
-		}
-	}
-	
 	public System.Data.Linq.Table<Reaction> Reactions
 	{
 		get
@@ -157,6 +152,22 @@ public partial class BugzDataContext : System.Data.Linq.DataContext
 		get
 		{
 			return this.GetTable<UsersOnProject>();
+		}
+	}
+	
+	public System.Data.Linq.Table<Project> Projects
+	{
+		get
+		{
+			return this.GetTable<Project>();
+		}
+	}
+	
+	public System.Data.Linq.Table<Projectstatus> Projectstatus
+	{
+		get
+		{
+			return this.GetTable<Projectstatus>();
 		}
 	}
 }
@@ -1357,172 +1368,6 @@ public partial class ProductUser : INotifyPropertyChanging, INotifyPropertyChang
 	}
 }
 
-[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Project")]
-public partial class Project : INotifyPropertyChanging, INotifyPropertyChanged
-{
-	
-	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-	
-	private int _pk_project_id;
-	
-	private string _title;
-	
-	private string _description;
-	
-	private EntitySet<Bug> _Bugs;
-	
-	private EntitySet<UsersOnProject> _UsersOnProjects;
-	
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void Onpk_project_idChanging(int value);
-    partial void Onpk_project_idChanged();
-    partial void OntitleChanging(string value);
-    partial void OntitleChanged();
-    partial void OndescriptionChanging(string value);
-    partial void OndescriptionChanged();
-    #endregion
-	
-	public Project()
-	{
-		this._Bugs = new EntitySet<Bug>(new Action<Bug>(this.attach_Bugs), new Action<Bug>(this.detach_Bugs));
-		this._UsersOnProjects = new EntitySet<UsersOnProject>(new Action<UsersOnProject>(this.attach_UsersOnProjects), new Action<UsersOnProject>(this.detach_UsersOnProjects));
-		OnCreated();
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pk_project_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-	public int pk_project_id
-	{
-		get
-		{
-			return this._pk_project_id;
-		}
-		set
-		{
-			if ((this._pk_project_id != value))
-			{
-				this.Onpk_project_idChanging(value);
-				this.SendPropertyChanging();
-				this._pk_project_id = value;
-				this.SendPropertyChanged("pk_project_id");
-				this.Onpk_project_idChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_title", DbType="NVarChar(50)")]
-	public string title
-	{
-		get
-		{
-			return this._title;
-		}
-		set
-		{
-			if ((this._title != value))
-			{
-				this.OntitleChanging(value);
-				this.SendPropertyChanging();
-				this._title = value;
-				this.SendPropertyChanged("title");
-				this.OntitleChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_description", DbType="Text", UpdateCheck=UpdateCheck.Never)]
-	public string description
-	{
-		get
-		{
-			return this._description;
-		}
-		set
-		{
-			if ((this._description != value))
-			{
-				this.OndescriptionChanging(value);
-				this.SendPropertyChanging();
-				this._description = value;
-				this.SendPropertyChanged("description");
-				this.OndescriptionChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Project_Bug", Storage="_Bugs", ThisKey="pk_project_id", OtherKey="fk_project")]
-	public EntitySet<Bug> Bugs
-	{
-		get
-		{
-			return this._Bugs;
-		}
-		set
-		{
-			this._Bugs.Assign(value);
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Project_UsersOnProject", Storage="_UsersOnProjects", ThisKey="pk_project_id", OtherKey="fk_project")]
-	public EntitySet<UsersOnProject> UsersOnProjects
-	{
-		get
-		{
-			return this._UsersOnProjects;
-		}
-		set
-		{
-			this._UsersOnProjects.Assign(value);
-		}
-	}
-	
-	public event PropertyChangingEventHandler PropertyChanging;
-	
-	public event PropertyChangedEventHandler PropertyChanged;
-	
-	protected virtual void SendPropertyChanging()
-	{
-		if ((this.PropertyChanging != null))
-		{
-			this.PropertyChanging(this, emptyChangingEventArgs);
-		}
-	}
-	
-	protected virtual void SendPropertyChanged(String propertyName)
-	{
-		if ((this.PropertyChanged != null))
-		{
-			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-		}
-	}
-	
-	private void attach_Bugs(Bug entity)
-	{
-		this.SendPropertyChanging();
-		entity.Project = this;
-	}
-	
-	private void detach_Bugs(Bug entity)
-	{
-		this.SendPropertyChanging();
-		entity.Project = null;
-	}
-	
-	private void attach_UsersOnProjects(UsersOnProject entity)
-	{
-		this.SendPropertyChanging();
-		entity.Project = this;
-	}
-	
-	private void detach_UsersOnProjects(UsersOnProject entity)
-	{
-		this.SendPropertyChanging();
-		entity.Project = null;
-	}
-}
-
 [global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Reaction")]
 public partial class Reaction : INotifyPropertyChanging, INotifyPropertyChanged
 {
@@ -2120,6 +1965,351 @@ public partial class UsersOnProject : INotifyPropertyChanging, INotifyPropertyCh
 		{
 			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 		}
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Project")]
+public partial class Project : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _pk_project_id;
+	
+	private string _title;
+	
+	private string _description;
+	
+	private System.Nullable<int> _fk_projectstatus;
+	
+	private EntitySet<Bug> _Bugs;
+	
+	private EntitySet<UsersOnProject> _UsersOnProjects;
+	
+	private EntityRef<Projectstatus> _Projectstatus;
+	
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onpk_project_idChanging(int value);
+    partial void Onpk_project_idChanged();
+    partial void OntitleChanging(string value);
+    partial void OntitleChanged();
+    partial void OndescriptionChanging(string value);
+    partial void OndescriptionChanged();
+    partial void Onfk_projectstatusChanging(System.Nullable<int> value);
+    partial void Onfk_projectstatusChanged();
+    #endregion
+	
+	public Project()
+	{
+		this._Bugs = new EntitySet<Bug>(new Action<Bug>(this.attach_Bugs), new Action<Bug>(this.detach_Bugs));
+		this._UsersOnProjects = new EntitySet<UsersOnProject>(new Action<UsersOnProject>(this.attach_UsersOnProjects), new Action<UsersOnProject>(this.detach_UsersOnProjects));
+		this._Projectstatus = default(EntityRef<Projectstatus>);
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pk_project_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int pk_project_id
+	{
+		get
+		{
+			return this._pk_project_id;
+		}
+		set
+		{
+			if ((this._pk_project_id != value))
+			{
+				this.Onpk_project_idChanging(value);
+				this.SendPropertyChanging();
+				this._pk_project_id = value;
+				this.SendPropertyChanged("pk_project_id");
+				this.Onpk_project_idChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_title", DbType="NVarChar(50)")]
+	public string title
+	{
+		get
+		{
+			return this._title;
+		}
+		set
+		{
+			if ((this._title != value))
+			{
+				this.OntitleChanging(value);
+				this.SendPropertyChanging();
+				this._title = value;
+				this.SendPropertyChanged("title");
+				this.OntitleChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_description", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+	public string description
+	{
+		get
+		{
+			return this._description;
+		}
+		set
+		{
+			if ((this._description != value))
+			{
+				this.OndescriptionChanging(value);
+				this.SendPropertyChanging();
+				this._description = value;
+				this.SendPropertyChanged("description");
+				this.OndescriptionChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fk_projectstatus", DbType="Int")]
+	public System.Nullable<int> fk_projectstatus
+	{
+		get
+		{
+			return this._fk_projectstatus;
+		}
+		set
+		{
+			if ((this._fk_projectstatus != value))
+			{
+				if (this._Projectstatus.HasLoadedOrAssignedValue)
+				{
+					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+				}
+				this.Onfk_projectstatusChanging(value);
+				this.SendPropertyChanging();
+				this._fk_projectstatus = value;
+				this.SendPropertyChanged("fk_projectstatus");
+				this.Onfk_projectstatusChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Project_Bug", Storage="_Bugs", ThisKey="pk_project_id", OtherKey="fk_project")]
+	public EntitySet<Bug> Bugs
+	{
+		get
+		{
+			return this._Bugs;
+		}
+		set
+		{
+			this._Bugs.Assign(value);
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Project_UsersOnProject", Storage="_UsersOnProjects", ThisKey="pk_project_id", OtherKey="fk_project")]
+	public EntitySet<UsersOnProject> UsersOnProjects
+	{
+		get
+		{
+			return this._UsersOnProjects;
+		}
+		set
+		{
+			this._UsersOnProjects.Assign(value);
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Projectstatus_Project", Storage="_Projectstatus", ThisKey="fk_projectstatus", OtherKey="pk_projectstatus_id", IsForeignKey=true)]
+	public Projectstatus Projectstatus
+	{
+		get
+		{
+			return this._Projectstatus.Entity;
+		}
+		set
+		{
+			Projectstatus previousValue = this._Projectstatus.Entity;
+			if (((previousValue != value) 
+						|| (this._Projectstatus.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._Projectstatus.Entity = null;
+					previousValue.Projects.Remove(this);
+				}
+				this._Projectstatus.Entity = value;
+				if ((value != null))
+				{
+					value.Projects.Add(this);
+					this._fk_projectstatus = value.pk_projectstatus_id;
+				}
+				else
+				{
+					this._fk_projectstatus = default(Nullable<int>);
+				}
+				this.SendPropertyChanged("Projectstatus");
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+	
+	private void attach_Bugs(Bug entity)
+	{
+		this.SendPropertyChanging();
+		entity.Project = this;
+	}
+	
+	private void detach_Bugs(Bug entity)
+	{
+		this.SendPropertyChanging();
+		entity.Project = null;
+	}
+	
+	private void attach_UsersOnProjects(UsersOnProject entity)
+	{
+		this.SendPropertyChanging();
+		entity.Project = this;
+	}
+	
+	private void detach_UsersOnProjects(UsersOnProject entity)
+	{
+		this.SendPropertyChanging();
+		entity.Project = null;
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Projectstatus")]
+public partial class Projectstatus : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _pk_projectstatus_id;
+	
+	private string _projectstatus_name;
+	
+	private EntitySet<Project> _Projects;
+	
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onpk_projectstatus_idChanging(int value);
+    partial void Onpk_projectstatus_idChanged();
+    partial void Onprojectstatus_nameChanging(string value);
+    partial void Onprojectstatus_nameChanged();
+    #endregion
+	
+	public Projectstatus()
+	{
+		this._Projects = new EntitySet<Project>(new Action<Project>(this.attach_Projects), new Action<Project>(this.detach_Projects));
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pk_projectstatus_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int pk_projectstatus_id
+	{
+		get
+		{
+			return this._pk_projectstatus_id;
+		}
+		set
+		{
+			if ((this._pk_projectstatus_id != value))
+			{
+				this.Onpk_projectstatus_idChanging(value);
+				this.SendPropertyChanging();
+				this._pk_projectstatus_id = value;
+				this.SendPropertyChanged("pk_projectstatus_id");
+				this.Onpk_projectstatus_idChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_projectstatus_name", DbType="NVarChar(50)")]
+	public string projectstatus_name
+	{
+		get
+		{
+			return this._projectstatus_name;
+		}
+		set
+		{
+			if ((this._projectstatus_name != value))
+			{
+				this.Onprojectstatus_nameChanging(value);
+				this.SendPropertyChanging();
+				this._projectstatus_name = value;
+				this.SendPropertyChanged("projectstatus_name");
+				this.Onprojectstatus_nameChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Projectstatus_Project", Storage="_Projects", ThisKey="pk_projectstatus_id", OtherKey="fk_projectstatus")]
+	public EntitySet<Project> Projects
+	{
+		get
+		{
+			return this._Projects;
+		}
+		set
+		{
+			this._Projects.Assign(value);
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+	
+	private void attach_Projects(Project entity)
+	{
+		this.SendPropertyChanging();
+		entity.Projectstatus = this;
+	}
+	
+	private void detach_Projects(Project entity)
+	{
+		this.SendPropertyChanging();
+		entity.Projectstatus = null;
 	}
 }
 #pragma warning restore 1591

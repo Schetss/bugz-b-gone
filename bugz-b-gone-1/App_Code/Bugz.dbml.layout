@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 12.625, 9.625" name="Bugz">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 15.875, 9.625" name="Bugz">
   <DataContextMoniker Name="/BugzDataContext" />
   <nestedChildShapes>
     <classShape Id="70e5496b-a19e-45f0-acde-ec4a9c4ffb54" absoluteBounds="1.5, 5, 2, 1.1939925130208344">
@@ -32,68 +32,55 @@
         <elementListCompartment Id="34533136-e854-492f-8ec4-2ee1a4f33584" absoluteBounds="0.89000000000000057, 2.2100000000000009, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="c9b15a3b-112b-4cfe-aa85-5426f308bc5c" absoluteBounds="10.375, 1.5, 2, 1.3862939453125005">
-      <DataClassMoniker Name="/BugzDataContext/Project" />
-      <nestedChildShapes>
-        <elementListCompartment Id="f0795efd-d652-47aa-b68f-61f7ebf3846b" absoluteBounds="10.39, 1.96, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="b64e570c-d916-4495-9a5a-c43cbc50d194" absoluteBounds="10.375, 4.375, 2, 1.5785953776041666">
       <DataClassMoniker Name="/BugzDataContext/Reaction" />
       <nestedChildShapes>
         <elementListCompartment Id="a6a61c2e-0967-49dd-bf2f-f8a988b798bb" absoluteBounds="10.39, 4.835, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(3 : 8.67870198567708); (6 : 8.67870198567708)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(3 : 8.67870198567708); (6 : 8.67870198567708)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/BugzDataContext/Bugstatus/Bugstatus_Bug" />
       <nodes>
         <classShapeMoniker Id="5f700661-dda6-40fc-a3d6-fcd39d7052ac" />
         <classShapeMoniker Id="bb4d6c1b-3416-48c9-bacd-ebbe531bc4c0" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(10.375 : 8.67870198567708); (8 : 8.67870198567708)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(10.375 : 8.67870198567708); (8 : 8.67870198567708)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/BugzDataContext/Priority/Priority_Bug" />
       <nodes>
         <classShapeMoniker Id="2a85f48f-5a10-4b1d-bcaa-211bd80d7a9c" />
         <classShapeMoniker Id="bb4d6c1b-3416-48c9-bacd-ebbe531bc4c0" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(0.90625 : 3.32859537760417); (0.90625 : 7.28125); (6 : 7.28125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(0.90625 : 3.32859537760417); (0.90625 : 7.28125); (6 : 7.28125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/BugzDataContext/ProductUser/ProductUser_Bug" />
       <nodes>
         <classShapeMoniker Id="b24faa5a-f495-4ad1-b937-b17975111645" />
         <classShapeMoniker Id="bb4d6c1b-3416-48c9-bacd-ebbe531bc4c0" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(0.921875 : 3.32859537760417); (0.921875 : 6.8593725); (6 : 6.8593725)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(0.921875 : 3.32859537760417); (0.921875 : 6.8593725); (6 : 6.8593725)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/BugzDataContext/ProductUser/ProductUser_Bug1" />
       <nodes>
         <classShapeMoniker Id="b24faa5a-f495-4ad1-b937-b17975111645" />
         <classShapeMoniker Id="bb4d6c1b-3416-48c9-bacd-ebbe531bc4c0" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.1875 : 5); (2.1875 : 3.32859537760417)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.1875 : 5); (2.1875 : 3.32859537760417)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/BugzDataContext/Usertype/Usertype_ProductUser" />
       <nodes>
         <classShapeMoniker Id="70e5496b-a19e-45f0-acde-ec4a9c4ffb54" />
         <classShapeMoniker Id="b24faa5a-f495-4ad1-b937-b17975111645" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(10.375 : 2.8862939453125); (10 : 3.2612939453125); (10 : 7.55809899283854); (8 : 7.55809899283854)]" fixedFrom="NotFixed" fixedTo="Algorithm">
-      <AssociationMoniker Name="/BugzDataContext/Project/Project_Bug" />
-      <nodes>
-        <classShapeMoniker Id="c9b15a3b-112b-4cfe-aa85-5426f308bc5c" />
-        <classShapeMoniker Id="bb4d6c1b-3416-48c9-bacd-ebbe531bc4c0" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(8 : 8.2947626577524); (11.375 : 8.2947626577524); (11.375 : 5.95359537760417)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8 : 8.2947626577524); (11.375 : 8.2947626577524); (11.375 : 5.95359537760417)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/BugzDataContext/Bug/Bug_Reaction" />
       <nodes>
         <classShapeMoniker Id="bb4d6c1b-3416-48c9-bacd-ebbe531bc4c0" />
         <classShapeMoniker Id="b64e570c-d916-4495-9a5a-c43cbc50d194" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.875 : 3.32859537760417); (3.25 : 3.70359537760417); (9.91666666666667 : 3.70359537760417 : JumpStart); (10.0833333333333 : 3.70359537760417 : JumpEnd); (11.375 : 3.70359537760417); (11.375 : 4.375)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.875 : 2.7366241110026); (5.625 : 2.7366241110026); (5.625 : 3.70359537760417); (10.1354166666667 : 3.70359537760417 : JumpStart); (10.3020833333333 : 3.70359537760417 : JumpEnd); (11.375 : 3.70359537760417); (11.375 : 4.375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/BugzDataContext/ProductUser/ProductUser_Reaction" />
       <nodes>
         <classShapeMoniker Id="b24faa5a-f495-4ad1-b937-b17975111645" />
@@ -106,14 +93,14 @@
         <elementListCompartment Id="11ad7a46-5d9c-4b9d-9ef6-57fa2bea3c5c" absoluteBounds="6.1400000000000006, 4.585, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(7.0625 : 6.5); (7.0625 : 5.5112939453125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(7.0625 : 6.5); (7.0625 : 5.5112939453125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/BugzDataContext/Bug/Bug_Assign1" />
       <nodes>
         <classShapeMoniker Id="bb4d6c1b-3416-48c9-bacd-ebbe531bc4c0" />
         <classShapeMoniker Id="ee4a15d9-0ff9-4c21-9491-55838e44cc85" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(1.21094 : 3.32859537760417); (1.21094 : 4.53125); (2.10416666666667 : 4.53125 : JumpStart); (2.27083333333333 : 4.53125 : JumpEnd); (6.125 : 4.53125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(1.21094 : 3.32859537760417); (1.21094 : 4.53125); (2.10416666666667 : 4.53125 : JumpStart); (2.27083333333333 : 4.53125 : JumpEnd); (6.125 : 4.53125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/BugzDataContext/ProductUser/ProductUser_Assign1" />
       <nodes>
         <classShapeMoniker Id="b24faa5a-f495-4ad1-b937-b17975111645" />
@@ -126,18 +113,44 @@
         <elementListCompartment Id="46548ac3-6bea-49aa-a796-7afec7fc7020" absoluteBounds="5.89, 2.085, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.875 : 2.38064697265625); (5.875 : 2.38064697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.875 : 2.1808120555013); (5.875 : 2.1808120555013)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/BugzDataContext/ProductUser/ProductUser_UsersOnProject" />
       <nodes>
         <classShapeMoniker Id="b24faa5a-f495-4ad1-b937-b17975111645" />
         <classShapeMoniker Id="e4b352fb-a83a-4150-8d22-28109b644da5" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(10.375 : 2.22439447265625); (7.875 : 2.22439447265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <classShape Id="605df263-6115-4d05-8fbf-4225ee6a38dc" absoluteBounds="10.125, 1.875, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/BugzDataContext/Project" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d66b34cb-77a2-4156-b159-7b1240bf88ea" absoluteBounds="10.14, 2.335, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(10.21875 : 3.45359537760417); (10.21875 : 7.28125); (8 : 7.28125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/BugzDataContext/Project/Project_Bug" />
+      <nodes>
+        <classShapeMoniker Id="605df263-6115-4d05-8fbf-4225ee6a38dc" />
+        <classShapeMoniker Id="bb4d6c1b-3416-48c9-bacd-ebbe531bc4c0" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(10.125 : 2.44314697265625); (7.875 : 2.44314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/BugzDataContext/Project/Project_UsersOnProject" />
       <nodes>
-        <classShapeMoniker Id="c9b15a3b-112b-4cfe-aa85-5426f308bc5c" />
+        <classShapeMoniker Id="605df263-6115-4d05-8fbf-4225ee6a38dc" />
         <classShapeMoniker Id="e4b352fb-a83a-4150-8d22-28109b644da5" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="3c13e179-0766-44be-bfbc-197b543fcc52" absoluteBounds="13.625, 2, 2, 1.1939925130208333">
+      <DataClassMoniker Name="/BugzDataContext/Projectstatus" />
+      <nestedChildShapes>
+        <elementListCompartment Id="36cd2eb3-f67e-410a-9e82-c69f331002fc" absoluteBounds="13.64, 2.46, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(13.625 : 2.59699625651042); (12.125 : 2.59699625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/BugzDataContext/Projectstatus/Projectstatus_Project" />
+      <nodes>
+        <classShapeMoniker Id="3c13e179-0766-44be-bfbc-197b543fcc52" />
+        <classShapeMoniker Id="605df263-6115-4d05-8fbf-4225ee6a38dc" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

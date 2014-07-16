@@ -56,15 +56,6 @@
       <Association Name="Usertype_ProductUser" Member="Usertype" ThisKey="fk_usertype" OtherKey="pk_usertype_id" Type="Usertype" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Project" Member="Projects">
-    <Type Name="Project">
-      <Column Name="pk_project_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="title" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="description" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
-      <Association Name="Project_Bug" Member="Bugs" ThisKey="pk_project_id" OtherKey="fk_project" Type="Bug" />
-      <Association Name="Project_UsersOnProject" Member="UsersOnProjects" ThisKey="pk_project_id" OtherKey="fk_project" Type="UsersOnProject" />
-    </Type>
-  </Table>
   <Table Name="dbo.Reaction" Member="Reactions">
     <Type Name="Reaction">
       <Column Name="pk_reaction_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -91,6 +82,24 @@
       <Column Name="fk_project" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="ProductUser_UsersOnProject" Member="ProductUser" ThisKey="fk_user" OtherKey="pk_productuser_id" Type="ProductUser" IsForeignKey="true" />
       <Association Name="Project_UsersOnProject" Member="Project" ThisKey="fk_project" OtherKey="pk_project_id" Type="Project" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Project" Member="Projects">
+    <Type Name="Project">
+      <Column Name="pk_project_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="title" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="description" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="fk_projectstatus" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Project_Bug" Member="Bugs" ThisKey="pk_project_id" OtherKey="fk_project" Type="Bug" />
+      <Association Name="Project_UsersOnProject" Member="UsersOnProjects" ThisKey="pk_project_id" OtherKey="fk_project" Type="UsersOnProject" />
+      <Association Name="Projectstatus_Project" Member="Projectstatus" ThisKey="fk_projectstatus" OtherKey="pk_projectstatus_id" Type="Projectstatus" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Projectstatus" Member="Projectstatus">
+    <Type Name="Projectstatus">
+      <Column Name="pk_projectstatus_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="projectstatus_name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Projectstatus_Project" Member="Projects" ThisKey="pk_projectstatus_id" OtherKey="fk_projectstatus" Type="Project" />
     </Type>
   </Table>
 </Database>
