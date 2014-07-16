@@ -1,6 +1,11 @@
 ﻿body {
 }
 
+#form1 {
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
 .content {
     width: 800px;
     margin-left: auto;
@@ -42,3 +47,25 @@
 
 /* PROJECTS */
 
+.btn-fullscreen {
+    float: right;
+}
+
+.ddProjects {
+    float: left;
+}
+
+#GridActiveProjects Columns{
+    margin-bottom: 100px;
+
+}
+
+/* LABELS */
+
+.success {
+    color: green;
+}
+
+.error {
+    color: red;
+}

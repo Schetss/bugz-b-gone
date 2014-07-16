@@ -30,5 +30,39 @@
         </div>
     </nav>
 
+    <div class="page-header">
+        <h1><small> Log new bug </small></h1>
+    </div>
+
+    <div class="createProject">
+        <asp:TextBox ID="txtTitle" Class="loginField form-control" runat="server" Height="50px" Width="800px" placeholder="Bug title"></asp:TextBox>
+        <br />
+          
+
+        <asp:TextBox ID="txtDescriptionBug" Class="form-control" runat="server" Height="100px" Width="800px" placeholder="Bug description" TextMode="MultiLine"></asp:TextBox>
+        <br />
+       
+
+        <asp:DropDownList ID="ddPriority" runat="server" Height="40px" Width="800px"></asp:DropDownList>
+           
+        <br />
+        <br />
+
+        <asp:DropDownList ID="ddAssign" runat="server" Height="40px" Width="800px"></asp:DropDownList>
+           
+        <br />
+        <br />
+
+        <asp:Button ID="btnCreateMember" Class="btn btn-default btn-fullscreen" runat="server" Text="Log new Bug" Height="40px" Width="800px"/>
+   
+            
+        <br />
+        <asp:Label ID="lbl_feedbackLogNewBug" Class="lblFeedbackProject" runat="server"></asp:Label>
+         <br />
+         <br />
+    </div>
+
+
+
 </asp:Content>
 
