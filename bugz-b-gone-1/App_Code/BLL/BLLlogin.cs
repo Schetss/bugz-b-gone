@@ -20,4 +20,8 @@ public class BLLlogin
         return DALlogin.getStatus(p_status);
     }
 
+    public int getUserID(ProductUser p_id)
+    {
+        return DALlogin.getUserID(p_id);
+    }
 }

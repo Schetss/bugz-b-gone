@@ -57,7 +57,6 @@
 
 #GridActiveProjects Columns{
     margin-bottom: 100px;
-
 }
 
 /* LABELS */
@@ -68,4 +67,11 @@
 
 .error {
     color: red;
+}
+
+
+/* MEMBERS */
+
+.btn-margin {
+    margin-bottom: 40px !important;
 }

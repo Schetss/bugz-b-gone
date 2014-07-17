@@ -56,26 +56,26 @@
     <div>
 
 
-        <asp:GridView ID="GridActiveProjects" runat="server" AutoGenerateColumns="False" CellPadding="25" CellSpacing="10" BorderColor="White" DataSourceID="SqlDataSourceActiveProjects" Width="800px">
+        <asp:GridView ID="GridActiveProjects" runat="server" AutoGenerateColumns="False" CellPadding="25" CellSpacing="10" BorderColor="White" DataSourceID="LinqActiveProjects" Width="800px">
             <Columns>
-                <asp:BoundField DataField="title" HeaderText="title" SortExpression="title" />
-                <asp:BoundField DataField="description" HeaderText="description" SortExpression="description" />
+                <asp:BoundField DataField="title" HeaderText="title" SortExpression="title" ReadOnly="True" />
+                <asp:BoundField DataField="description" HeaderText="description" SortExpression="description" ReadOnly="True" />
             </Columns>
             <RowStyle Height="35px" />
         </asp:GridView>
-        <asp:SqlDataSource ID="SqlDataSourceActiveProjects" runat="server" ConnectionString="<%$ ConnectionStrings:DatabaseConnectionString %>" SelectCommand="SELECT [title], [description] FROM [Project] WHERE ([fk_projectstatus] = @fk_projectstatus) ORDER BY [title]">
-            <SelectParameters>
+        <asp:LinqDataSource ID="LinqActiveProjects" runat="server" ContextTypeName="BugzDataContext" EntityTypeName="" OrderBy="title" Select="new (title, description)" TableName="Projects" Where="fk_projectstatus == @fk_projectstatus">
+            <WhereParameters>
                 <asp:Parameter DefaultValue="1" Name="fk_projectstatus" Type="Int32" />
-            </SelectParameters>
-        </asp:SqlDataSource>
+            </WhereParameters>
+        </asp:LinqDataSource>
         <br />
 
-        <asp:DropDownList ID="ddActiveProjects" Class="ddProjects" runat="server" Height="40px" Width="400px" DataSourceID="sqlActiveProjects" DataTextField="title" DataValueField="pk_project_id"></asp:DropDownList>
-        <asp:SqlDataSource ID="sqlActiveProjects" runat="server" ConnectionString="<%$ ConnectionStrings:DatabaseConnectionString %>" SelectCommand="SELECT * FROM [Project] WHERE ([fk_projectstatus] = @fk_projectstatus) ORDER BY [title]">
-            <SelectParameters>
+        <asp:DropDownList ID="ddActiveProjects" Class="ddProjects" runat="server" Height="40px" Width="400px" DataSourceID="LinqDDActive" DataTextField="title" DataValueField="pk_project_id"></asp:DropDownList>
+        <asp:LinqDataSource ID="LinqDDActive" runat="server" ContextTypeName="BugzDataContext" EntityTypeName="" OrderBy="title" TableName="Projects" Where="fk_projectstatus == @fk_projectstatus">
+            <WhereParameters>
                 <asp:Parameter DefaultValue="1" Name="fk_projectstatus" Type="Int32" />
-            </SelectParameters>
-        </asp:SqlDataSource>
+            </WhereParameters>
+        </asp:LinqDataSource>
         <asp:Button ID="btnActiveProjects" Class="btn btn-default btn-fullscreen" runat="server" Text="Set project to non-active" Height="40px" Width="350px" />
    
         <br />
@@ -94,13 +94,13 @@
         
         <asp:Button ID="Button1" Class="btn btn-default btn-fullscreen" runat="server" Text="Set project to active" Height="40px" Width="350px" />
    
-        <asp:DropDownList ID="ddNonActiveProjects" CssClass="ddProjects" runat="server" Height="40px" Width="400px" DataSourceID="SqlNonActiveProjectsDropDown" DataTextField="title" DataValueField="pk_project_id">
+        <asp:DropDownList ID="ddNonActiveProjects" CssClass="ddProjects" runat="server" Height="40px" Width="400px" DataSourceID="LinqDDNoneActive" DataTextField="title" DataValueField="pk_project_id">
         </asp:DropDownList>
-        <asp:SqlDataSource ID="SqlNonActiveProjectsDropDown" runat="server" ConnectionString="<%$ ConnectionStrings:DatabaseConnectionString %>" SelectCommand="SELECT * FROM [Project] WHERE ([fk_projectstatus] = @fk_projectstatus) ORDER BY [title]">
-            <SelectParameters>
+        <asp:LinqDataSource ID="LinqDDNoneActive" runat="server" ContextTypeName="BugzDataContext" EntityTypeName="" OrderBy="title" TableName="Projects" Where="fk_projectstatus == @fk_projectstatus">
+            <WhereParameters>
                 <asp:Parameter DefaultValue="2" Name="fk_projectstatus" Type="Int32" />
-            </SelectParameters>
-        </asp:SqlDataSource>
+            </WhereParameters>
+      </asp:LinqDataSource>
         <br />
    
         <asp:Label ID="lbl_feedbackNonActiveProject" Class="lblFeedbackProject" runat="server"></asp:Label>

@@ -41,11 +41,17 @@
             <asp:TextBox ID="txtPassword" Class="form-control" runat="server" Height="50px" Width="800px" placeholder="Password"></asp:TextBox>
             <br />
 
-            <asp:DropDownList ID="ddStatus" runat="server" Height="40px" Width="800px"></asp:DropDownList>
+            <asp:DropDownList ID="ddStatus" runat="server" Height="40px" Width="800px" DataSourceID="LinqStatus" DataTextField="usertype_name" DataValueField="pk_usertype_id"></asp:DropDownList>
+           
+            <asp:LinqDataSource ID="LinqStatus" runat="server" ContextTypeName="BugzDataContext" EntityTypeName="" OrderBy="pk_usertype_id" TableName="Usertypes">
+            </asp:LinqDataSource>
            
             <br />
             <br />
-            <asp:Button ID="btnCreateMember" Class="btn btn-default btn-fullscreen" runat="server" Text="Create new member" Height="40px" Width="800px"/>
+            <asp:Button ID="btnCreateMember" Class="btn btn-default btn-fullscreen btn-margin" runat="server" Text="Create new member" Height="40px" Width="800px" OnClick="btnCreateMember_Click"/>
+   
+            
+             <br />
    
             
              <br />
@@ -57,15 +63,24 @@
         </div>
     
         <div>
-            <asp:DropDownList ID="ddMember" runat="server" Height="40px" Width="800px"></asp:DropDownList>
+            <asp:DropDownList ID="ddMember" runat="server" Height="40px" Width="800px" DataSourceID="LinqMembers" DataTextField="username" DataValueField="pk_productuser_id"></asp:DropDownList>
+           
+            <asp:LinqDataSource ID="LinqMembers" runat="server" ContextTypeName="BugzDataContext" EntityTypeName="" OrderBy="username" TableName="ProductUsers">
+            </asp:LinqDataSource>
            
             <br />
              <br />
-            <asp:DropDownList ID="ddProject" runat="server" Height="40px" Width="800px"></asp:DropDownList>
+            <asp:DropDownList ID="ddProject" runat="server" Height="40px" Width="800px" DataSourceID="LinqProjects" DataTextField="title" DataValueField="pk_project_id"></asp:DropDownList>
+           
+            <asp:LinqDataSource ID="LinqProjects" runat="server" ContextTypeName="BugzDataContext" EntityTypeName="" OrderBy="title" TableName="Projects" Where="fk_projectstatus == @fk_projectstatus">
+                <WhereParameters>
+                    <asp:Parameter DefaultValue="1" Name="fk_projectstatus" Type="Int32" />
+                </WhereParameters>
+            </asp:LinqDataSource>
            
             <br />
             <br />
-            <asp:Button ID="btbAddMemberToProject" Class="btn btn-default btn-fullscreen" runat="server" Text="Add member to project" Height="40px" Width="800px"/>
+            <asp:Button ID="btbAddMemberToProject" Class="btn btn-default btn-fullscreen btn-margin" runat="server" Text="Add member to project" Height="40px" Width="800px" OnClick="btbAddMemberToProject_Click"/>
    
             
              <br />

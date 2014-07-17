@@ -47,11 +47,35 @@ public class DALlogin
         {
             return 1;
         }
-
         else
         {
             return 2;
         }
     }
+
+    public int getUserID(ProductUser p_id)
+    {
+        var query =
+            from t in dc.ProductUsers
+            where t.username == p_id.username
+            where t.password == p_id.password
+            select t;
+
+        List<ProductUser> x = query.ToList();
+
+        int z = 0;
+
+        foreach(var y in x)
+        {
+            z = y.pk_productuser_id;
+
+        }
+
+        return z;
+
+    }
+
+    
+   
 
 }

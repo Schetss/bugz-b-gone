@@ -30,11 +30,18 @@ public partial class Login : System.Web.UI.Page
         {
             BLLlogin.checkLogin(productuser);
 
-           int status = BLLlogin.getStatus(productuser);
+            int status = BLLlogin.getStatus(productuser);
+
+            int userID = BLLlogin.getUserID(productuser);
+
+           
+
+
          
             Session["Username"] = productuser.username;
             Session["Status"] = status.ToString();
-
+            Session["userID"] = userID.ToString();
+ 
             Response.Redirect("Default.aspx");
         }
         

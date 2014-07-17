@@ -43,17 +43,34 @@
         <br />
        
 
-        <asp:DropDownList ID="ddPriority" runat="server" Height="40px" Width="800px"></asp:DropDownList>
+        <asp:DropDownList ID="ddProject" runat="server" Height="40px" Width="800px" DataSourceID="LinqProject" DataTextField="title" DataValueField="pk_project_id" ></asp:DropDownList>
+       
+        <asp:LinqDataSource ID="LinqProject" runat="server" ContextTypeName="BugzDataContext" EntityTypeName="" OrderBy="title" TableName="Projects" Where="fk_projectstatus == @fk_projectstatus">
+            <WhereParameters>
+                <asp:Parameter DefaultValue="1" Name="fk_projectstatus" Type="Int32" />
+            </WhereParameters>
+        </asp:LinqDataSource>
+       
+        <br />
+        <br />
+
+        <asp:DropDownList ID="ddPriority" runat="server" Height="40px" Width="800px" DataSourceID="LinqMembers" DataTextField="username" DataValueField="pk_productuser_id"></asp:DropDownList>
+           
+        <asp:LinqDataSource ID="LinqMembers" runat="server" ContextTypeName="BugzDataContext" EntityTypeName="" OrderBy="username" Select="new (pk_productuser_id, username)" TableName="ProductUsers">
+        </asp:LinqDataSource>
            
         <br />
         <br />
 
-        <asp:DropDownList ID="ddAssign" runat="server" Height="40px" Width="800px"></asp:DropDownList>
+        <asp:DropDownList ID="ddAssign" runat="server" Height="40px" Width="800px" DataSourceID="LinqPriority" DataTextField="priority_name" DataValueField="pk_priority_id"></asp:DropDownList>
+           
+        <asp:LinqDataSource ID="LinqPriority" runat="server" ContextTypeName="BugzDataContext" EntityTypeName="" OrderBy="pk_priority_id" Select="new (pk_priority_id, priority_name)" TableName="Priorities">
+        </asp:LinqDataSource>
            
         <br />
         <br />
 
-        <asp:Button ID="btnCreateMember" Class="btn btn-default btn-fullscreen" runat="server" Text="Log new Bug" Height="40px" Width="800px"/>
+        <asp:Button ID="btnCreateMember" Class="btn btn-default btn-fullscreen btn-margin" runat="server" Text="Log new Bug" Height="40px" Width="800px" OnClick="btnCreateMember_Click"/>
    
             
         <br />
