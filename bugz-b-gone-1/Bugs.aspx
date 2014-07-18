@@ -28,6 +28,41 @@
         </ul>
         </div>
     </nav>
+
+    <asp:Button ID="btnOpen" Class="btn btn-default" runat="server" Text="Open cases"/>
+    <asp:Button ID="btnCLosed" Class="btn btn-default" runat="server" Text="Closed cases"/>
+    <asp:Button ID="btnMine" Class="btn btn-default" runat="server" Text="My cases"/>
+    <asp:Button ID="btnAll" Class="btn btn-default" runat="server" Text="All cases"/>
+       
+   
+   
+
+    <br />
+    <br />
+    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="LinqOpenBugs" Width="800px" BorderColor="White">
+        <Columns>
+            <asp:BoundField DataField="pk_bug_id" HeaderText="Bug" ReadOnly="True" SortExpression="pk_bug_id" />
+            <asp:BoundField DataField="title" HeaderText="Title" ReadOnly="True" SortExpression="title" />
+            <asp:BoundField DataField="fk_creator" HeaderText="Owner" ReadOnly="True" SortExpression="fk_creator" />
+            <asp:BoundField DataField="fk_responsible" HeaderText="Responsible" ReadOnly="True" SortExpression="fk_responsible" />
+            <asp:BoundField DataField="fk_priority" HeaderText="Priority" ReadOnly="True" SortExpression="fk_priority" />
+            <asp:BoundField DataField="fk_bugstatus" HeaderText="Status" ReadOnly="True" SortExpression="fk_bugstatus" />
+        </Columns>
+        <HeaderStyle BackColor="#CCCCCC" BorderColor="White" />
+        <RowStyle Height="30px" />
+        <SelectedRowStyle Height="30px" BackColor="#CCCCCC" />
+    </asp:GridView>
+    <asp:LinqDataSource ID="LinqOpenBugs" runat="server" ContextTypeName="BugzDataContext" EntityTypeName="" Select="new (pk_bug_id, title, fk_creator, fk_responsible, fk_priority, fk_bugstatus)" TableName="Bugs" Where="fk_bugstatus == @fk_bugstatus">
+        <WhereParameters>
+            <asp:Parameter DefaultValue="1" Name="fk_bugstatus" Type="Int32" />
+        </WhereParameters>
+    </asp:LinqDataSource>
+       
+   
+   
+
+    <br />
+           
    
    
 
