@@ -28,8 +28,8 @@
 /* LOGIN */
 
 .loginBox {
-    width: 300px;
-    height: 300px;
+    width: 343px;
+    height: 292px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 100px;
@@ -39,11 +39,31 @@
     margin-top: 30px;
 }
 
+.loginField2 {
+    margin-top: 20px;
+}
+
+
 .loginLogo {
     margin-bottom: 25px;
 }
 
 
+.txtbox {
+    float: left;
+}
+
+.required1 {
+   float: right;
+   margin-right: 38px;
+   margin-top: 20px;
+}
+
+.required2 {
+    margin-right: 38px;
+    margin-top: 9px;
+    float: right;
+}
 
 /* PROJECTS */
 

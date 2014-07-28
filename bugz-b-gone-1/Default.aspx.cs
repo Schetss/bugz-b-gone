@@ -19,12 +19,18 @@ public partial class Login : System.Web.UI.Page
 
      protected void btnLogin_Click(object sender, EventArgs e)
     {
+
+       
+
+        
+        
         ProductUser productuser = new ProductUser();
-         BLLlogin BLLlogin = new BLLlogin();
+        BLLlogin BLLlogin = new BLLlogin();
 
         productuser.username = txtUsername.Text;
         productuser.password = txtPassword.Text;
-
+        
+        
 
         try
         {
@@ -45,9 +51,12 @@ public partial class Login : System.Web.UI.Page
             Response.Redirect("Default.aspx");
         }
         
-        catch
+        
+
+        catch (Exception error)
         {
-            lbl_feedbackLogin.Text = "mimimi";
+            lbl_feedbackLogin.Text = error.Message;
+            lbl_feedbackLogin.CssClass = "error";
         }
     }
 

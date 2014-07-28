@@ -28,7 +28,7 @@ public class DALlogin
 
         else
         {
-            throw new Exception("Username or passwordis not correct!");
+            throw new Exception("Username or password is not correct!");
         }
     }
 
