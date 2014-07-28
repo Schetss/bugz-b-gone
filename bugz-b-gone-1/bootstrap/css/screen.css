@@ -98,5 +98,43 @@
 
 
 
-/* BUGS */
+/* LOG NEW BUGS */
 
+.requiredDescriptionBug {
+    float: right;
+    margin-top: -110px;
+    margin-right: 5px;
+
+}
+
+.requiredTitleBug {
+    float: right;
+    margin-top: -60px;
+    margin-right: 5px;
+}
+
+.btn-left {
+    float: left;
+}
+
+.dropdown-right {
+    float: right;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    padding-left: 10px;
+}
+
+.lblProject {
+    margin-top: 10px;
+    float: left;
+}
+
+.lblResponsible {
+    margin-top: 10px;
+    float: left;
+}
+
+.lblPriority {
+    margin-top: 10px;
+    float: left;
+}

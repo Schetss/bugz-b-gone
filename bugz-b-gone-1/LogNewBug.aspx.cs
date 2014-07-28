@@ -32,11 +32,15 @@ public partial class LogNewBug : System.Web.UI.Page
 
         catch
         { 
-            lbl_feedbackLogNewBug.Text = "ERROR!";
+            lbl_feedbackLogNewBug.Text = "Oops, something went wrong, please try again!";
             lbl_feedbackLogNewBug.CssClass = "error";
         }
 
 
     }
-   
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+
+    }
 }
