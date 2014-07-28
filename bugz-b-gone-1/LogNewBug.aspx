@@ -60,7 +60,7 @@
 
         <asp:DropDownList ID="ddPriority" CssClass="dropdown-right" runat="server" Height="40px" Width="690px" DataSourceID="LinqMembers" DataTextField="username" DataValueField="pk_productuser_id"></asp:DropDownList>
            
-        <asp:Label ID="Label2" runat="server" Text="Responsible" CssClass="lblResponsible"></asp:Label>
+        <asp:Label ID="Label2"  runat="server" Text="Responsible" CssClass="lblResponsible"></asp:Label>
            
         <asp:LinqDataSource ID="LinqMembers" runat="server" ContextTypeName="BugzDataContext" EntityTypeName="" OrderBy="username" Select="new (pk_productuser_id, username)" TableName="ProductUsers">
         </asp:LinqDataSource>

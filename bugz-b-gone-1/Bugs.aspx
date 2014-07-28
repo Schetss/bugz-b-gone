@@ -8,7 +8,7 @@
         <div class="container">
         <ul class="nav navbar-nav">
             <li class="active"><a href="Bugs.aspx">Bugs</a></li>
-                <%   
+           <%   
                 if (Session["Status"] == null)
                 {
                     Session.Abandon();

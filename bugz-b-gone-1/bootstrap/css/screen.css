@@ -96,6 +96,33 @@
     margin-bottom: 40px !important;
 }
 
+.lblProjec {
+    margin-top: 10px;
+    float: left;
+}
+
+.lblUsertype {
+    margin-top: 10px;
+    float: left;
+}
+
+.lblMember {
+     margin-top: 10px;
+    float: left;
+}
+
+.requiredPassword {
+    float: right;
+    margin-top: -60px;
+    margin-right: 5px;
+}
+
+.requiredUsername {
+    float: right;
+    margin-top: -60px;
+    margin-right: 5px;
+}
+
 
 
 /* LOG NEW BUGS */

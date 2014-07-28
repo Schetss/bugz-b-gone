@@ -30,7 +30,7 @@ public partial class Members : System.Web.UI.Page
 
         catch
         {
-            lbl_feedbackCreateMember.Text = "ERROR!";
+            lbl_feedbackCreateMember.Text = "Oops, something went wrong, please try again!";
             lbl_feedbackCreateMember.CssClass = "error"; 
         }
 
@@ -52,12 +52,14 @@ public partial class Members : System.Web.UI.Page
 
         catch
         {
-            lbl_feedbackMemberToProject.Text = "ERROR!";
+            lbl_feedbackMemberToProject.Text = "Oops, something went wrong, please try again!";
             lbl_feedbackMemberToProject.CssClass = "error";
         }
     
     }
 
-   
 
+
+
+  
 }
