@@ -8,7 +8,7 @@
         <div class="container">
         <ul class="nav navbar-nav">
             <li class="active"><a href="Bugs.aspx">Bugs</a></li>
-           <%   
+                <%   
                 if (Session["Status"] == null)
                 {
                     Session.Abandon();
@@ -29,9 +29,9 @@
         </div>
     </nav>
 
+    <asp:Button ID="btnMine" Class="btn btn-default" runat="server" Text="My cases"/>
     <asp:Button ID="btnOpen" Class="btn btn-default" runat="server" Text="Open cases"/>
     <asp:Button ID="btnCLosed" Class="btn btn-default" runat="server" Text="Closed cases"/>
-    <asp:Button ID="btnMine" Class="btn btn-default" runat="server" Text="My cases"/>
     <asp:Button ID="btnAll" Class="btn btn-default" runat="server" Text="All cases"/>
        
    
@@ -39,24 +39,297 @@
 
     <br />
     <br />
-    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="LinqOpenBugs" Width="800px" BorderColor="White">
-        <Columns>
-            <asp:BoundField DataField="pk_bug_id" HeaderText="Bug" ReadOnly="True" SortExpression="pk_bug_id" />
-            <asp:BoundField DataField="title" HeaderText="Title" ReadOnly="True" SortExpression="title" />
-            <asp:BoundField DataField="fk_creator" HeaderText="Owner" ReadOnly="True" SortExpression="fk_creator" />
-            <asp:BoundField DataField="fk_responsible" HeaderText="Responsible" ReadOnly="True" SortExpression="fk_responsible" />
-            <asp:BoundField DataField="fk_priority" HeaderText="Priority" ReadOnly="True" SortExpression="fk_priority" />
-            <asp:BoundField DataField="fk_bugstatus" HeaderText="Status" ReadOnly="True" SortExpression="fk_bugstatus" />
-        </Columns>
-        <HeaderStyle BackColor="#CCCCCC" BorderColor="White" />
-        <RowStyle Height="30px" />
-        <SelectedRowStyle Height="30px" BackColor="#CCCCCC" />
-    </asp:GridView>
-    <asp:LinqDataSource ID="LinqOpenBugs" runat="server" ContextTypeName="BugzDataContext" EntityTypeName="" Select="new (pk_bug_id, title, fk_creator, fk_responsible, fk_priority, fk_bugstatus)" TableName="Bugs" Where="fk_bugstatus == @fk_bugstatus">
+       
+   
+   
+
+    <br />
+    <asp:ListView ID="ListView1" runat="server" DataSourceID="LinqOpen">
+        
+        <LayoutTemplate>
+            <table id="bugtable">
+                <thead>
+                    <tr>
+                        <th>Bug number</th>
+                        <th>Title</th>
+                        <th>Priority</th>
+                        <th>Status</th>
+                        <th>Owner</th>
+                        <th>Responsible</th>
+                    </tr>
+                </thead> 
+                <tbody>
+                    <asp:PlaceHolder runat="server" ID="itemPlaceholder" />
+                </tbody>
+            </table>
+        </LayoutTemplate>
+    
+        <ItemTemplate>
+            <tr>
+                <td>
+                  <asp:Label ID="lblBugNr" runat="server" Text='<%# Eval("pk_bug_id") %>'></asp:Label>
+                </td>
+
+                <td>
+                   <a href="BugOverview.aspx?pk_bug_id=<%# Eval("pk_bug_id") %>"> <%# Eval("title") %></a>
+                </td>
+                
+                <td>
+                    <asp:Label ID="lblPriority" runat="server" Text='<%# Bind("Priority.priority_name") %>' ></asp:Label>
+                </td>
+
+                <td>
+                   <asp:Label ID="lblOpenClosed" runat="server" Text='<%# Bind("Bugstatus.bugstatus_name") %>'></asp:Label>
+                </td>
+
+                <td>
+                   <asp:Label ID="lblCreator" runat="server" Text='<%# Bind("ProductUser.username") %>'></asp:Label>
+                </td>
+
+                <td>
+                    <asp:Label ID="lblResponsible" runat="server" Text='<%# Bind("ProductUser1.username") %>'></asp:Label>
+                </td>
+            </tr>
+        </ItemTemplate> 
+    </asp:ListView>
+
+
+
+
+    <asp:LinqDataSource ID="LinqOpen" runat="server" ContextTypeName="BugzDataContext" EntityTypeName="" OrderBy="pk_bug_id" Select="new (pk_bug_id, title, fk_priority, fk_creator, fk_responsible, Priority, fk_bugstatus, Bugstatus, ProductUser1, ProductUser)" TableName="Bugs" Where="openclosed == @openclosed">
         <WhereParameters>
-            <asp:Parameter DefaultValue="1" Name="fk_bugstatus" Type="Int32" />
+            <asp:Parameter DefaultValue="1" Name="openclosed" Type="Int32" />
         </WhereParameters>
     </asp:LinqDataSource>
+    
+
+   
+   
+
+    
+       
+   
+   
+
+    
+   
+
+    
+       
+   
+   
+
+    
+       
+   
+   
+
+    
+       
+   
+   
+
+    
+   
+
+    
+       
+   
+   
+
+   
+       
+   
+   
+
+    
+       
+   
+   
+
+    
+   
+
+    
+       
+   
+   
+
+    
+       
+   
+   
+
+    
+       
+   
+   
+
+    
+   
+
+    
+       
+   
+   
+
+    <asp:LinqDataSource ID="LinqClosed" runat="server" ContextTypeName="BugzDataContext" EntityTypeName="" OrderBy="pk_bug_id" Select="new (pk_bug_id, fk_project, fk_creator, fk_responsible, fk_priority, fk_bugstatus, Bugstatus, Priority, ProductUser, ProductUser1, openclosed, title)" TableName="Bugs" Where="openclosed == @openclosed">
+        <WhereParameters>
+            <asp:Parameter DefaultValue="0" Name="openclosed" Type="Int32" />
+        </WhereParameters>
+    </asp:LinqDataSource>
+    
+
+   
+   
+
+    
+       
+   
+   
+
+    
+   
+
+    
+       
+   
+   
+
+    
+       
+   
+   
+
+    
+       
+   
+   
+
+    
+   
+
+    
+       
+   
+   
+
+   
+       
+   
+   
+
+    
+       
+   
+   
+
+    
+   
+
+    
+       
+   
+   
+
+    
+       
+   
+   
+
+    
+       
+   
+   
+
+    
+   
+
+    
+       
+   
+   
+
+    <asp:LinqDataSource ID="LinqAll" runat="server" ContextTypeName="BugzDataContext" EntityTypeName="" OrderBy="pk_bug_id" Select="new (pk_bug_id, title, fk_project, fk_creator, fk_responsible, fk_priority, fk_bugstatus, openclosed, Bugstatus, Priority, ProductUser, ProductUser1)" TableName="Bugs">
+    </asp:LinqDataSource>
+    <asp:LinqDataSource ID="LinqMy" runat="server" ContextTypeName="BugzDataContext" EntityTypeName="" OrderBy="pk_bug_id" Select="new (title, pk_bug_id, fk_creator, fk_responsible, fk_priority, fk_bugstatus, openclosed, Bugstatus, Priority, ProductUser, ProductUser1)" TableName="Bugs" Where="fk_responsible == @fk_responsible">
+        <WhereParameters>
+            <asp:SessionParameter DefaultValue="1" Name="fk_responsible" SessionField="User" Type="Int32" />
+        </WhereParameters>
+    </asp:LinqDataSource>
+    
+
+   
+   
+
+    
+       
+   
+   
+
+    
+   
+
+    
+       
+   
+   
+
+    
+       
+   
+   
+
+    
+       
+   
+   
+
+    
+   
+
+    
+       
+   
+   
+
+   
+       
+   
+   
+
+    
+       
+   
+   
+
+    
+   
+
+    
+       
+   
+   
+
+    
+       
+   
+   
+
+    
+       
+   
+   
+
+    
+   
+
+    
+       
+   
+   
+
+    <br />
        
    
    
@@ -64,6 +337,9 @@
     <br />
            
    
+
+   
+
    
 
 </asp:Content>

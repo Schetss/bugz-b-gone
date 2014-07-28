@@ -7,7 +7,7 @@
       <nav class="navbar navbar-default" role="navigation">
         <div class="container">
         <ul class="nav navbar-nav">
-            <li><a href="Bugs.aspx">Bugs</a></li>
+            <li><a href="Bugs.aspx">&amp;Bugs</a></li>
                 <%   
                 if (Session["Status"] == null)
                 {
