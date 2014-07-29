@@ -79,6 +79,48 @@
     margin-bottom: 100px;
 }
 
+.btn-changeproject {
+    margin-right: 10px;
+}
+
+.RequiredFieldTitleProject {
+    float: right;
+    margin-top: -60px;
+    margin-right: 5px;
+}
+
+.RequiredFieldDescriptionProject {
+    float: right;
+    margin-top: -110px;
+    margin-right: 5px;
+}
+
+.btn-CreateProject {
+    margin-bottom: 25px !important;
+}
+
+
+.success2
+ {
+    color: green;
+    float: left;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.error2
+ {
+    color: red;
+    float: left;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+hr {
+    clear: both;
+
+}
+
 /* LABELS */
 
 .success {

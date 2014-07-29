@@ -16,7 +16,7 @@
                 }
                 else if( (Session["Status"].ToString() == "2")) 
                 { 
-           %>
+            %>
 
             <li class="active"><a href="Projects.aspx">Projects</a></li>
             <li><a href="Members.aspx">Members</a></li>
@@ -34,29 +34,28 @@
     </div>
 
     <div class="createProject">
-            <asp:TextBox ID="txtTitleProject" Class="loginField form-control" runat="server" Height="50px" Width="800px" placeholder="Project title"></asp:TextBox>
-            <br />
+        <asp:TextBox ID="txtTitleProject" Class="loginField form-control" runat="server" Height="50px" Width="790px" placeholder="Project title" ValidationGroup="createProjet"></asp:TextBox>
+        <asp:RequiredFieldValidator ID="RequiredFieldTitleProject" runat="server" ErrorMessage="*" CssClass="error RequiredFieldTitleProject" ControlToValidate="txtTitleProject" ValidationGroup="createProjet"></asp:RequiredFieldValidator>
+        <br />
            
-            <asp:TextBox ID="txtDescriptionProject" Class="form-control" runat="server" Height="100px" Width="800px" placeholder="Project description" TextMode="MultiLine"></asp:TextBox>
-            <br />
+        <asp:TextBox ID="txtDescriptionProject" Class="form-control" runat="server" Height="100px" Width="790px" placeholder="Project description" TextMode="MultiLine" ValidationGroup="createProjet"></asp:TextBox>
+        <asp:RequiredFieldValidator ID="RequiredFieldtxtDescriptionProject" runat="server" CssClass="error RequiredFieldDescriptionProject" ErrorMessage="*" ControlToValidate="txtDescriptionProject" ValidationGroup="createProjet"></asp:RequiredFieldValidator>
+        <br />
         
-            <asp:Button ID="btnCreateProject" Class="btn btn-default btn-fullscreen" runat="server" Text="Create new project" Height="40px" Width="800px" OnClick="btnCreateProject_Click" />
+        <asp:Button ID="btnCreateProject" Class="btn btn-default btn-fullscreen btn-left btn-CreateProject" runat="server" Text="Create new project" Height="40px" Width="790px" OnClick="btnCreateProject_Click" ValidationGroup="createProjet" />
    
-            <br />
-            
-   
-            <asp:Label ID="lbl_feedbackCreateProject" Class="lblFeedbackProject" runat="server"></asp:Label>
+        <asp:Label ID="lbl_feedbackCreateProject" Class="lblFeedbackProject" runat="server"></asp:Label>
    
     </div>
 
     <div class="page-header">
-      <h1><small> Active projects</small></h1>
+      <h1><small>Projects overview</small></h1>
     </div>
     
     <div>
 
 
-        <asp:GridView ID="GridActiveProjects" runat="server" AutoGenerateColumns="False" CellPadding="25" CellSpacing="10" BorderColor="White" DataSourceID="LinqActiveProjects" Width="800px">
+        <asp:GridView ID="GridActiveProjects" runat="server" AutoGenerateColumns="False" CellPadding="25" CellSpacing="10" BorderColor="White" DataSourceID="LinqActiveProjects" Width="790px">
             <Columns>
                 <asp:BoundField DataField="title" HeaderText="title" SortExpression="title" ReadOnly="True" />
                 <asp:BoundField DataField="description" HeaderText="description" SortExpression="description" ReadOnly="True" />
@@ -76,23 +75,22 @@
                 <asp:Parameter DefaultValue="1" Name="fk_projectstatus" Type="Int32" />
             </WhereParameters>
         </asp:LinqDataSource>
-        <asp:Button ID="btnActiveProjects" Class="btn btn-default btn-fullscreen" runat="server" Text="Set project to non-active" Height="40px" Width="350px" />
+        <asp:Button ID="btnActiveProjects" Class="btn btn-default btn-fullscreen btn-changeproject" runat="server" Text="Set project to non-active" Height="40px" Width="340px" OnClick="btnActiveProjects_Click1" />
    
         <br />
         <br />
    
         <asp:Label ID="lbl_feedbackActiveProject" Class="lblFeedbackProject" runat="server"></asp:Label>
    
-    </div>
+    
 
-    <div class="page-header">
-      <h1><small> Non-active Projects</small></h1>
-    </div>
+
+        <hr />
 
     
 
         
-        <asp:Button ID="Button1" Class="btn btn-default btn-fullscreen" runat="server" Text="Set project to active" Height="40px" Width="350px" />
+        <asp:Button ID="btnSetProjectToActive" Class="btn btn-default btn-fullscreen btn-changeproject" runat="server" Text="Set project to active" Height="40px" Width="340px" OnClick="Button1_Click" />
    
         <asp:DropDownList ID="ddNonActiveProjects" CssClass="ddProjects" runat="server" Height="40px" Width="400px" DataSourceID="LinqDDNoneActive" DataTextField="title" DataValueField="pk_project_id">
         </asp:DropDownList>
@@ -103,10 +101,9 @@
       </asp:LinqDataSource>
         <br />
    
-        <asp:Label ID="lbl_feedbackNonActiveProject" Class="lblFeedbackProject" runat="server"></asp:Label>
+        <asp:Label ID="lbl_feedbackNonActiveProject" Class="lblFeedbackProject lbl_feedbackNonActiveProject" runat="server"></asp:Label>
    
          <br />  <br />  <br />
-    <div>
     </div>
 
 </asp:Content>

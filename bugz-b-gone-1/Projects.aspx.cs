@@ -30,27 +30,55 @@ public partial class Projects : System.Web.UI.Page
 
         catch
         {
-            lbl_feedbackCreateProject.Text = "Project could not be added";
+            lbl_feedbackCreateProject.Text = "Oops, something went wrong, please try again!";
             lbl_feedbackCreateProject.CssClass = "error";
         }
 
     }
 
-    protected void btnActiveProjects_Click(object sender, EventArgs e)
+    protected void btnActiveProjects_Click1(object sender, EventArgs e)
     {
         Project project = new Project();
         BLLprojects BLLproject = new BLLprojects();
 
-        project.pk_project_id = ddActiveProjects.SelectedIndex;
+        project.pk_project_id = Convert.ToInt16(ddActiveProjects.SelectedValue);
 
         try
         {
+            BLLproject.changeToNonActive(project);
 
+            lbl_feedbackActiveProject.Text = "Projet has been set to non-active!";
+            lbl_feedbackActiveProject.CssClass = "success2";
         }
 
-        catch { 
-        
+        catch (Exception error)
+        {
+            lbl_feedbackActiveProject.Text = error.Message;
+            lbl_feedbackActiveProject.CssClass = "error2";
+        }
+    }
+
+
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        Project project = new Project();
+        BLLprojects BLLproject = new BLLprojects();
+
+        project.pk_project_id = Convert.ToInt16(ddNonActiveProjects.SelectedValue);
+
+        try
+        {
+            BLLproject.changeToActive(project);
+
+            lbl_feedbackNonActiveProject.Text = "Projet has been set to active!";
+            lbl_feedbackNonActiveProject.CssClass = "success2";
         }
 
+        catch (Exception error)
+        {
+            lbl_feedbackNonActiveProject.Text = error.Message;
+            lbl_feedbackNonActiveProject.CssClass = "error2";
+        }
     }
 }
