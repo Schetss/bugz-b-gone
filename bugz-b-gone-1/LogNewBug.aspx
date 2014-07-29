@@ -9,7 +9,7 @@
         <div class="container">
         <ul class="nav navbar-nav">
             <li><a href="Bugs.aspx">Bugs</a></li>
-           <%   
+                <%   
                 if (Session["Status"] == null)
                 {
                     Session.Abandon();
@@ -58,7 +58,7 @@
         <br />
         <br />
 
-        <asp:DropDownList ID="ddPriority" CssClass="dropdown-right" runat="server" Height="40px" Width="690px" DataSourceID="LinqMembers" DataTextField="username" DataValueField="pk_productuser_id"></asp:DropDownList>
+        <asp:DropDownList ID="ddResponsible" CssClass="dropdown-right" runat="server" Height="40px" Width="690px" DataSourceID="LinqMembers" DataTextField="username" DataValueField="pk_productuser_id"></asp:DropDownList>
            
         <asp:Label ID="Label2"  runat="server" Text="Responsible" CssClass="lblResponsible"></asp:Label>
            

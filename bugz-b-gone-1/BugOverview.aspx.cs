@@ -9,6 +9,6 @@ public partial class BugOverview : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        lblBugOverview.Text = Request.QueryString["pk_bug_id"];
     }
 }

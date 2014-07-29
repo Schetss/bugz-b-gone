@@ -15,9 +15,9 @@ public partial class LogNewBug : System.Web.UI.Page
     {
         newBug.title = txtTitle.Text;
         newBug.description = txtDescriptionBug.Text;
-        newBug.fk_responsible = Convert.ToInt16(ddAssign.SelectedValue);
+        newBug.fk_responsible = Convert.ToInt16(ddResponsible.SelectedValue);
         newBug.fk_project = Convert.ToInt16(ddProject.SelectedValue);
-        newBug.fk_priority = Convert.ToInt16(ddPriority.SelectedValue);
+        newBug.fk_priority = Convert.ToInt16(ddResponsible.SelectedValue);
         newBug.fk_bugstatus = 1;
         newBug.openclosed = 1;
         newBug.fk_creator = Convert.ToInt16(Session["userID"]);
@@ -27,13 +27,13 @@ public partial class LogNewBug : System.Web.UI.Page
         {
             BLLnewbug.insertNewBug(newBug);
             lbl_feedbackLogNewBug.Text = "New bug has been successfully added!";
-            lbl_feedbackLogNewBug.CssClass = "success";
+            lbl_feedbackLogNewBug.CssClass = "success2";
         }
 
         catch
         { 
             lbl_feedbackLogNewBug.Text = "Oops, something went wrong, please try again!";
-            lbl_feedbackLogNewBug.CssClass = "error";
+            lbl_feedbackLogNewBug.CssClass = "error2";
         }
 
 

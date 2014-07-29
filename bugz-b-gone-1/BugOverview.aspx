@@ -30,8 +30,7 @@
     </nav>
 
     <div class="page-header">
-        <h1><small> Bug overview </small></h1>
-        <p>&nbsp;</p>
+        <h1><small> <asp:Label ID="lblBugOverview" runat="server" Text=""></asp:Label></small></h1>
 
 
 

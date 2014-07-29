@@ -167,7 +167,33 @@ hr {
 
 
 
-/* LOG NEW BUGS */
+/* LOG NEW BUGS and BUGS*/
+
+td, th {
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+
+}
+
+.bugtable {
+    width: 800px;    
+}
+
+.bugtable th td {
+    //margin-bottom: 15px;
+}
+
+
+.lblBugShowName {
+    float:left !important;
+    clear: both !important;
+    margin-top: 10px !important;
+    margin-bottom: 20px !important;
+    font-size: 18px !important;
+}
+
+
+
 
 .requiredDescriptionBug {
     float: right;
@@ -207,3 +233,4 @@ hr {
     margin-top: 10px;
     float: left;
 }
+

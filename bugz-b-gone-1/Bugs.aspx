@@ -29,28 +29,28 @@
         </div>
     </nav>
 
-    <asp:Button ID="btnMine" Class="btn btn-default" runat="server" Text="My cases"/>
-    <asp:Button ID="btnOpen" Class="btn btn-default" runat="server" Text="Open cases"/>
-    <asp:Button ID="btnCLosed" Class="btn btn-default" runat="server" Text="Closed cases"/>
-    <asp:Button ID="btnAll" Class="btn btn-default" runat="server" Text="All cases"/>
+    <asp:Button ID="btnMine" Class="btn btn-default" runat="server" Text="My cases" OnClick="btnMine_Click"/>
+    <asp:Button ID="btnOpen" Class="btn btn-default" runat="server" Text="Open cases" OnClick="btnOpen_Click"/>
+    <asp:Button ID="btnCLosed" Class="btn btn-default" runat="server" Text="Closed cases" OnClick="btnCLosed_Click"/>
+    <asp:Button ID="btnAll" Class="btn btn-default" runat="server" Text="All cases" OnClick="btnAll_Click"/>
        
    
    
 
     <br />
     <br />
-       
-   
-   
 
+
+
+    <asp:Label ID="lblBugShowName" Class="lblBugShowName" runat="server" Text="My cases" CssClass="lblBugShowName"></asp:Label>
     <br />
-    <asp:ListView ID="ListView1" runat="server" DataSourceID="LinqOpen">
+    <asp:ListView ID="ListView1" runat="server" DataSourceID="LinqMy">
         
         <LayoutTemplate>
-            <table id="bugtable">
+            <table id="bugtable" class="bugtable">
                 <thead>
                     <tr>
-                        <th>Bug number</th>
+                        <th>Number</th>
                         <th>Title</th>
                         <th>Priority</th>
                         <th>Status</th>
@@ -96,6 +96,12 @@
 
 
 
+
+
+
+    
+    <!-- LINQ ONLY OPEN BUGS -->
+
     <asp:LinqDataSource ID="LinqOpen" runat="server" ContextTypeName="BugzDataContext" EntityTypeName="" OrderBy="pk_bug_id" Select="new (pk_bug_id, title, fk_priority, fk_creator, fk_responsible, Priority, fk_bugstatus, Bugstatus, ProductUser1, ProductUser)" TableName="Bugs" Where="openclosed == @openclosed">
         <WhereParameters>
             <asp:Parameter DefaultValue="1" Name="openclosed" Type="Int32" />
@@ -103,75 +109,8 @@
     </asp:LinqDataSource>
     
 
-   
-   
 
-    
-       
-   
-   
-
-    
-   
-
-    
-       
-   
-   
-
-    
-       
-   
-   
-
-    
-       
-   
-   
-
-    
-   
-
-    
-       
-   
-   
-
-   
-       
-   
-   
-
-    
-       
-   
-   
-
-    
-   
-
-    
-       
-   
-   
-
-    
-       
-   
-   
-
-    
-       
-   
-   
-
-    
-   
-
-    
-       
-   
-   
+    <!-- LINQ ONLY CLOSED BUGS -->
 
     <asp:LinqDataSource ID="LinqClosed" runat="server" ContextTypeName="BugzDataContext" EntityTypeName="" OrderBy="pk_bug_id" Select="new (pk_bug_id, fk_project, fk_creator, fk_responsible, fk_priority, fk_bugstatus, Bugstatus, Priority, ProductUser, ProductUser1, openclosed, title)" TableName="Bugs" Where="openclosed == @openclosed">
         <WhereParameters>
@@ -180,167 +119,24 @@
     </asp:LinqDataSource>
     
 
-   
-   
 
-    
-       
-   
-   
-
-    
-   
-
-    
-       
-   
-   
-
-    
-       
-   
-   
-
-    
-       
-   
-   
-
-    
-   
-
-    
-       
-   
-   
-
-   
-       
-   
-   
-
-    
-       
-   
-   
-
-    
-   
-
-    
-       
-   
-   
-
-    
-       
-   
-   
-
-    
-       
-   
-   
-
-    
-   
-
-    
-       
-   
-   
+    <!-- LINQ ALL BUGS -->
 
     <asp:LinqDataSource ID="LinqAll" runat="server" ContextTypeName="BugzDataContext" EntityTypeName="" OrderBy="pk_bug_id" Select="new (pk_bug_id, title, fk_project, fk_creator, fk_responsible, fk_priority, fk_bugstatus, openclosed, Bugstatus, Priority, ProductUser, ProductUser1)" TableName="Bugs">
     </asp:LinqDataSource>
+
+
+
+    <!-- LINQ ONLY LOGGED IN USER IS RESPONSIBLE -->
+    
     <asp:LinqDataSource ID="LinqMy" runat="server" ContextTypeName="BugzDataContext" EntityTypeName="" OrderBy="pk_bug_id" Select="new (title, pk_bug_id, fk_creator, fk_responsible, fk_priority, fk_bugstatus, openclosed, Bugstatus, Priority, ProductUser, ProductUser1)" TableName="Bugs" Where="fk_responsible == @fk_responsible">
         <WhereParameters>
-            <asp:SessionParameter DefaultValue="1" Name="fk_responsible" SessionField="User" Type="Int32" />
+
+            <asp:SessionParameter Name="fk_responsible" SessionField="userID" Type="Int32" />
         </WhereParameters>
     </asp:LinqDataSource>
     
-
-   
-   
-
     
-       
-   
-   
-
-    
-   
-
-    
-       
-   
-   
-
-    
-       
-   
-   
-
-    
-       
-   
-   
-
-    
-   
-
-    
-       
-   
-   
-
-   
-       
-   
-   
-
-    
-       
-   
-   
-
-    
-   
-
-    
-       
-   
-   
-
-    
-       
-   
-   
-
-    
-       
-   
-   
-
-    
-   
-
-    
-       
-   
-   
-
-    <br />
-       
-   
-   
-
-    <br />
-           
-   
-
-   
-
-   
 
 </asp:Content>
 
