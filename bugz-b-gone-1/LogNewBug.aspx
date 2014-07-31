@@ -43,7 +43,6 @@
         <asp:TextBox ID="txtDescriptionBug" Class="form-control" runat="server" Height="100px" Width="790px" placeholder="Bug description" TextMode="MultiLine"></asp:TextBox>
         <asp:RequiredFieldValidator ID="RequiredFieldDescription" runat="server" ErrorMessage="*"  CssClass="error requiredDescriptionBug"  ControlToValidate="txtDescriptionBug"></asp:RequiredFieldValidator>
         <br />
-       
 
         <asp:DropDownList ID="ddProject" CssClass="dropdown-right" runat="server" Height="40px" Width="690px" DataSourceID="LinqProject" DataTextField="title" DataValueField="pk_project_id" ></asp:DropDownList>
        

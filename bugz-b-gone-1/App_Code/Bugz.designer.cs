@@ -44,12 +44,6 @@ public partial class BugzDataContext : System.Data.Linq.DataContext
   partial void InsertProductUser(ProductUser instance);
   partial void UpdateProductUser(ProductUser instance);
   partial void DeleteProductUser(ProductUser instance);
-  partial void InsertReaction(Reaction instance);
-  partial void UpdateReaction(Reaction instance);
-  partial void DeleteReaction(Reaction instance);
-  partial void InsertAssign1(Assign1 instance);
-  partial void UpdateAssign1(Assign1 instance);
-  partial void DeleteAssign1(Assign1 instance);
   partial void InsertUsersOnProject(UsersOnProject instance);
   partial void UpdateUsersOnProject(UsersOnProject instance);
   partial void DeleteUsersOnProject(UsersOnProject instance);
@@ -59,6 +53,9 @@ public partial class BugzDataContext : System.Data.Linq.DataContext
   partial void InsertProjectstatus(Projectstatus instance);
   partial void UpdateProjectstatus(Projectstatus instance);
   partial void DeleteProjectstatus(Projectstatus instance);
+  partial void InsertReaction1(Reaction1 instance);
+  partial void UpdateReaction1(Reaction1 instance);
+  partial void DeleteReaction1(Reaction1 instance);
   #endregion
 	
 	public BugzDataContext() : 
@@ -131,22 +128,6 @@ public partial class BugzDataContext : System.Data.Linq.DataContext
 		}
 	}
 	
-	public System.Data.Linq.Table<Reaction> Reactions
-	{
-		get
-		{
-			return this.GetTable<Reaction>();
-		}
-	}
-	
-	public System.Data.Linq.Table<Assign1> Assign1s
-	{
-		get
-		{
-			return this.GetTable<Assign1>();
-		}
-	}
-	
 	public System.Data.Linq.Table<UsersOnProject> UsersOnProjects
 	{
 		get
@@ -168,6 +149,14 @@ public partial class BugzDataContext : System.Data.Linq.DataContext
 		get
 		{
 			return this.GetTable<Projectstatus>();
+		}
+	}
+	
+	public System.Data.Linq.Table<Reaction1> Reaction1s
+	{
+		get
+		{
+			return this.GetTable<Reaction1>();
 		}
 	}
 }
@@ -312,9 +301,7 @@ public partial class Bug : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	private System.Nullable<int> _openclosed;
 	
-	private EntitySet<Reaction> _Reactions;
-	
-	private EntitySet<Assign1> _Assign1s;
+	private EntitySet<Reaction1> _Reaction1s;
 	
 	private EntityRef<Bugstatus> _Bugstatus;
 	
@@ -354,8 +341,7 @@ public partial class Bug : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	public Bug()
 	{
-		this._Reactions = new EntitySet<Reaction>(new Action<Reaction>(this.attach_Reactions), new Action<Reaction>(this.detach_Reactions));
-		this._Assign1s = new EntitySet<Assign1>(new Action<Assign1>(this.attach_Assign1s), new Action<Assign1>(this.detach_Assign1s));
+		this._Reaction1s = new EntitySet<Reaction1>(new Action<Reaction1>(this.attach_Reaction1s), new Action<Reaction1>(this.detach_Reaction1s));
 		this._Bugstatus = default(EntityRef<Bugstatus>);
 		this._Priority = default(EntityRef<Priority>);
 		this._ProductUser = default(EntityRef<ProductUser>);
@@ -584,29 +570,16 @@ public partial class Bug : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Bug_Reaction", Storage="_Reactions", ThisKey="pk_bug_id", OtherKey="fk_bug")]
-	public EntitySet<Reaction> Reactions
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Bug_Reaction1", Storage="_Reaction1s", ThisKey="pk_bug_id", OtherKey="fk_bug")]
+	public EntitySet<Reaction1> Reaction1s
 	{
 		get
 		{
-			return this._Reactions;
+			return this._Reaction1s;
 		}
 		set
 		{
-			this._Reactions.Assign(value);
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Bug_Assign1", Storage="_Assign1s", ThisKey="pk_bug_id", OtherKey="fk_bug")]
-	public EntitySet<Assign1> Assign1s
-	{
-		get
-		{
-			return this._Assign1s;
-		}
-		set
-		{
-			this._Assign1s.Assign(value);
+			this._Reaction1s.Assign(value);
 		}
 	}
 	
@@ -800,25 +773,13 @@ public partial class Bug : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	private void attach_Reactions(Reaction entity)
+	private void attach_Reaction1s(Reaction1 entity)
 	{
 		this.SendPropertyChanging();
 		entity.Bug = this;
 	}
 	
-	private void detach_Reactions(Reaction entity)
-	{
-		this.SendPropertyChanging();
-		entity.Bug = null;
-	}
-	
-	private void attach_Assign1s(Assign1 entity)
-	{
-		this.SendPropertyChanging();
-		entity.Bug = this;
-	}
-	
-	private void detach_Assign1s(Assign1 entity)
+	private void detach_Reaction1s(Reaction1 entity)
 	{
 		this.SendPropertyChanging();
 		entity.Bug = null;
@@ -1071,11 +1032,9 @@ public partial class ProductUser : INotifyPropertyChanging, INotifyPropertyChang
 	
 	private EntitySet<Bug> _Bugs1;
 	
-	private EntitySet<Reaction> _Reactions;
-	
-	private EntitySet<Assign1> _Assign1s;
-	
 	private EntitySet<UsersOnProject> _UsersOnProjects;
+	
+	private EntitySet<Reaction1> _Reaction1s;
 	
 	private EntityRef<Usertype> _Usertype;
 	
@@ -1097,9 +1056,8 @@ public partial class ProductUser : INotifyPropertyChanging, INotifyPropertyChang
 	{
 		this._Bugs = new EntitySet<Bug>(new Action<Bug>(this.attach_Bugs), new Action<Bug>(this.detach_Bugs));
 		this._Bugs1 = new EntitySet<Bug>(new Action<Bug>(this.attach_Bugs1), new Action<Bug>(this.detach_Bugs1));
-		this._Reactions = new EntitySet<Reaction>(new Action<Reaction>(this.attach_Reactions), new Action<Reaction>(this.detach_Reactions));
-		this._Assign1s = new EntitySet<Assign1>(new Action<Assign1>(this.attach_Assign1s), new Action<Assign1>(this.detach_Assign1s));
 		this._UsersOnProjects = new EntitySet<UsersOnProject>(new Action<UsersOnProject>(this.attach_UsersOnProjects), new Action<UsersOnProject>(this.detach_UsersOnProjects));
+		this._Reaction1s = new EntitySet<Reaction1>(new Action<Reaction1>(this.attach_Reaction1s), new Action<Reaction1>(this.detach_Reaction1s));
 		this._Usertype = default(EntityRef<Usertype>);
 		OnCreated();
 	}
@@ -1214,32 +1172,6 @@ public partial class ProductUser : INotifyPropertyChanging, INotifyPropertyChang
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ProductUser_Reaction", Storage="_Reactions", ThisKey="pk_productuser_id", OtherKey="fk_user")]
-	public EntitySet<Reaction> Reactions
-	{
-		get
-		{
-			return this._Reactions;
-		}
-		set
-		{
-			this._Reactions.Assign(value);
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ProductUser_Assign1", Storage="_Assign1s", ThisKey="pk_productuser_id", OtherKey="fk_user")]
-	public EntitySet<Assign1> Assign1s
-	{
-		get
-		{
-			return this._Assign1s;
-		}
-		set
-		{
-			this._Assign1s.Assign(value);
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ProductUser_UsersOnProject", Storage="_UsersOnProjects", ThisKey="pk_productuser_id", OtherKey="fk_user")]
 	public EntitySet<UsersOnProject> UsersOnProjects
 	{
@@ -1250,6 +1182,19 @@ public partial class ProductUser : INotifyPropertyChanging, INotifyPropertyChang
 		set
 		{
 			this._UsersOnProjects.Assign(value);
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ProductUser_Reaction1", Storage="_Reaction1s", ThisKey="pk_productuser_id", OtherKey="fk_user")]
+	public EntitySet<Reaction1> Reaction1s
+	{
+		get
+		{
+			return this._Reaction1s;
+		}
+		set
+		{
+			this._Reaction1s.Assign(value);
 		}
 	}
 	
@@ -1331,30 +1276,6 @@ public partial class ProductUser : INotifyPropertyChanging, INotifyPropertyChang
 		entity.ProductUser1 = null;
 	}
 	
-	private void attach_Reactions(Reaction entity)
-	{
-		this.SendPropertyChanging();
-		entity.ProductUser = this;
-	}
-	
-	private void detach_Reactions(Reaction entity)
-	{
-		this.SendPropertyChanging();
-		entity.ProductUser = null;
-	}
-	
-	private void attach_Assign1s(Assign1 entity)
-	{
-		this.SendPropertyChanging();
-		entity.ProductUser = this;
-	}
-	
-	private void detach_Assign1s(Assign1 entity)
-	{
-		this.SendPropertyChanging();
-		entity.ProductUser = null;
-	}
-	
 	private void attach_UsersOnProjects(UsersOnProject entity)
 	{
 		this.SendPropertyChanging();
@@ -1366,413 +1287,17 @@ public partial class ProductUser : INotifyPropertyChanging, INotifyPropertyChang
 		this.SendPropertyChanging();
 		entity.ProductUser = null;
 	}
-}
-
-[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Reaction")]
-public partial class Reaction : INotifyPropertyChanging, INotifyPropertyChanged
-{
 	
-	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-	
-	private int _pk_reaction_id;
-	
-	private System.Nullable<System.DateTime> _date;
-	
-	private System.Nullable<int> _fk_user;
-	
-	private System.Nullable<int> _fk_bug;
-	
-	private EntityRef<Bug> _Bug;
-	
-	private EntityRef<ProductUser> _ProductUser;
-	
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void Onpk_reaction_idChanging(int value);
-    partial void Onpk_reaction_idChanged();
-    partial void OndateChanging(System.Nullable<System.DateTime> value);
-    partial void OndateChanged();
-    partial void Onfk_userChanging(System.Nullable<int> value);
-    partial void Onfk_userChanged();
-    partial void Onfk_bugChanging(System.Nullable<int> value);
-    partial void Onfk_bugChanged();
-    #endregion
-	
-	public Reaction()
+	private void attach_Reaction1s(Reaction1 entity)
 	{
-		this._Bug = default(EntityRef<Bug>);
-		this._ProductUser = default(EntityRef<ProductUser>);
-		OnCreated();
+		this.SendPropertyChanging();
+		entity.ProductUser = this;
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pk_reaction_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-	public int pk_reaction_id
+	private void detach_Reaction1s(Reaction1 entity)
 	{
-		get
-		{
-			return this._pk_reaction_id;
-		}
-		set
-		{
-			if ((this._pk_reaction_id != value))
-			{
-				this.Onpk_reaction_idChanging(value);
-				this.SendPropertyChanging();
-				this._pk_reaction_id = value;
-				this.SendPropertyChanged("pk_reaction_id");
-				this.Onpk_reaction_idChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_date", DbType="DateTime")]
-	public System.Nullable<System.DateTime> date
-	{
-		get
-		{
-			return this._date;
-		}
-		set
-		{
-			if ((this._date != value))
-			{
-				this.OndateChanging(value);
-				this.SendPropertyChanging();
-				this._date = value;
-				this.SendPropertyChanged("date");
-				this.OndateChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fk_user", DbType="Int")]
-	public System.Nullable<int> fk_user
-	{
-		get
-		{
-			return this._fk_user;
-		}
-		set
-		{
-			if ((this._fk_user != value))
-			{
-				if (this._ProductUser.HasLoadedOrAssignedValue)
-				{
-					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-				}
-				this.Onfk_userChanging(value);
-				this.SendPropertyChanging();
-				this._fk_user = value;
-				this.SendPropertyChanged("fk_user");
-				this.Onfk_userChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fk_bug", DbType="Int")]
-	public System.Nullable<int> fk_bug
-	{
-		get
-		{
-			return this._fk_bug;
-		}
-		set
-		{
-			if ((this._fk_bug != value))
-			{
-				if (this._Bug.HasLoadedOrAssignedValue)
-				{
-					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-				}
-				this.Onfk_bugChanging(value);
-				this.SendPropertyChanging();
-				this._fk_bug = value;
-				this.SendPropertyChanged("fk_bug");
-				this.Onfk_bugChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Bug_Reaction", Storage="_Bug", ThisKey="fk_bug", OtherKey="pk_bug_id", IsForeignKey=true)]
-	public Bug Bug
-	{
-		get
-		{
-			return this._Bug.Entity;
-		}
-		set
-		{
-			Bug previousValue = this._Bug.Entity;
-			if (((previousValue != value) 
-						|| (this._Bug.HasLoadedOrAssignedValue == false)))
-			{
-				this.SendPropertyChanging();
-				if ((previousValue != null))
-				{
-					this._Bug.Entity = null;
-					previousValue.Reactions.Remove(this);
-				}
-				this._Bug.Entity = value;
-				if ((value != null))
-				{
-					value.Reactions.Add(this);
-					this._fk_bug = value.pk_bug_id;
-				}
-				else
-				{
-					this._fk_bug = default(Nullable<int>);
-				}
-				this.SendPropertyChanged("Bug");
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ProductUser_Reaction", Storage="_ProductUser", ThisKey="fk_user", OtherKey="pk_productuser_id", IsForeignKey=true)]
-	public ProductUser ProductUser
-	{
-		get
-		{
-			return this._ProductUser.Entity;
-		}
-		set
-		{
-			ProductUser previousValue = this._ProductUser.Entity;
-			if (((previousValue != value) 
-						|| (this._ProductUser.HasLoadedOrAssignedValue == false)))
-			{
-				this.SendPropertyChanging();
-				if ((previousValue != null))
-				{
-					this._ProductUser.Entity = null;
-					previousValue.Reactions.Remove(this);
-				}
-				this._ProductUser.Entity = value;
-				if ((value != null))
-				{
-					value.Reactions.Add(this);
-					this._fk_user = value.pk_productuser_id;
-				}
-				else
-				{
-					this._fk_user = default(Nullable<int>);
-				}
-				this.SendPropertyChanged("ProductUser");
-			}
-		}
-	}
-	
-	public event PropertyChangingEventHandler PropertyChanging;
-	
-	public event PropertyChangedEventHandler PropertyChanged;
-	
-	protected virtual void SendPropertyChanging()
-	{
-		if ((this.PropertyChanging != null))
-		{
-			this.PropertyChanging(this, emptyChangingEventArgs);
-		}
-	}
-	
-	protected virtual void SendPropertyChanged(String propertyName)
-	{
-		if ((this.PropertyChanged != null))
-		{
-			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-		}
-	}
-}
-
-[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Assign")]
-public partial class Assign1 : INotifyPropertyChanging, INotifyPropertyChanged
-{
-	
-	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-	
-	private int _pk_assign_id;
-	
-	private System.Nullable<int> _fk_user;
-	
-	private System.Nullable<int> _fk_bug;
-	
-	private EntityRef<Bug> _Bug;
-	
-	private EntityRef<ProductUser> _ProductUser;
-	
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void Onpk_assign_idChanging(int value);
-    partial void Onpk_assign_idChanged();
-    partial void Onfk_userChanging(System.Nullable<int> value);
-    partial void Onfk_userChanged();
-    partial void Onfk_bugChanging(System.Nullable<int> value);
-    partial void Onfk_bugChanged();
-    #endregion
-	
-	public Assign1()
-	{
-		this._Bug = default(EntityRef<Bug>);
-		this._ProductUser = default(EntityRef<ProductUser>);
-		OnCreated();
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pk_assign_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-	public int pk_assign_id
-	{
-		get
-		{
-			return this._pk_assign_id;
-		}
-		set
-		{
-			if ((this._pk_assign_id != value))
-			{
-				this.Onpk_assign_idChanging(value);
-				this.SendPropertyChanging();
-				this._pk_assign_id = value;
-				this.SendPropertyChanged("pk_assign_id");
-				this.Onpk_assign_idChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fk_user", DbType="Int")]
-	public System.Nullable<int> fk_user
-	{
-		get
-		{
-			return this._fk_user;
-		}
-		set
-		{
-			if ((this._fk_user != value))
-			{
-				if (this._ProductUser.HasLoadedOrAssignedValue)
-				{
-					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-				}
-				this.Onfk_userChanging(value);
-				this.SendPropertyChanging();
-				this._fk_user = value;
-				this.SendPropertyChanged("fk_user");
-				this.Onfk_userChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fk_bug", DbType="Int")]
-	public System.Nullable<int> fk_bug
-	{
-		get
-		{
-			return this._fk_bug;
-		}
-		set
-		{
-			if ((this._fk_bug != value))
-			{
-				if (this._Bug.HasLoadedOrAssignedValue)
-				{
-					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-				}
-				this.Onfk_bugChanging(value);
-				this.SendPropertyChanging();
-				this._fk_bug = value;
-				this.SendPropertyChanged("fk_bug");
-				this.Onfk_bugChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Bug_Assign1", Storage="_Bug", ThisKey="fk_bug", OtherKey="pk_bug_id", IsForeignKey=true)]
-	public Bug Bug
-	{
-		get
-		{
-			return this._Bug.Entity;
-		}
-		set
-		{
-			Bug previousValue = this._Bug.Entity;
-			if (((previousValue != value) 
-						|| (this._Bug.HasLoadedOrAssignedValue == false)))
-			{
-				this.SendPropertyChanging();
-				if ((previousValue != null))
-				{
-					this._Bug.Entity = null;
-					previousValue.Assign1s.Remove(this);
-				}
-				this._Bug.Entity = value;
-				if ((value != null))
-				{
-					value.Assign1s.Add(this);
-					this._fk_bug = value.pk_bug_id;
-				}
-				else
-				{
-					this._fk_bug = default(Nullable<int>);
-				}
-				this.SendPropertyChanged("Bug");
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ProductUser_Assign1", Storage="_ProductUser", ThisKey="fk_user", OtherKey="pk_productuser_id", IsForeignKey=true)]
-	public ProductUser ProductUser
-	{
-		get
-		{
-			return this._ProductUser.Entity;
-		}
-		set
-		{
-			ProductUser previousValue = this._ProductUser.Entity;
-			if (((previousValue != value) 
-						|| (this._ProductUser.HasLoadedOrAssignedValue == false)))
-			{
-				this.SendPropertyChanging();
-				if ((previousValue != null))
-				{
-					this._ProductUser.Entity = null;
-					previousValue.Assign1s.Remove(this);
-				}
-				this._ProductUser.Entity = value;
-				if ((value != null))
-				{
-					value.Assign1s.Add(this);
-					this._fk_user = value.pk_productuser_id;
-				}
-				else
-				{
-					this._fk_user = default(Nullable<int>);
-				}
-				this.SendPropertyChanged("ProductUser");
-			}
-		}
-	}
-	
-	public event PropertyChangingEventHandler PropertyChanging;
-	
-	public event PropertyChangedEventHandler PropertyChanged;
-	
-	protected virtual void SendPropertyChanging()
-	{
-		if ((this.PropertyChanging != null))
-		{
-			this.PropertyChanging(this, emptyChangingEventArgs);
-		}
-	}
-	
-	protected virtual void SendPropertyChanged(String propertyName)
-	{
-		if ((this.PropertyChanged != null))
-		{
-			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-		}
+		this.SendPropertyChanging();
+		entity.ProductUser = null;
 	}
 }
 
@@ -2310,6 +1835,246 @@ public partial class Projectstatus : INotifyPropertyChanging, INotifyPropertyCha
 	{
 		this.SendPropertyChanging();
 		entity.Projectstatus = null;
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Reaction")]
+public partial class Reaction1 : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _pk_reaction_id;
+	
+	private System.Nullable<System.DateTime> _date;
+	
+	private System.Nullable<int> _fk_user;
+	
+	private System.Nullable<int> _fk_bug;
+	
+	private string _reaction;
+	
+	private EntityRef<Bug> _Bug;
+	
+	private EntityRef<ProductUser> _ProductUser;
+	
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onpk_reaction_idChanging(int value);
+    partial void Onpk_reaction_idChanged();
+    partial void OndateChanging(System.Nullable<System.DateTime> value);
+    partial void OndateChanged();
+    partial void Onfk_userChanging(System.Nullable<int> value);
+    partial void Onfk_userChanged();
+    partial void Onfk_bugChanging(System.Nullable<int> value);
+    partial void Onfk_bugChanged();
+    partial void OnreactionChanging(string value);
+    partial void OnreactionChanged();
+    #endregion
+	
+	public Reaction1()
+	{
+		this._Bug = default(EntityRef<Bug>);
+		this._ProductUser = default(EntityRef<ProductUser>);
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pk_reaction_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int pk_reaction_id
+	{
+		get
+		{
+			return this._pk_reaction_id;
+		}
+		set
+		{
+			if ((this._pk_reaction_id != value))
+			{
+				this.Onpk_reaction_idChanging(value);
+				this.SendPropertyChanging();
+				this._pk_reaction_id = value;
+				this.SendPropertyChanged("pk_reaction_id");
+				this.Onpk_reaction_idChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_date", DbType="DateTime")]
+	public System.Nullable<System.DateTime> date
+	{
+		get
+		{
+			return this._date;
+		}
+		set
+		{
+			if ((this._date != value))
+			{
+				this.OndateChanging(value);
+				this.SendPropertyChanging();
+				this._date = value;
+				this.SendPropertyChanged("date");
+				this.OndateChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fk_user", DbType="Int")]
+	public System.Nullable<int> fk_user
+	{
+		get
+		{
+			return this._fk_user;
+		}
+		set
+		{
+			if ((this._fk_user != value))
+			{
+				if (this._ProductUser.HasLoadedOrAssignedValue)
+				{
+					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+				}
+				this.Onfk_userChanging(value);
+				this.SendPropertyChanging();
+				this._fk_user = value;
+				this.SendPropertyChanged("fk_user");
+				this.Onfk_userChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fk_bug", DbType="Int")]
+	public System.Nullable<int> fk_bug
+	{
+		get
+		{
+			return this._fk_bug;
+		}
+		set
+		{
+			if ((this._fk_bug != value))
+			{
+				if (this._Bug.HasLoadedOrAssignedValue)
+				{
+					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+				}
+				this.Onfk_bugChanging(value);
+				this.SendPropertyChanging();
+				this._fk_bug = value;
+				this.SendPropertyChanged("fk_bug");
+				this.Onfk_bugChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_reaction", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+	public string reaction
+	{
+		get
+		{
+			return this._reaction;
+		}
+		set
+		{
+			if ((this._reaction != value))
+			{
+				this.OnreactionChanging(value);
+				this.SendPropertyChanging();
+				this._reaction = value;
+				this.SendPropertyChanged("reaction");
+				this.OnreactionChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Bug_Reaction1", Storage="_Bug", ThisKey="fk_bug", OtherKey="pk_bug_id", IsForeignKey=true)]
+	public Bug Bug
+	{
+		get
+		{
+			return this._Bug.Entity;
+		}
+		set
+		{
+			Bug previousValue = this._Bug.Entity;
+			if (((previousValue != value) 
+						|| (this._Bug.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._Bug.Entity = null;
+					previousValue.Reaction1s.Remove(this);
+				}
+				this._Bug.Entity = value;
+				if ((value != null))
+				{
+					value.Reaction1s.Add(this);
+					this._fk_bug = value.pk_bug_id;
+				}
+				else
+				{
+					this._fk_bug = default(Nullable<int>);
+				}
+				this.SendPropertyChanged("Bug");
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ProductUser_Reaction1", Storage="_ProductUser", ThisKey="fk_user", OtherKey="pk_productuser_id", IsForeignKey=true)]
+	public ProductUser ProductUser
+	{
+		get
+		{
+			return this._ProductUser.Entity;
+		}
+		set
+		{
+			ProductUser previousValue = this._ProductUser.Entity;
+			if (((previousValue != value) 
+						|| (this._ProductUser.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._ProductUser.Entity = null;
+					previousValue.Reaction1s.Remove(this);
+				}
+				this._ProductUser.Entity = value;
+				if ((value != null))
+				{
+					value.Reaction1s.Add(this);
+					this._fk_user = value.pk_productuser_id;
+				}
+				else
+				{
+					this._fk_user = default(Nullable<int>);
+				}
+				this.SendPropertyChanged("ProductUser");
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
 	}
 }
 #pragma warning restore 1591

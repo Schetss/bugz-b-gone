@@ -31,4 +31,28 @@ public partial class Home : System.Web.UI.Page
         ListView1.DataSourceID = "LinqAll";
         lblBugShowName.Text = "All cases";
     }
+
+    protected void lblsortonprior_Click(object sender, EventArgs e)
+    {
+        lblBugShowName.Text = "test";
+    }
+
+
+    protected void btn_sortprior_Click(object sender, EventArgs e)
+    {
+        LinqAll.OrderBy = "fk_priority desc";
+        LinqClosed.OrderBy = "fk_priority desc";
+        LinqOpen.OrderBy = "fk_priority desc";
+        LinqMy.OrderBy = "fk_priority desc";
+    }
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+       // UsersOnProject newUsersonProject = new UsersOnProject();
+       // newUsersonProject.fk_user = (int)Session["UserID"];
+
+       
+        
+    }
+
 }

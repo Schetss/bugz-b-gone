@@ -8,7 +8,6 @@ using System.Web;
 /// </summary>
 public class DALprojects
 {
-
     private BugzDataContext dc = new BugzDataContext();
 
     // INSERT

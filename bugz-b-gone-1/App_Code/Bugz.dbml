@@ -19,8 +19,7 @@
       <Column Name="fk_priority" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="fk_bugstatus" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="openclosed" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Bug_Reaction" Member="Reactions" ThisKey="pk_bug_id" OtherKey="fk_bug" Type="Reaction" />
-      <Association Name="Bug_Assign1" Member="Assign1s" ThisKey="pk_bug_id" OtherKey="fk_bug" Type="Assign1" />
+      <Association Name="Bug_Reaction1" Member="Reaction1s" ThisKey="pk_bug_id" OtherKey="fk_bug" Type="Reaction1" />
       <Association Name="Bugstatus_Bug" Member="Bugstatus" ThisKey="fk_bugstatus" OtherKey="pk_bugstatus_id" Type="Bugstatus" IsForeignKey="true" />
       <Association Name="Priority_Bug" Member="Priority" ThisKey="fk_priority" OtherKey="pk_priority_id" Type="Priority" IsForeignKey="true" />
       <Association Name="ProductUser_Bug" Member="ProductUser" ThisKey="fk_creator" OtherKey="pk_productuser_id" Type="ProductUser" IsForeignKey="true" />
@@ -50,29 +49,9 @@
       <Column Name="fk_usertype" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="ProductUser_Bug" Member="Bugs" ThisKey="pk_productuser_id" OtherKey="fk_creator" Type="Bug" />
       <Association Name="ProductUser_Bug1" Member="Bugs1" ThisKey="pk_productuser_id" OtherKey="fk_responsible" Type="Bug" />
-      <Association Name="ProductUser_Reaction" Member="Reactions" ThisKey="pk_productuser_id" OtherKey="fk_user" Type="Reaction" />
-      <Association Name="ProductUser_Assign1" Member="Assign1s" ThisKey="pk_productuser_id" OtherKey="fk_user" Type="Assign1" />
       <Association Name="ProductUser_UsersOnProject" Member="UsersOnProjects" ThisKey="pk_productuser_id" OtherKey="fk_user" Type="UsersOnProject" />
+      <Association Name="ProductUser_Reaction1" Member="Reaction1s" ThisKey="pk_productuser_id" OtherKey="fk_user" Type="Reaction1" />
       <Association Name="Usertype_ProductUser" Member="Usertype" ThisKey="fk_usertype" OtherKey="pk_usertype_id" Type="Usertype" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Reaction" Member="Reactions">
-    <Type Name="Reaction">
-      <Column Name="pk_reaction_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="fk_user" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="fk_bug" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Bug_Reaction" Member="Bug" ThisKey="fk_bug" OtherKey="pk_bug_id" Type="Bug" IsForeignKey="true" />
-      <Association Name="ProductUser_Reaction" Member="ProductUser" ThisKey="fk_user" OtherKey="pk_productuser_id" Type="ProductUser" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Assign" Member="Assign1s">
-    <Type Name="Assign1">
-      <Column Name="pk_assign_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="fk_user" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="fk_bug" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Bug_Assign1" Member="Bug" ThisKey="fk_bug" OtherKey="pk_bug_id" Type="Bug" IsForeignKey="true" />
-      <Association Name="ProductUser_Assign1" Member="ProductUser" ThisKey="fk_user" OtherKey="pk_productuser_id" Type="ProductUser" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.UsersOnProject" Member="UsersOnProjects">
@@ -100,6 +79,17 @@
       <Column Name="pk_projectstatus_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="projectstatus_name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Association Name="Projectstatus_Project" Member="Projects" ThisKey="pk_projectstatus_id" OtherKey="fk_projectstatus" Type="Project" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Reaction" Member="Reaction1s">
+    <Type Name="Reaction1">
+      <Column Name="pk_reaction_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="fk_user" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="fk_bug" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="reaction" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="Bug_Reaction1" Member="Bug" ThisKey="fk_bug" OtherKey="pk_bug_id" Type="Bug" IsForeignKey="true" />
+      <Association Name="ProductUser_Reaction1" Member="ProductUser" ThisKey="fk_user" OtherKey="pk_productuser_id" Type="ProductUser" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

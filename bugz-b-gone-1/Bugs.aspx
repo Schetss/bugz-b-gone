@@ -29,10 +29,12 @@
         </div>
     </nav>
 
+    <asp:Button ID="btnProjects" Class="btn btn-default" runat="server" Text="My Projects"/>
     <asp:Button ID="btnMine" Class="btn btn-default" runat="server" Text="My cases" OnClick="btnMine_Click"/>
     <asp:Button ID="btnOpen" Class="btn btn-default" runat="server" Text="Open cases" OnClick="btnOpen_Click"/>
     <asp:Button ID="btnCLosed" Class="btn btn-default" runat="server" Text="Closed cases" OnClick="btnCLosed_Click"/>
     <asp:Button ID="btnAll" Class="btn btn-default" runat="server" Text="All cases" OnClick="btnAll_Click"/>
+    
        
    
    
@@ -42,8 +44,11 @@
 
 
 
-    <asp:Label ID="lblBugShowName" Class="lblBugShowName" runat="server" Text="My cases" CssClass="lblBugShowName"></asp:Label>
+    <asp:Label ID="lblBugShowName" Class="lblBugShowName" runat="server" Text="My cases" CssClass="lblBugShowName"></asp:Label> <asp:Button ID="btn_sortprior" runat="server" CssClass="btn btn-default btn-sortprior" Text="Sort on priority" OnClick="btn_sortprior_Click" />
     <br />
+    <br />
+    
+    
     <asp:ListView ID="ListView1" runat="server" DataSourceID="LinqMy">
         
         <LayoutTemplate>
@@ -54,7 +59,7 @@
                         <th>Title</th>
                         <th>Priority</th>
                         <th>Status</th>
-                        <th>Owner</th>
+                        <th>Creator</th>
                         <th>Responsible</th>
                     </tr>
                 </thead> 
@@ -136,6 +141,7 @@
         </WhereParameters>
     </asp:LinqDataSource>
     
+
     
 
 </asp:Content>
