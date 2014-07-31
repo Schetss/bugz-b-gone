@@ -23,7 +23,7 @@ public partial class Members : System.Web.UI.Page
         {
             BLLMembers.insertMember(newProductUser);
             lbl_feedbackCreateMember.Text = "New user has been added!";
-            lbl_feedbackCreateMember.CssClass = "success";
+            lbl_feedbackCreateMember.CssClass = "success2";
             txtPassword.Text = "";
             txtUsername.Text = "";
         }
@@ -31,7 +31,7 @@ public partial class Members : System.Web.UI.Page
         catch
         {
             lbl_feedbackCreateMember.Text = "Oops, something went wrong, please try again!";
-            lbl_feedbackCreateMember.CssClass = "error"; 
+            lbl_feedbackCreateMember.CssClass = "error2"; 
         }
 
     }
@@ -46,14 +46,14 @@ public partial class Members : System.Web.UI.Page
         {
             BLLMembers.insertUserProject(newUsersOnProject);
             lbl_feedbackMemberToProject.Text = "User has been added to project!";
-            lbl_feedbackMemberToProject.CssClass = "success";
+            lbl_feedbackMemberToProject.CssClass = "success3";
            
         }
 
-        catch
+        catch (Exception error)
         {
-            lbl_feedbackMemberToProject.Text = "Oops, something went wrong, please try again!";
-            lbl_feedbackMemberToProject.CssClass = "error";
+            lbl_feedbackMemberToProject.Text = error.Message;
+            lbl_feedbackMemberToProject.CssClass = "error3";
         }
     
     }

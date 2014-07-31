@@ -32,11 +32,23 @@ public partial class Home : System.Web.UI.Page
         lblBugShowName.Text = "All cases";
     }
 
-    protected void lblsortonprior_Click(object sender, EventArgs e)
+    protected void btnOnHold_Click(object sender, EventArgs e)
     {
-        lblBugShowName.Text = "test";
+        ListView1.DataSourceID = "LinqOnHold";
+        lblBugShowName.Text = "On hold";
     }
 
+    protected void btnFixed_Click(object sender, EventArgs e)
+    {
+        ListView1.DataSourceID = "LinqFixed";
+        lblBugShowName.Text = "Fixed - not closed";
+    }
+
+    protected void btnProjects_Click(object sender, EventArgs e)
+    {
+        ListView1.DataSourceID = "LinqProject";
+        lblBugShowName.Text = "My projects";
+    }
 
     protected void btn_sortprior_Click(object sender, EventArgs e)
     {
@@ -48,11 +60,36 @@ public partial class Home : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-       // UsersOnProject newUsersonProject = new UsersOnProject();
-       // newUsersonProject.fk_user = (int)Session["UserID"];
+       BLLmyproject BLLmyproject = new BLLmyproject();
 
-       
-        
+       UsersOnProject newUsersonProject = new UsersOnProject();
+       newUsersonProject.fk_user = Convert.ToInt16(Session["userID"]);
+
+       try
+       {
+           var projects = BLLmyproject.getAllKeys(newUsersonProject);
+
+           String test = "";
+
+               for(int i = 0 ; i < projects.Count ; i++ )
+               {
+                   test += "fk_project = " + projects[i].fk_project + " || ";
+               }
+
+               String test2 = test.Substring(0, test.Length - 3);
+
+                LinqProject.Where = test2;
+       }
+
+       catch
+       {
+           Console.WriteLine("problems");
+       }
+
+    
+    
     }
+
+
 
 }

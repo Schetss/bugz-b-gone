@@ -35,15 +35,15 @@
         </div>
 
         <div class="createProject">
-            <asp:TextBox ID="txtUsername" Class="loginField form-control" runat="server" Height="50px" Width="790px" placeholder="Username"></asp:TextBox>
+            <asp:TextBox ID="txtUsername" Class="loginField form-control" runat="server" Height="50px" Width="790px" placeholder="Username" ValidationGroup="create"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="*" CssClass="error requiredUsername" ControlToValidate="txtUsername"></asp:RequiredFieldValidator>
             <br />
            
-            <asp:TextBox ID="txtPassword" Class="form-control" runat="server" Height="50px" Width="790px" placeholder="Password"></asp:TextBox>
+            <asp:TextBox ID="txtPassword" Class="form-control" runat="server" Height="50px" Width="790px" placeholder="Password" ValidationGroup="create"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="*"  CssClass="error requiredPassword" ControlToValidate="txtPassword"></asp:RequiredFieldValidator>
             <br />
 
-            <asp:DropDownList ID="ddStatus"  CssClass="dropdown-right" runat="server" Height="40px" Width="690px" DataSourceID="LinqStatus" DataTextField="usertype_name" DataValueField="pk_usertype_id"></asp:DropDownList>
+            <asp:DropDownList ID="ddStatus"  CssClass="dropdown-right" runat="server" Height="40px" Width="690px" DataSourceID="LinqStatus" DataTextField="usertype_name" DataValueField="pk_usertype_id" ValidationGroup="create"></asp:DropDownList>
            
             <asp:Label CssClass="lblUsertype" ID="Label1" runat="server" Text="Usertype"></asp:Label>
            
@@ -52,7 +52,7 @@
            
             <br />
             <br />
-            <asp:Button ID="btnCreateMember" Class="btn btn-default btn-fullscreen btn-margin btn-left" runat="server" Text="Create new member" Height="40px" Width="790px" OnClick="btnCreateMember_Click"/>
+            <asp:Button ID="btnCreateMember" Class="btn btn-default btn-fullscreen btn-margin btn-left" runat="server" Text="Create new member" Height="40px" Width="790px" OnClick="btnCreateMember_Click" ValidationGroup="create"/>
    
             
              <br />
@@ -68,14 +68,14 @@
     
         <div>
             <asp:Label ID="Label2" CssClass="lblMember" runat="server" Text="Member"></asp:Label>
-            <asp:DropDownList ID="ddMember"  CssClass="dropdown-right" runat="server" Height="40px" Width="690px" DataSourceID="LinqMembers" DataTextField="username" DataValueField="pk_productuser_id"></asp:DropDownList>
+            <asp:DropDownList ID="ddMember"  CssClass="dropdown-right" runat="server" Height="40px" Width="690px" DataSourceID="LinqMembers" DataTextField="username" DataValueField="pk_productuser_id" ValidationGroup="add"></asp:DropDownList>
            
             <asp:LinqDataSource ID="LinqMembers" runat="server" ContextTypeName="BugzDataContext" EntityTypeName="" OrderBy="username" TableName="ProductUsers">
             </asp:LinqDataSource>
            
             <br />
              <br />
-            <asp:DropDownList ID="ddProject"  CssClass="dropdown-right" runat="server" Height="40px" Width="690px" DataSourceID="LinqProjects" DataTextField="title" DataValueField="pk_project_id"></asp:DropDownList>
+            <asp:DropDownList ID="ddProject"  CssClass="dropdown-right" runat="server" Height="40px" Width="690px" DataSourceID="LinqProjects" DataTextField="title" DataValueField="pk_project_id" ValidationGroup="add"></asp:DropDownList>
            
             <asp:Label ID="Label3" runat="server" CssClass="lblProjec" Text="Project"></asp:Label>
            
@@ -87,7 +87,7 @@
            
             <br />
             <br />
-            <asp:Button ID="btbAddMemberToProject" Class="btn btn-default btn-fullscreen btn-margin btn-left" runat="server" Text="Add member to project" Height="40px" Width="790px" OnClick="btbAddMemberToProject_Click"/>
+            <asp:Button ID="btbAddMemberToProject" Class="btn btn-default btn-fullscreen btn-margin btn-left" runat="server" Text="Add member to project" Height="40px" Width="790px" OnClick="btbAddMemberToProject_Click" ValidationGroup="add"/>
    
             
              <br />

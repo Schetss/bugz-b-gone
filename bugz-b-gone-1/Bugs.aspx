@@ -8,7 +8,7 @@
         <div class="container">
         <ul class="nav navbar-nav">
             <li class="active"><a href="Bugs.aspx">Bugs</a></li>
-           <%   
+                <%   
                 if (Session["Status"] == null)
                 {
                     Session.Abandon();
@@ -29,9 +29,11 @@
         </div>
     </nav>
 
-    <asp:Button ID="btnProjects" Class="btn btn-default" runat="server" Text="My Projects"/>
+    <asp:Button ID="btnProjects" Class="btn btn-default" runat="server" Text="My Projects" OnClick="btnProjects_Click"/>
     <asp:Button ID="btnMine" Class="btn btn-default" runat="server" Text="My cases" OnClick="btnMine_Click"/>
-    <asp:Button ID="btnOpen" Class="btn btn-default" runat="server" Text="Open cases" OnClick="btnOpen_Click"/>
+    <asp:Button ID="btnOpen" Class="btn btn-default" runat="server" Text="In progress" OnClick="btnOpen_Click"/>
+    <asp:Button ID="btnOnHold" Class="btn btn-default" runat="server" Text="On hold" OnClick="btnOnHold_Click"/>
+    <asp:Button ID="btnFixed" Class="btn btn-default" runat="server" Text="Fixed" OnClick="btnFixed_Click"/>
     <asp:Button ID="btnCLosed" Class="btn btn-default" runat="server" Text="Closed cases" OnClick="btnCLosed_Click"/>
     <asp:Button ID="btnAll" Class="btn btn-default" runat="server" Text="All cases" OnClick="btnAll_Click"/>
     
@@ -107,9 +109,10 @@
     
     <!-- LINQ ONLY OPEN BUGS -->
 
-    <asp:LinqDataSource ID="LinqOpen" runat="server" ContextTypeName="BugzDataContext" EntityTypeName="" OrderBy="pk_bug_id" Select="new (pk_bug_id, title, fk_priority, fk_creator, fk_responsible, Priority, fk_bugstatus, Bugstatus, ProductUser1, ProductUser)" TableName="Bugs" Where="openclosed == @openclosed">
+    <asp:LinqDataSource ID="LinqOpen" runat="server" ContextTypeName="BugzDataContext" EntityTypeName="" OrderBy="pk_bug_id" Select="new (pk_bug_id, title, fk_priority, fk_creator, fk_responsible, Priority, fk_bugstatus, Bugstatus, ProductUser1, ProductUser)" TableName="Bugs" Where="openclosed == @openclosed &amp;&amp; fk_bugstatus == @fk_bugstatus">
         <WhereParameters>
             <asp:Parameter DefaultValue="1" Name="openclosed" Type="Int32" />
+            <asp:Parameter DefaultValue="1" Name="fk_bugstatus" Type="Int32" />
         </WhereParameters>
     </asp:LinqDataSource>
     
@@ -127,7 +130,7 @@
 
     <!-- LINQ ALL BUGS -->
 
-    <asp:LinqDataSource ID="LinqAll" runat="server" ContextTypeName="BugzDataContext" EntityTypeName="" OrderBy="pk_bug_id" Select="new (pk_bug_id, title, fk_project, fk_creator, fk_responsible, fk_priority, fk_bugstatus, openclosed, Bugstatus, Priority, ProductUser, ProductUser1)" TableName="Bugs">
+    <asp:LinqDataSource ID="LinqAll" runat="server" ContextTypeName="BugzDataContext" EntityTypeName="" OrderBy="fk_bugstatus, fk_bugstatus" Select="new (pk_bug_id, title, fk_project, fk_creator, fk_responsible, fk_priority, fk_bugstatus, openclosed, Bugstatus, Priority, ProductUser, ProductUser1)" TableName="Bugs">
     </asp:LinqDataSource>
 
 
@@ -142,6 +145,33 @@
     </asp:LinqDataSource>
     
 
+    
+
+    <asp:LinqDataSource ID="LinqOnHold" runat="server" ContextTypeName="BugzDataContext" EntityTypeName="" OrderBy="pk_bug_id" Select="new (pk_bug_id, title, fk_creator, fk_responsible, fk_priority, fk_bugstatus, openclosed, Bugstatus, Priority, ProductUser, ProductUser1)" TableName="Bugs" Where="openclosed == @openclosed &amp;&amp; fk_bugstatus == @fk_bugstatus">
+        <WhereParameters>
+            <asp:Parameter DefaultValue="1" Name="openclosed" Type="Int32" />
+            <asp:Parameter DefaultValue="2" Name="fk_bugstatus" Type="Int32" />
+        </WhereParameters>
+    </asp:LinqDataSource>
+    <asp:LinqDataSource ID="LinqFixed" runat="server" ContextTypeName="BugzDataContext" EntityTypeName="" OrderBy="pk_bug_id" Select="new (pk_bug_id, title, fk_project, fk_creator, fk_responsible, fk_priority, fk_bugstatus, openclosed, Priority, ProductUser, Bugstatus, ProductUser1)" TableName="Bugs" Where="openclosed == @openclosed &amp;&amp; fk_bugstatus == @fk_bugstatus">
+        <WhereParameters>
+            <asp:Parameter DefaultValue="1" Name="openclosed" Type="Int32" />
+            <asp:Parameter DefaultValue="3" Name="fk_bugstatus" Type="Int32" />
+        </WhereParameters>
+    </asp:LinqDataSource>
+
+
+ 
+    <asp:LinqDataSource ID="LinqAllprojectID" runat="server" ContextTypeName="BugzDataContext" EntityTypeName="" OrderBy="pk_UsersOnProject" Select="new (fk_project)" TableName="UsersOnProjects" Where="fk_user == @fk_user">
+        <WhereParameters>
+            <asp:SessionParameter Name="fk_user" SessionField="userID" Type="Int32" />
+        </WhereParameters>
+    </asp:LinqDataSource>
+    
+
+
+    <asp:LinqDataSource ID="LinqProject" runat="server" ContextTypeName="BugzDataContext" EntityTypeName="" OrderBy="fk_bugstatus, pk_bug_id" TableName="Bugs">
+    </asp:LinqDataSource>
     
 
 </asp:Content>

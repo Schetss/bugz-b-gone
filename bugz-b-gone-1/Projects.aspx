@@ -55,14 +55,16 @@
     
     <div>
 
+       
+            <asp:GridView ID="GridActiveProjects" runat="server" AutoGenerateColumns="False" CellPadding="25" CellSpacing="10" BorderColor="White" DataSourceID="LinqActiveProjects" Width="790px">
+                <Columns>
+                    <asp:BoundField DataField="title" HeaderText="title" SortExpression="title" ReadOnly="True" />
+                    <asp:BoundField DataField="description" HeaderText="description" SortExpression="description" ReadOnly="True" />
+                </Columns>
+                <RowStyle Height="35px" />
+            </asp:GridView>
 
-        <asp:GridView ID="GridActiveProjects" runat="server" AutoGenerateColumns="False" CellPadding="25" CellSpacing="10" BorderColor="White" DataSourceID="LinqActiveProjects" Width="790px">
-            <Columns>
-                <asp:BoundField DataField="title" HeaderText="title" SortExpression="title" ReadOnly="True" />
-                <asp:BoundField DataField="description" HeaderText="description" SortExpression="description" ReadOnly="True" />
-            </Columns>
-            <RowStyle Height="35px" />
-        </asp:GridView>
+
         <asp:LinqDataSource ID="LinqActiveProjects" runat="server" ContextTypeName="BugzDataContext" EntityTypeName="" OrderBy="title" Select="new (title, description)" TableName="Projects" Where="fk_projectstatus == @fk_projectstatus">
             <WhereParameters>
                 <asp:Parameter DefaultValue="1" Name="fk_projectstatus" Type="Int32" />

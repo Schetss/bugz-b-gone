@@ -19,8 +19,24 @@ public class DALmembers
 
     public void insertUserProject(UsersOnProject p_UserProject)
     {
-        dc.UsersOnProjects.InsertOnSubmit(p_UserProject);
-        dc.SubmitChanges();
-    }
 
+        var query = from t in dc.UsersOnProjects
+                    where t.fk_project == p_UserProject.fk_project
+                    &&
+                    t.fk_user == p_UserProject.fk_user
+                    select t;
+
+        List<UsersOnProject> x = query.ToList();
+
+        if (x.Count > 0)
+        {
+            throw new Exception("User is already on project");
+        }
+        else
+        {
+            dc.UsersOnProjects.InsertOnSubmit(p_UserProject);
+            dc.SubmitChanges();
+
+        }
+    }
 }
