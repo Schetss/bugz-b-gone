@@ -29,7 +29,6 @@
             </div>
         </nav>
 
-
         <div class="page-header">
           <h1><small> Create member </small></h1>
         </div>
