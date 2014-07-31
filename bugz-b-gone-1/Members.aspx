@@ -9,7 +9,7 @@
                 <ul class="nav navbar-nav">
                     <li><a href="Bugs.aspx">Bugs</a></li>
                    <%   
-                        if (Session["Status"] == null)
+                       if (Session["Status"] == null || Session["Status"].ToString() == "1")
                         {
                             Session.Abandon();
                             Response.Redirect("Default.aspx");
@@ -24,7 +24,7 @@
                     <% 
                         } 
                     %>
-                    <li id="rightMenu"><a href="LogNewBug.aspx">Log new bug</a></li>
+                    <li id="rightMenu"  <% if ((Session["Status"].ToString() == "1")) { %> class="moreRight" <% } %>><a href="LogNewBug.aspx">Log new bug</a></li>
                 </ul>
             </div>
         </nav>

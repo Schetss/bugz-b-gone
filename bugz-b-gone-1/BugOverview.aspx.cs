@@ -16,13 +16,43 @@ public partial class BugOverview : System.Web.UI.Page
 
         newBug.pk_bug_id = Convert.ToInt16(Request.QueryString["pk_bug_id"]);
 
+
+
         try
         {
             var buginfo = BLLoverview.getBug(newBug);
 
             lblBugOverview.Text = buginfo[0].title;
-            lblDescrip.Text = buginfo[0].description;
+            lblDescrip.Text = buginfo[0].Project.title + " - " + buginfo[0].description;
+            lblOverviewPrior.Text = buginfo[0].Priority.priority_name + " Priority";
 
+            if (buginfo[0].fk_bugstatus == 1)
+            {
+                lblBugOverview.CssClass = "error";
+            }
+
+            else if (buginfo[0].fk_bugstatus == 2)
+            {
+                lblBugOverview.CssClass = "between";
+
+            }
+
+            else
+            {
+                lblBugOverview.CssClass = "success";
+
+            }
+
+
+            if (buginfo[0].fk_bugstatus == 3 && (Session["userID"].ToString() == buginfo[0].fk_creator.ToString() || Session["userID"].ToString() == buginfo[0].fk_responsible.ToString()))
+            {
+                PlaceholderChange.Visible = true;
+            }
+
+            else
+            {
+                PlaceholderChange.Visible = false;
+            }
             
 
         }
@@ -32,6 +62,9 @@ public partial class BugOverview : System.Web.UI.Page
             lblBugOverview.Text = "Oops, something went wrong!";
             lblBugOverview.CssClass = "error";
         }
+
+
+
 
     }
 
@@ -62,5 +95,54 @@ public partial class BugOverview : System.Web.UI.Page
             lblFeedbackComment.CssClass = "error2";
         }
 
+    }
+
+
+    protected void btnChangeStatus_Click(object sender, EventArgs e)
+    {
+
+        Bug newbug = new Bug();
+        BLLchangebugstatus BLLchangestatus = new BLLchangebugstatus();
+
+        newbug.fk_bugstatus = Convert.ToInt16(ddStatus.SelectedValue);
+        newbug.pk_bug_id = Convert.ToInt16(Request.QueryString["pk_bug_id"]); 
+
+        try
+        {
+            BLLchangestatus.changeStatus(newbug);
+
+            lblFeedbackStatus.Text = "Status is changed";
+            lblFeedbackStatus.CssClass = "success3";
+        }
+
+        catch (Exception error)
+        {
+            lblFeedbackStatus.Text = error.Message;
+            lblFeedbackStatus.CssClass = "error3";
+        }
+    }
+
+
+
+    protected void btnSave_Click(object sender, EventArgs e)
+    {
+        Bug closebug = new Bug();
+        BLLclose BLLclose = new BLLclose();
+
+        closebug.pk_bug_id = Convert.ToInt16(Request.QueryString["pk_bug_id"]);
+
+        try
+        {
+            BLLclose.closeBug(closebug);
+
+            lblFeedbackClose.Text = "Bug succesfully closed";
+            lblFeedbackClose.CssClass = "success2";
+        }
+
+        catch (Exception error)
+        {
+            lblFeedbackClose.Text = error.Message;
+            lblFeedbackClose.CssClass = "error2";
+        }
     }
 }

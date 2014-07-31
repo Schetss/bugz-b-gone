@@ -22,7 +22,9 @@
     margin-left: 430px;
 }
 
-
+.moreRight {
+    margin-left: 590px !important;
+}
 
 
 /* LOGIN */
@@ -289,4 +291,30 @@ td, th {
 
 h4{
     clear: both;
+}
+
+.dd {
+    padding-left: 10px;
+}
+
+.success3 {
+    clear: both;
+    float: left;
+    color: green;
+    margin-bottom: 25px;
+}
+
+.error3 {
+    clear: both;
+    float: left;
+    color: red;
+    margin-bottom: 25px;
+}
+
+.btn-right {
+    margin-right: 10px;
+}
+
+.between {
+    color: orange;
 }

@@ -25,7 +25,7 @@
             <% 
                 } 
             %>
-            <li id="rightMenu" class="active"><a href="LogNewBug.aspx">Log new bug</a></li>
+            <li id="rightMenu" class="active  <% if ((Session["Status"].ToString() == "1")) { %> moreRight <% } %> "><a href="LogNewBug.aspx">Log new bug</a></li>
         </ul>
         </div>
     </nav>

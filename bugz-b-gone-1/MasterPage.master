@@ -18,7 +18,7 @@
         <div class="content">
             <div class="page-header">
                 <img src="images/logo.jpg" />
-                <asp:Button ID="btnLogout" Class="btn btn-default" runat="server" Text="Log out" OnClick="btnLogout_Click" />
+                <asp:Button ID="btnLogout" Class="btn btn-default" runat="server" Text="Log out" OnClick="btnLogout_Click" ValidationGroup="logout" />
         </div>
 
 

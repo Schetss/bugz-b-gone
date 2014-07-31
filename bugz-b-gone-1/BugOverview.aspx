@@ -24,13 +24,13 @@
             <% 
                 } 
             %>
-            <li id="rightMenu"><a href="LogNewBug.aspx">Log new bug</a></li>
+            <li id="rightMenu"  <% if ((Session["Status"].ToString() == "1")) { %> class="moreRight" <% } %>><a href="LogNewBug.aspx">Log new bug</a></li>
         </ul>
         </div>
     </nav>
 
     <div class="page-header">
-        <h1><small> <asp:Label ID="lblBugOverview" runat="server" Text=""></asp:Label></small></h1>
+        <h1><small> <asp:Label ID="lblBugOverview" runat="server" Text=""></asp:Label>&nbsp;-&nbsp;<asp:Label ID="lblOverviewPrior" runat="server" Text=""></asp:Label> </small></h1>
 
 
 
@@ -95,28 +95,27 @@
         <asp:Label ID="lblFeedbackComment" runat="server" Text=""></asp:Label>
 
 
-        <h4 Class="subheader">Change Bug</h4>
-        <br />
-        <asp:DropDownList ID="ddOpenSolved" runat="server" Height="40px" Width="800px" DataSourceID="LinqPriority" DataTextField="priority_name" DataValueField="pk_priority_id"></asp:DropDownList>
+        <div>
+            <h4>Change bugstatus</h4>
+              <br />
+            <asp:DropDownList ID="ddStatus" CssClass="btn-left dd" runat="server" Height="40px" Width="370px" DataSourceID="LinqStatus" DataTextField="bugstatus_name" DataValueField="pk_bugstatus_id"></asp:DropDownList>
+            <asp:Button ID="btnChangeStatus" runat="server" Class="btn btn-default btn-fullscreen btn-margin btn-right" Height="40px" Text="Change bug status" Width="370px" OnClick="btnChangeStatus_Click" />
+            <asp:Label ID="lblFeedbackStatus" runat="server" Text=""></asp:Label>
+        </div>
         
-        <asp:LinqDataSource ID="LinqPriority" runat="server" ContextTypeName="BugzDataContext" EntityTypeName="" Select="new (pk_priority_id, priority_name)" TableName="Priorities">
-        </asp:LinqDataSource>
-        
-        <br />
-        <br />
-        <asp:DropDownList ID="DropDownList1" runat="server" Height="40px" Width="800px" DataSourceID="LinqStatus" DataTextField="bugstatus_name" DataValueField="pk_bugstatus_id"></asp:DropDownList>
+            <asp:LinqDataSource ID="LinqStatus" runat="server" ContextTypeName="BugzDataContext" EntityTypeName="" Select="new (bugstatus_name, pk_bugstatus_id)" TableName="Bugstatus">
+            </asp:LinqDataSource>
 
+        <asp:PlaceHolder ID="PlaceholderChange" runat="server">
+            <h4>Close bug</h4>
+            <br />
+            <asp:Button ID="btnSave" runat="server" Class="btn btn-default btn-fullscreen btn-margin btn-left" Height="40px" Text="Close Bug" Width="790px" OnClick="btnSave_Click" />
 
-        <asp:LinqDataSource ID="LinqStatus" runat="server" ContextTypeName="BugzDataContext" EntityTypeName="" Select="new (bugstatus_name, pk_bugstatus_id)" TableName="Bugstatus">
-        </asp:LinqDataSource>
-        <br />
-        <br />
-        <asp:Button ID="btnSave" runat="server" Class="btn btn-default btn-fullscreen btn-margin" Height="40px" Text="Save Bug" Width="800px" />
+            <asp:Label ID="lblFeedbackClose" runat="server" Text=""></asp:Label>
+        </asp:PlaceHolder>
 
-                <asp:Label ID="lblFeedbackChange" runat="server" Text=""></asp:Label>
+        </div>
 
-
-    </div>
 
 </asp:Content>
 
