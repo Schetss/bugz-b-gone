@@ -12,7 +12,6 @@ public partial class Projects : System.Web.UI.Page
     {
         Project project = new Project();
         BLLprojects BLLproject = new BLLprojects();
-
         project.title = txtTitleProject.Text;
         project.description = txtDescriptionProject.Text;
         project.fk_projectstatus = 1;
@@ -26,6 +25,9 @@ public partial class Projects : System.Web.UI.Page
 
             txtDescriptionProject.Text = "";
             txtTitleProject.Text = "";
+
+            GridActiveProjects.DataBind();
+
         }
 
         catch
@@ -49,6 +51,8 @@ public partial class Projects : System.Web.UI.Page
 
             lbl_feedbackActiveProject.Text = "Projet has been set to non-active!";
             lbl_feedbackActiveProject.CssClass = "success2";
+
+            GridActiveProjects.DataBind();
         }
 
         catch (Exception error)
@@ -73,6 +77,8 @@ public partial class Projects : System.Web.UI.Page
 
             lbl_feedbackNonActiveProject.Text = "Projet has been set to active!";
             lbl_feedbackNonActiveProject.CssClass = "success2";
+
+            GridActiveProjects.DataBind();
         }
 
         catch (Exception error)

@@ -190,10 +190,6 @@ td, th {
     width: 800px;    
 }
 
-.bugtable th td {
-    //margin-bottom: 15px;
-}
-
 
 .lblBugShowName {
     float:left !important;
@@ -273,7 +269,6 @@ td, th {
     font-size: 12px;
     float: left;
     clear: both;
-    //margin-top: 20px;
 }
 
 .commentText {
@@ -317,4 +312,10 @@ h4{
 
 .between {
     color: orange;
+}
+
+.lblRight {
+    float: right;
+    color: red;
+    margin-top: -20px;
 }

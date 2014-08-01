@@ -83,10 +83,9 @@ public partial class BugOverview : System.Web.UI.Page
         {
             BLLcomment.insertComment(newReaction);
 
-            lblFeedbackComment.Text = "Comment is added";
-            lblFeedbackComment.CssClass = "success2";
             txtComment.Text = "";
 
+            ListView1.DataBind();
         }
 
         catch
@@ -113,6 +112,24 @@ public partial class BugOverview : System.Web.UI.Page
 
             lblFeedbackStatus.Text = "Status is changed";
             lblFeedbackStatus.CssClass = "success3";
+
+            if (Convert.ToInt16(ddStatus.SelectedValue) == 1)
+            {
+                lblBugOverview.CssClass = "error";
+            }
+
+            else if (Convert.ToInt16(ddStatus.SelectedValue) == 2)
+            {
+                lblBugOverview.CssClass = "between";
+
+            }
+
+            else
+            {
+                lblBugOverview.CssClass = "success";
+
+            }
+
         }
 
         catch (Exception error)

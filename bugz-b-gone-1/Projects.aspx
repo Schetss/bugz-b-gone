@@ -29,8 +29,7 @@
         </ul>
         </div>
     </nav>
-    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-        <ContentTemplate>
+   
 
     <div class="page-header">
       <h1><small> Create project</small></h1>
@@ -56,6 +55,9 @@
     </div>
     
     <div>
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>
          
                <asp:GridView ID="GridActiveProjects" runat="server" AutoGenerateColumns="False" CellPadding="25" CellSpacing="10" BorderColor="White" DataSourceID="LinqActiveProjects" Width="790px">
                 <Columns>
@@ -65,8 +67,9 @@
                 <RowStyle Height="35px" />
             </asp:GridView>
 
+    </ContentTemplate></asp:UpdatePanel>
 
-
+        
         <asp:LinqDataSource ID="LinqActiveProjects" runat="server" ContextTypeName="BugzDataContext" EntityTypeName="" OrderBy="title" Select="new (title, description)" TableName="Projects" Where="fk_projectstatus == @fk_projectstatus">
             <WhereParameters>
                 <asp:Parameter DefaultValue="1" Name="fk_projectstatus" Type="Int32" />
@@ -110,6 +113,5 @@
    
          <br />  <br />  <br />
     </div>
-    </ContentTemplate></asp:UpdatePanel>
 </asp:Content>
 

@@ -28,11 +28,13 @@
         </ul>
         </div>
     </nav>
-
+    <asp:ScriptManager ID="ScriptManager2" runat="server"></asp:ScriptManager>
+    <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+        <ContentTemplate>
     <div class="page-header">
         <h1><small> <asp:Label ID="lblBugOverview" runat="server" Text=""></asp:Label>&nbsp;-&nbsp;<asp:Label ID="lblOverviewPrior" runat="server" Text=""></asp:Label> </small></h1>
 
-
+      <asp:Label ID="lblStat" CssClass="lblRight" runat="server" Text=""></asp:Label>
 
     </div>
 
@@ -48,7 +50,8 @@
     <div>
        <h4>Comments</h4>
     </div>
-    
+
+       
         <asp:ListView ID="ListView1" runat="server" DataKeyNames="pk_reaction_id" DataSourceID="LinqComments">
                 <LayoutTemplate>
                     <ul class="commentList">
@@ -115,6 +118,7 @@
         </asp:PlaceHolder>
 
         </div>
+  </ContentTemplate></asp:UpdatePanel>
 
 
 </asp:Content>
