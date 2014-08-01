@@ -51,7 +51,7 @@
     <br />
     
     
-    <asp:ListView ID="ListView1" runat="server" DataSourceID="LinqMy">
+    <asp:ListView ID="ListView1" runat="server" DataSourceID="LinqProject">
         
         <LayoutTemplate>
             <table id="bugtable" class="bugtable">

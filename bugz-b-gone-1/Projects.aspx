@@ -59,7 +59,7 @@
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
          
-               <asp:GridView ID="GridActiveProjects" runat="server" AutoGenerateColumns="False" CellPadding="25" CellSpacing="10" BorderColor="White" DataSourceID="LinqActiveProjects" Width="790px">
+               <asp:GridView ID="GridActiveProjects" runat="server" CssClass="GridProject" AutoGenerateColumns="False" CellPadding="25" CellSpacing="10" BorderColor="White" DataSourceID="LinqActiveProjects" Width="790px">
                 <Columns>
                     <asp:BoundField DataField="title" HeaderText="title" SortExpression="title" ReadOnly="True" />
                     <asp:BoundField DataField="description" HeaderText="description" SortExpression="description" ReadOnly="True" />

@@ -23,15 +23,16 @@ public partial class Members : System.Web.UI.Page
         {
             BLLMembers.insertMember(newProductUser);
             lbl_feedbackCreateMember.Text = "New user has been added!";
-            lbl_feedbackCreateMember.CssClass = "success2";
+            lbl_feedbackCreateMember.CssClass = "success";
             txtPassword.Text = "";
             txtUsername.Text = "";
+            ddMember.DataBind();
         }
 
         catch
         {
             lbl_feedbackCreateMember.Text = "Oops, something went wrong, please try again!";
-            lbl_feedbackCreateMember.CssClass = "error2"; 
+            lbl_feedbackCreateMember.CssClass = "error"; 
         }
 
     }

@@ -29,6 +29,11 @@
             </div>
         </nav>
 
+     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>
+         
+
         <div class="page-header">
           <h1><small> Create member </small></h1>
         </div>
@@ -93,6 +98,7 @@
             <asp:Label ID="lbl_feedbackMemberToProject" Class="lblFeedbackProject" runat="server"></asp:Label>
             <br /><br />
         </div>
+    </ContentTemplate></asp:UpdatePanel>
 
 </asp:Content>
 

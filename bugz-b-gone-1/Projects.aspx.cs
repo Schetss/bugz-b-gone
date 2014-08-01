@@ -53,6 +53,8 @@ public partial class Projects : System.Web.UI.Page
             lbl_feedbackActiveProject.CssClass = "success2";
 
             GridActiveProjects.DataBind();
+            ddActiveProjects.DataBind();
+            ddNonActiveProjects.DataBind();
         }
 
         catch (Exception error)
@@ -79,6 +81,8 @@ public partial class Projects : System.Web.UI.Page
             lbl_feedbackNonActiveProject.CssClass = "success2";
 
             GridActiveProjects.DataBind();
+            ddActiveProjects.DataBind();
+            ddNonActiveProjects.DataBind();
         }
 
         catch (Exception error)
