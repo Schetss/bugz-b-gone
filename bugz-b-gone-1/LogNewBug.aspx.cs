@@ -17,7 +17,7 @@ public partial class LogNewBug : System.Web.UI.Page
         newBug.description = txtDescriptionBug.Text;
         newBug.fk_responsible = Convert.ToInt16(ddResponsible.SelectedValue);
         newBug.fk_project = Convert.ToInt16(ddProject.SelectedValue);
-        newBug.fk_priority = Convert.ToInt16(ddResponsible.SelectedValue);
+        newBug.fk_priority = Convert.ToInt16(ddPrior.SelectedValue); 
         newBug.fk_bugstatus = 1;
         newBug.openclosed = 1;
         newBug.fk_creator = Convert.ToInt16(Session["userID"]);

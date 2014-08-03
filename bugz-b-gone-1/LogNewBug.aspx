@@ -67,7 +67,7 @@
         <br />
         <br />
 
-        <asp:DropDownList ID="ddAssign" CssClass="dropdown-right" runat="server" Height="40px" Width="690px" DataSourceID="LinqPriority" DataTextField="priority_name" DataValueField="pk_priority_id"></asp:DropDownList>
+        <asp:DropDownList ID="ddPrior" CssClass="dropdown-right" runat="server" Height="40px" Width="690px" DataSourceID="LinqPriority" DataTextField="priority_name" DataValueField="pk_priority_id"></asp:DropDownList>
            
         <asp:Label ID="Label3" runat="server" Text="Priority" CssClass="lblPriority"></asp:Label>
            
