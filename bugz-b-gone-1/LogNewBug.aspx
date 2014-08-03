@@ -30,6 +30,10 @@
         </div>
     </nav>
 
+     <asp:ScriptManager ID="ScriptManager2" runat="server"></asp:ScriptManager>
+    <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+        <ContentTemplate>
+
     <div class="page-header">
         <h1><small> Log new bug </small></h1>
     </div>
@@ -44,7 +48,7 @@
         <asp:RequiredFieldValidator ID="RequiredFieldDescription" runat="server" ErrorMessage="*"  CssClass="error requiredDescriptionBug"  ControlToValidate="txtDescriptionBug"></asp:RequiredFieldValidator>
         <br />
 
-        <asp:DropDownList ID="ddProject" CssClass="dropdown-right" runat="server" Height="40px" Width="690px" DataSourceID="LinqProject" DataTextField="title" DataValueField="pk_project_id" ></asp:DropDownList>
+        <asp:DropDownList ID="ddProject" CssClass="dropdown-right" runat="server" Height="40px" Width="690px" DataSourceID="LinqProject" DataTextField="title" DataValueField="pk_project_id" OnSelectedIndexChanged="ddProject_SelectedIndexChanged" AutoPostBack="True" ></asp:DropDownList>
        
         <asp:Label ID="Label1" runat="server" Text="Project" CssClass="lblProject"></asp:Label>
        
@@ -56,9 +60,9 @@
        
         <br />
         <br />
-
-        <asp:DropDownList ID="ddResponsible" CssClass="dropdown-right" runat="server" Height="40px" Width="690px" DataSourceID="LinqMembers" DataTextField="username" DataValueField="pk_productuser_id"></asp:DropDownList>
-           
+        <asp:DropDownList ID="ddResponsible" CssClass="dropdown-right" runat="server" Height="40px" Width="690px" DataSourceID="LinqMembers" DataTextField="username" DataValueField="pk_productuser_id" AutoPostBack="True"></asp:DropDownList>
+       
+   
         <asp:Label ID="Label2"  runat="server" Text="Responsible" CssClass="lblResponsible"></asp:Label>
            
         <asp:LinqDataSource ID="LinqMembers" runat="server" ContextTypeName="BugzDataContext" EntityTypeName="" OrderBy="username" Select="new (pk_productuser_id, username)" TableName="ProductUsers">
@@ -85,6 +89,7 @@
          <br />
          <br />
     </div>
+      </ContentTemplate></asp:UpdatePanel>
 
 
 

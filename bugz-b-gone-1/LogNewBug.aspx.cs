@@ -39,8 +39,57 @@ public partial class LogNewBug : System.Web.UI.Page
 
     }
 
+
+
+    protected void ddProject_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        UsersOnProject usersonprojects = new UsersOnProject();
+        BLLresponsible BLLresponsible = new BLLresponsible();
+
+        usersonprojects.fk_project = Convert.ToInt16(ddProject.SelectedValue);
+
+        try
+        {
+            var users = BLLresponsible.getAllUsers(usersonprojects);
+
+            if (users.Count > 0)
+            {
+                String test = "";
+
+                for (int i = 0; i < users.Count; i++)
+                {
+                    test += "pk_productuser_id = " + users[i].fk_user + " || ";
+                }
+
+                String test2 = test.Substring(0, test.Length - 3);
+
+                LinqMembers.Where = test2;
+
+            }
+
+            else
+            {
+                int test3 = Convert.ToInt16(Session["userID"]);
+                LinqMembers.Where = "pk_productuser_id = " + test3.ToString();
+            }
+
+            ddResponsible.DataBind();
+
+        }
+
+        catch (Exception error)
+        {
+            Console.WriteLine(error);
+        }
+
+    }
+
+
+
+
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        int test3 = Convert.ToInt16(Session["userID"]);
+        LinqMembers.Where = "pk_productuser_id = " + test3.ToString();
     }
 }
