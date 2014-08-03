@@ -17,7 +17,6 @@ public partial class BugOverview : System.Web.UI.Page
         newBug.pk_bug_id = Convert.ToInt16(Request.QueryString["pk_bug_id"]);
 
 
-
         try
         {
             var buginfo = BLLoverview.getBug(newBug);
@@ -137,6 +136,42 @@ public partial class BugOverview : System.Web.UI.Page
             lblFeedbackStatus.Text = error.Message;
             lblFeedbackStatus.CssClass = "error3";
         }
+
+
+        // SHOW OR HIDE CLOSE BUG 
+
+        Bug newBug2 = new Bug();
+        BLLbugoverview BLLoverview = new BLLbugoverview();
+
+        newBug2.pk_bug_id = Convert.ToInt16(Request.QueryString["pk_bug_id"]);
+
+
+        try
+        {
+            var buginfo = BLLoverview.getBug(newBug2);
+
+            if (buginfo[0].fk_bugstatus == 3 && (Session["userID"].ToString() == buginfo[0].fk_creator.ToString() || Session["userID"].ToString() == buginfo[0].fk_responsible.ToString()))
+            {
+                PlaceholderChange.Visible = true;
+            }
+
+            else
+            {
+                PlaceholderChange.Visible = false;
+            }
+        }
+
+        catch
+        {
+            lblBugOverview.Text = "Oops, something went wrong!";
+            lblBugOverview.CssClass = "error";
+        }
+
+
+
+
+
+
     }
 
 
