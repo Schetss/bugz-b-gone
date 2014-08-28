@@ -11,6 +11,8 @@ public class DALchangebugstatus
 
     BugzDataContext dc = new BugzDataContext();
 
+    // change the status of a bug 
+
     public void changeStatus(Bug p_status)
     {
         var query = from t in dc.Bugs

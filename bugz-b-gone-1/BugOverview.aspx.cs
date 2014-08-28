@@ -9,7 +9,8 @@ public partial class BugOverview : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        //lblBugOverview.Text = Request.QueryString["pk_bug_id"];
+
+        // Get all information from the bug and load information in the page
 
         Bug newBug = new Bug();
         BLLbugoverview BLLoverview = new BLLbugoverview();
@@ -24,6 +25,8 @@ public partial class BugOverview : System.Web.UI.Page
             lblBugOverview.Text = buginfo[0].title;
             lblDescrip.Text = buginfo[0].Project.title + " - " + buginfo[0].description;
             lblOverviewPrior.Text = buginfo[0].Priority.priority_name + " Priority";
+
+            // color of the bugname
 
             if (buginfo[0].fk_bugstatus == 1)
             {
@@ -42,6 +45,7 @@ public partial class BugOverview : System.Web.UI.Page
 
             }
 
+            // Show / hide placeholder to complete the bugstatus
 
             if (buginfo[0].fk_bugstatus == 3 && (Session["userID"].ToString() == buginfo[0].fk_creator.ToString() || Session["userID"].ToString() == buginfo[0].fk_responsible.ToString()))
             {
@@ -70,6 +74,9 @@ public partial class BugOverview : System.Web.UI.Page
 
     protected void btnResponse_Click(object sender, EventArgs e)
     {
+
+        // place reaction
+
         Reaction1 newReaction = new Reaction1();
         BLLcomment BLLcomment = new BLLcomment();
 
@@ -98,6 +105,8 @@ public partial class BugOverview : System.Web.UI.Page
 
     protected void btnChangeStatus_Click(object sender, EventArgs e)
     {
+
+        // change bugstatus
 
         Bug newbug = new Bug();
         BLLchangebugstatus BLLchangestatus = new BLLchangebugstatus();
@@ -178,6 +187,9 @@ public partial class BugOverview : System.Web.UI.Page
 
     protected void btnSave_Click(object sender, EventArgs e)
     {
+
+        // save buton to close
+
         Bug closebug = new Bug();
         BLLclose BLLclose = new BLLclose();
 

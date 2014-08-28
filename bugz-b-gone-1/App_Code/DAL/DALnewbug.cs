@@ -10,6 +10,8 @@ public class DALnewbug
 {
     BugzDataContext dc = new BugzDataContext();
 
+    // insert new bug
+
     public void insertNewBug(Bug p_newbug)
     {
         dc.Bugs.InsertOnSubmit(p_newbug);

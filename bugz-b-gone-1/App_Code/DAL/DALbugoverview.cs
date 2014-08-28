@@ -10,6 +10,9 @@ public class DALbugoverview
 {
     BugzDataContext dc = new BugzDataContext();
 
+
+    // get bug information
+
     public List<Bug> getBug(Bug p_bug)
     {
         var query = from t in dc.Bugs

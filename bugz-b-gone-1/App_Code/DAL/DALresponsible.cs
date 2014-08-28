@@ -11,6 +11,8 @@ public class DALresponsible
 
     BugzDataContext dc = new BugzDataContext();
 
+    // get all users for that are on a project
+
     public List<UsersOnProject> getAllUsers(UsersOnProject p_project)
     {
         var query = from t in dc.UsersOnProjects

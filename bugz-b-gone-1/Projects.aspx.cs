@@ -7,6 +7,8 @@ using System.Web.UI.WebControls;
 
 public partial class Projects : System.Web.UI.Page
 {
+
+    // create project
     
     protected void btnCreateProject_Click(object sender, EventArgs e)
     {
@@ -27,6 +29,7 @@ public partial class Projects : System.Web.UI.Page
             txtTitleProject.Text = "";
 
             GridActiveProjects.DataBind();
+            ddActiveProjects.DataBind();
 
         }
 
@@ -37,6 +40,8 @@ public partial class Projects : System.Web.UI.Page
         }
 
     }
+
+    // set project to non-active
 
     protected void btnActiveProjects_Click1(object sender, EventArgs e)
     {
@@ -64,6 +69,9 @@ public partial class Projects : System.Web.UI.Page
         }
     }
 
+
+
+    // set project to active
 
 
     protected void Button1_Click(object sender, EventArgs e)

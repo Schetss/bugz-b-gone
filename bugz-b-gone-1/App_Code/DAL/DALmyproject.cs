@@ -10,6 +10,7 @@ public class DALmyproject
 {
     BugzDataContext dc = new BugzDataContext();
 
+    // get all projects where the user is on
 
     public List<UsersOnProject> getAllKeys(UsersOnProject p_user)
     {

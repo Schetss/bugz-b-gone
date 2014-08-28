@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 
 public partial class Login : System.Web.UI.Page
 {
+    // Check if there is a session
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -22,7 +23,7 @@ public partial class Login : System.Web.UI.Page
 
        
 
-        
+        // get information from fields
         
         ProductUser productuser = new ProductUser();
         BLLlogin BLLlogin = new BLLlogin();
@@ -41,8 +42,7 @@ public partial class Login : System.Web.UI.Page
             int userID = BLLlogin.getUserID(productuser);
 
            
-
-
+            // store information in session
          
             Session["Username"] = productuser.username;
             Session["Status"] = status.ToString();
@@ -51,7 +51,7 @@ public partial class Login : System.Web.UI.Page
             Response.Redirect("Default.aspx");
         }
         
-        
+        // in case of exception catch
 
         catch (Exception error)
         {

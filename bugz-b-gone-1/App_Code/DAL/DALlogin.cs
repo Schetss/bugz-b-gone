@@ -12,6 +12,9 @@ public class DALlogin
 
     public List<ProductUser> checkLogin(ProductUser p_productuser) 
     {
+
+        // query to check if user exists with password 
+
         var query =
             from t in dc.ProductUsers
             where t.username == p_productuser.username
@@ -22,18 +25,24 @@ public class DALlogin
 
         if (x.Count > 0)
         {
+            // if user exists return uservalues
            
             return x;
         }
 
         else
         {
+            // if user doesn't exist return exception
+
             throw new Exception("Username or password is not correct!");
         }
     }
 
     public int getStatus(ProductUser p_status)
     {
+
+        // query to get status (member / leader)
+
         var query =
             from t in dc.ProductUsers
             where t.username == p_status.username
@@ -45,16 +54,20 @@ public class DALlogin
 
         if (x.Count > 0)
         {
+            // member
             return 1;
         }
         else
         {
+            //leader
             return 2;
         }
     }
 
     public int getUserID(ProductUser p_id)
     {
+        // get ID of the user 
+
         var query =
             from t in dc.ProductUsers
             where t.username == p_id.username

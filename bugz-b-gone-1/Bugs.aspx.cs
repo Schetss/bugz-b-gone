@@ -8,6 +8,8 @@ using System.Web.UI.WebControls;
 public partial class Home : System.Web.UI.Page
 {
 
+    // change content by swapping datasource
+
     protected void btnOpen_Click(object sender, EventArgs e)
     {
         ListView1.DataSourceID = "LinqOpen";
@@ -58,8 +60,15 @@ public partial class Home : System.Web.UI.Page
         LinqMy.OrderBy = "fk_priority desc";
     }
 
+
+
+
+
     protected void Page_Load(object sender, EventArgs e)
     {
+
+        // load my projects
+
        BLLmyproject BLLmyproject = new BLLmyproject();
 
        UsersOnProject newUsersonProject = new UsersOnProject();
@@ -67,6 +76,8 @@ public partial class Home : System.Web.UI.Page
 
        try
        {
+           // get my projects by defining linqProject.Where
+
            var projects = BLLmyproject.getAllKeys(newUsersonProject);
 
            String test = "";

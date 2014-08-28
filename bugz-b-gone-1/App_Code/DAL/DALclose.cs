@@ -10,6 +10,8 @@ public class DALclose
 {
 	private BugzDataContext dc = new BugzDataContext();
 
+    // set a bug to closed
+
     public void closeBug(Bug p_close)
     {
         var query = from t in dc.Bugs

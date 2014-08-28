@@ -10,12 +10,16 @@ public class DALmembers
 {
     BugzDataContext dc = new BugzDataContext();
 
+    // insert user
+
     public void insertMember(ProductUser p_productuser)
     {
         dc.ProductUsers.InsertOnSubmit(p_productuser);
         dc.SubmitChanges();
 
     }
+
+    // insert user and project in the UsersOnProjects table
 
     public void insertUserProject(UsersOnProject p_UserProject)
     {

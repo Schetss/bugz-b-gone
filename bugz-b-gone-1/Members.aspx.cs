@@ -12,6 +12,7 @@ public partial class Members : System.Web.UI.Page
 
     BLLmembers BLLMembers = new BLLmembers();
 
+    // create new member
     
     protected void btnCreateMember_Click(object sender, EventArgs e)
     {
@@ -37,6 +38,8 @@ public partial class Members : System.Web.UI.Page
 
     }
 
+
+    // add member to project
 
     protected void btbAddMemberToProject_Click(object sender, EventArgs e)
     {

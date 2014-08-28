@@ -13,6 +13,9 @@ public partial class LogNewBug : System.Web.UI.Page
     
     protected void btnCreateMember_Click(object sender, EventArgs e)
     {
+
+        // button to create new bug 
+
         newBug.title = txtTitle.Text;
         newBug.description = txtDescriptionBug.Text;
         newBug.fk_responsible = Convert.ToInt16(ddResponsible.SelectedValue);
@@ -28,6 +31,8 @@ public partial class LogNewBug : System.Web.UI.Page
             BLLnewbug.insertNewBug(newBug);
             lbl_feedbackLogNewBug.Text = "New bug has been successfully added!";
             lbl_feedbackLogNewBug.CssClass = "success2";
+            txtTitle.Text = "";
+            txtDescriptionBug.Text = "";
         }
 
         catch
@@ -43,6 +48,9 @@ public partial class LogNewBug : System.Web.UI.Page
 
     protected void ddProject_SelectedIndexChanged(object sender, EventArgs e)
     {
+
+        // if project changes the list of responsibles changes
+
         UsersOnProject usersonprojects = new UsersOnProject();
         BLLresponsible BLLresponsible = new BLLresponsible();
 
@@ -85,7 +93,7 @@ public partial class LogNewBug : System.Web.UI.Page
     }
 
 
-
+    // define datasource
 
     protected void Page_Load(object sender, EventArgs e)
     {
